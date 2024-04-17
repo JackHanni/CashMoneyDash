@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerBaseState
 {
+    private int timesInGroundState;
     public PlayerGroundedState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
      : base (currentContext,playerStateFactory) {
         IsRootState = true;
@@ -11,11 +12,15 @@ public class PlayerGroundedState : PlayerBaseState
      }
 
     public override void EnterState(){
+        timesInGroundState = 0;
         Ctx.CurrentMovementY = Ctx.GroundedGravity;
         Ctx.AppliedMovementY = Ctx.GroundedGravity;
     }
 
     public override void UpdateState(){
+        timesInGroundState += 1;
+        Ctx.CurrentMovementY = Ctx.GroundedGravity;
+        Ctx.AppliedMovementY = Ctx.GroundedGravity;
         CheckSwitchState();
     }
 
@@ -24,6 +29,8 @@ public class PlayerGroundedState : PlayerBaseState
     public override void CheckSwitchState(){
         if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) {
             SwitchState(Factory.Jump());
+        } else if (!Ctx.IsGrounded) {
+            SwitchState(Factory.Fall());
         }
     }
 

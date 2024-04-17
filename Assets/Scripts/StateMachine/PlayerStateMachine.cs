@@ -14,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     int _isRunningHash;
     int _isJumpingHash;
     int _jumpCountHash;
+    int _isFallingHash;
 
     // variables to store player input
     private Vector2 _currentMovementInput;
@@ -21,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _currentRunMovement;
     private Vector3 _appliedMovement;
     private bool _isMovementPressed;
-    bool _isRunPressed;
+    private bool _isRunPressed;
 
     // constants
     [SerializeField]
@@ -29,7 +30,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField]
     protected float _rotationSpeed;
     float _runMult = 3.0f;
-    float _groundedGravity = -.05f;
+    float _groundedGravity = -.1f;
     float _gravity = -1.5f;
 
     // jumping variables
@@ -43,6 +44,10 @@ public class PlayerStateMachine : MonoBehaviour
     Dictionary<int,float> _initialJumpVelocities = new Dictionary<int,float>();
     Dictionary<int,float> _jumpGravities = new Dictionary<int,float>();
     Coroutine _currentJumpResetRoutine = null;
+    private bool _isGrounded;
+    private int _groundLayer;
+    private bool _isOnWall;
+    private int _wallLayer;
 
     // State Variables
     PlayerBaseState _currentState;
@@ -60,11 +65,12 @@ public class PlayerStateMachine : MonoBehaviour
     public int IsWalkingHash {get { return _isWalkingHash;}}
     public int IsRunningHash {get { return _isRunningHash;}}
     public int JumpCountHash {get{return _jumpCountHash;}}
+    public int IsFallingHash { get { return _isFallingHash;}}
     public bool RequireNewJumpPress {get {return _requireNewJumpPress;} set { _requireNewJumpPress=value;}}
     public bool IsJumping {set {_isJumping = value;}}
     public bool IsJumpPressed {get { return _isJumpPressed; }}
     public float CurrentMovementY {get { return _currentMovement.y;} set {_currentMovement.y = value;}}
-    public float AppliedMovementY { get { return _appliedMovement.y; } set {_appliedMovement.y = value;}}
+    public float AppliedMovementY { get { return _appliedMovement.y;} set {_appliedMovement.y = value;}}
     public float GroundedGravity {get {return _groundedGravity;}}
     public bool IsMovementPressed {get {return _isMovementPressed;}}
     public bool IsRunPressed {get {return _isRunPressed;}}
@@ -72,6 +78,9 @@ public class PlayerStateMachine : MonoBehaviour
     public float AppliedMovementZ {get {return _appliedMovement.z;} set {_appliedMovement.z = value;}}
     public float RunMult { get { return _runMult;}}
     public Vector2 CurrentMovementInput { get { return _currentMovementInput;}}
+    public float Gravity { get { return _gravity;}}
+    public bool IsGrounded { get { return _isGrounded; } }
+    public bool IsOnWall { get { return _isOnWall; } }
     
 
     void Awake()
@@ -84,10 +93,16 @@ public class PlayerStateMachine : MonoBehaviour
         _currentState = _states.Grounded();
         _currentState.EnterState();
 
+        _isGrounded = true;
+
+        _groundLayer = LayerMask.NameToLayer("Ground");
+        _wallLayer = LayerMask.NameToLayer("Wall");
+
         _isWalkingHash = Animator.StringToHash("IsWalking");
         _isRunningHash = Animator.StringToHash("IsRunning");
         _isJumpingHash = Animator.StringToHash("IsJumping");
         _jumpCountHash = Animator.StringToHash("jumpCount");
+        _isFallingHash = Animator.StringToHash("isFalling");
 
         _playerInput.CharacterControls.Move.started += OnMovementInput;
         _playerInput.CharacterControls.Move.canceled += OnMovementInput;
@@ -121,14 +136,12 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start(){}
 
     // Update is called once per frame
     void Update()
     {
+        _isGrounded = checkIfGrounded();
         HandleRotation();
         _currentState.UpdateStates();
         _characterController.Move(_appliedMovement*Time.deltaTime*_moveSpeed);
@@ -174,4 +187,47 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _playerInput.CharacterControls.Disable();
     }
+
+    /*
+ // These aren't working, but they don't hurt anything.
+    public void OnCollisionEnter(Collision collision) {
+        Debug.Log("Start Collide");
+        if (collision.gameObject.layer == _groundLayer) {
+            _isGrounded = true;
+        } else if (collision.gameObject.layer == _wallLayer) {
+            _isOnWall = true;
+        }
+    }
+
+    public void OnCollisionExit(Collision collision) {
+        Debug.Log("Exit Collision");
+        if (collision.gameObject.layer == _groundLayer) {
+            _isGrounded = false;
+        } else if (collision.gameObject.layer == _wallLayer) {
+            _isOnWall = false;
+        }
+    }
+
+    public void OnCollisionStay(Collision collision) {
+        Debug.Log("Colliding");
+        if (!_isGrounded) {
+            if (collision.gameObject.layer == _groundLayer) {
+                _isGrounded = true;
+            }
+        }
+        if (!_isOnWall) {
+            if (collision.gameObject.layer == _wallLayer) {
+                _isOnWall = true;
+            }
+        }
+    }
+    */
+
+
+
+    // Using a raycast to check if we're grounded. Might be inefficient.
+    private bool checkIfGrounded() {
+        return Physics.Raycast(transform.position, Vector3.down, 0.05f, 1 << _groundLayer);
+    }
+    
 }

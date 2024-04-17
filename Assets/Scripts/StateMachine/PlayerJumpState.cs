@@ -10,6 +10,7 @@ public class PlayerJumpState : PlayerBaseState
         yield return new WaitForSeconds(.2f);
         Ctx.JumpCount = 0;
     }
+
     public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) {
         IsRootState = true;
@@ -38,7 +39,7 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     public override void CheckSwitchState(){
-        if (Ctx.CharacterController.isGrounded) {
+        if (Ctx.IsGrounded) {
             SwitchState(Factory.Grounded());
         }
     }
@@ -63,12 +64,12 @@ public class PlayerJumpState : PlayerBaseState
         if (isFalling) {
             float previousYVel = Ctx.CurrentMovementY;
             Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * fallMultiplier * Time.deltaTime);
-            Ctx.AppliedMovementY = Mathf.Max((previousYVel+Ctx.CurrentMovementY)/2,-20.0f);
+            Ctx.AppliedMovementY = Mathf.Max((previousYVel+Ctx.CurrentMovementY)*0.5f,-20.0f);
         }
         else {
             float previousYVel = Ctx.CurrentMovementY;
             Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * Time.deltaTime);
-            Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)/2;
+            Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
         }
     }
 }
