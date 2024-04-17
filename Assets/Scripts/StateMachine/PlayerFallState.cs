@@ -11,7 +11,6 @@ public class PlayerFallState : PlayerBaseState
      }
 
     public override void EnterState(){
-        //Debug.Log("Fall");
         Ctx.Animator.SetBool(Ctx.IsFallingHash, true);
     }
 
@@ -31,7 +30,7 @@ public class PlayerFallState : PlayerBaseState
     }
 
     public override void CheckSwitchState(){
-        if (Ctx.CharacterController.isGrounded) {
+        if (Ctx.IsGrounded) {
             SwitchState(Factory.Grounded());
         }
     }

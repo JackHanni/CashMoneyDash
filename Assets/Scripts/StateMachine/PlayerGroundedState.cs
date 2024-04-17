@@ -21,7 +21,6 @@ public class PlayerGroundedState : PlayerBaseState
         timesInGroundState += 1;
         Ctx.CurrentMovementY = Ctx.GroundedGravity;
         Ctx.AppliedMovementY = Ctx.GroundedGravity;
-        Debug.Log(timesInGroundState);
         CheckSwitchState();
     }
 
@@ -30,8 +29,7 @@ public class PlayerGroundedState : PlayerBaseState
     public override void CheckSwitchState(){
         if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) {
             SwitchState(Factory.Jump());
-        } else if (!Ctx.CharacterController.isGrounded) {
-            //Debug.Log("Poo");
+        } else if (!Ctx.IsGrounded) {
             SwitchState(Factory.Fall());
         }
     }

@@ -22,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _currentRunMovement;
     private Vector3 _appliedMovement;
     private bool _isMovementPressed;
-    bool _isRunPressed;
+    private bool _isRunPressed;
 
     // constants
     [SerializeField]
@@ -44,6 +44,10 @@ public class PlayerStateMachine : MonoBehaviour
     Dictionary<int,float> _initialJumpVelocities = new Dictionary<int,float>();
     Dictionary<int,float> _jumpGravities = new Dictionary<int,float>();
     Coroutine _currentJumpResetRoutine = null;
+    private bool _isGrounded;
+    private int _groundLayer;
+    private bool _isOnWall;
+    private int _wallLayer;
 
     // State Variables
     PlayerBaseState _currentState;
@@ -75,6 +79,8 @@ public class PlayerStateMachine : MonoBehaviour
     public float RunMult { get { return _runMult;}}
     public Vector2 CurrentMovementInput { get { return _currentMovementInput;}}
     public float Gravity { get { return _gravity;}}
+    public bool IsGrounded { get { return _isGrounded; } }
+    public bool IsOnWall { get { return _isOnWall; } }
     
 
     void Awake()
@@ -86,6 +92,11 @@ public class PlayerStateMachine : MonoBehaviour
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
+
+        _isGrounded = true;
+
+        _groundLayer = LayerMask.NameToLayer("Ground");
+        _wallLayer = LayerMask.NameToLayer("Wall");
 
         _isWalkingHash = Animator.StringToHash("IsWalking");
         _isRunningHash = Animator.StringToHash("IsRunning");
@@ -125,15 +136,12 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start(){}
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_currentState);
+        _isGrounded = checkIfGrounded();
         HandleRotation();
         _currentState.UpdateStates();
         _characterController.Move(_appliedMovement*Time.deltaTime*_moveSpeed);
@@ -179,4 +187,47 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _playerInput.CharacterControls.Disable();
     }
+
+    /*
+ // These aren't working, but they don't hurt anything.
+    public void OnCollisionEnter(Collision collision) {
+        Debug.Log("Start Collide");
+        if (collision.gameObject.layer == _groundLayer) {
+            _isGrounded = true;
+        } else if (collision.gameObject.layer == _wallLayer) {
+            _isOnWall = true;
+        }
+    }
+
+    public void OnCollisionExit(Collision collision) {
+        Debug.Log("Exit Collision");
+        if (collision.gameObject.layer == _groundLayer) {
+            _isGrounded = false;
+        } else if (collision.gameObject.layer == _wallLayer) {
+            _isOnWall = false;
+        }
+    }
+
+    public void OnCollisionStay(Collision collision) {
+        Debug.Log("Colliding");
+        if (!_isGrounded) {
+            if (collision.gameObject.layer == _groundLayer) {
+                _isGrounded = true;
+            }
+        }
+        if (!_isOnWall) {
+            if (collision.gameObject.layer == _wallLayer) {
+                _isOnWall = true;
+            }
+        }
+    }
+    */
+
+
+
+    // Using a raycast to check if we're grounded. Might be inefficient.
+    private bool checkIfGrounded() {
+        return Physics.Raycast(transform.position, Vector3.down, 0.05f, 1 << _groundLayer);
+    }
+    
 }
