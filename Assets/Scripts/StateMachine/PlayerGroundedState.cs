@@ -15,8 +15,8 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     }
 
     public void HandleGravity() {
-        Ctx.CurrentMovementY = Ctx.GroundedGravity;
-        Ctx.AppliedMovementY = Ctx.GroundedGravity;
+        Ctx.CurrentMovementY = Ctx.GroundedGravity*10;
+        Ctx.AppliedMovementY = Ctx.GroundedGravity*10;
     }
 
     public override void UpdateState(){

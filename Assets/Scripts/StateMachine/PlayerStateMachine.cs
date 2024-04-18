@@ -21,6 +21,7 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _currentMovement;
     private Vector3 _currentRunMovement;
     private Vector3 _appliedMovement;
+    private Vector3 _cameraRelativeMovement;
     private bool _isMovementPressed;
     private bool _isRunPressed;
 
@@ -44,6 +45,7 @@ public class PlayerStateMachine : MonoBehaviour
     Dictionary<int,float> _initialJumpVelocities = new Dictionary<int,float>();
     Dictionary<int,float> _jumpGravities = new Dictionary<int,float>();
     Coroutine _currentJumpResetRoutine = null;
+    [SerializeField]
     private bool _isGrounded;
     private int _groundLayer;
     private bool _isOnWall;
@@ -82,12 +84,18 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsGrounded { get { return _isGrounded; } }
     public bool IsOnWall { get { return _isOnWall; } }
     
+    // Variables used locally
+    private float _radius;
+    private Vector3 _offset;
+    private RaycastHit hit;
 
     void Awake()
     {
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _radius = CharacterController.radius;
+        _offset = new Vector3(0.0f,_radius,0.0f);
 
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
@@ -146,13 +154,14 @@ public class PlayerStateMachine : MonoBehaviour
         _isGrounded = checkIfGrounded();
         HandleRotation();
         _currentState.UpdateStates();
-        _characterController.Move(_appliedMovement*Time.deltaTime*_moveSpeed);
+        _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+        _characterController.Move(_cameraRelativeMovement*Time.deltaTime*_moveSpeed);
         
     }
 
     void HandleRotation()
     {
-        Vector3 toLookAt = new Vector3(_currentMovement.x,0.0f,_currentMovement.z);
+        Vector3 toLookAt = new Vector3(_cameraRelativeMovement.x,0.0f,_cameraRelativeMovement.z);
         if (toLookAt != Vector3.zero) {
             Quaternion toRotation = Quaternion.LookRotation(toLookAt,Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation,toRotation,_rotationSpeed*Time.deltaTime);
@@ -190,22 +199,22 @@ public class PlayerStateMachine : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
-   /* 
+    /*
  // These aren't working, but they don't hurt anything.
-    public void OnCollisionEnter(Collision collision) {
+    public void OnTriggerEnter(Collider collision) {
         Debug.Log("Start Collide");
-        if (collision.gameObject.layer == 1 << _groundLayer) {
+        if (collision.gameObject.layer == _groundLayer) {
             _isGrounded = true;
-        } else if (collision.gameObject.layer == 1 << _wallLayer) {
+        } else if (collision.gameObject.layer == _wallLayer) {
             _isOnWall = true;
         }
     }
 
-    public void OnCollisionExit(Collision collision) {
+    public void OnTriggerExit(Collider collision) {
         Debug.Log("Exit Collision");
-        if (collision.gameObject.layer == 1 << _groundLayer) {
+        if (collision.gameObject.layer == _groundLayer) {
             _isGrounded = false;
-        } else if (collision.gameObject.layer == 1 << _wallLayer) {
+        } else if (collision.gameObject.layer == _wallLayer) {
             _isOnWall = false;
         }
     }
@@ -228,7 +237,19 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
-        return Physics.Raycast(transform.position, Vector3.down, 0.05f, 1 << _groundLayer);
+        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out hit, 0.1f, ~_groundLayer);
+    }
+
+    Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+        Vector3 rotatedVector = vectorToRotate.x*cameraRight + vectorToRotate.z*cameraForward;
+        rotatedVector.y = vectorToRotate.y;
+        return rotatedVector;
     }
     
 }
