@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundedState : PlayerBaseState
+public class PlayerGroundedState : PlayerBaseState, IRootState
 {
-    private int timesInGroundState;
     public PlayerGroundedState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
      : base (currentContext,playerStateFactory) {
         IsRootState = true;
-        InitializeSubState();
      }
 
     public override void EnterState(){
-        timesInGroundState = 0;
+        InitializeSubState();
+        HandleGravity();
+    }
+
+    public void HandleGravity() {
         Ctx.CurrentMovementY = Ctx.GroundedGravity;
         Ctx.AppliedMovementY = Ctx.GroundedGravity;
     }
 
     public override void UpdateState(){
-        timesInGroundState += 1;
-        Ctx.CurrentMovementY = Ctx.GroundedGravity;
-        Ctx.AppliedMovementY = Ctx.GroundedGravity;
         CheckSwitchState();
     }
 

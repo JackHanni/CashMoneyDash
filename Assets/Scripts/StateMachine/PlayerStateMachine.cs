@@ -136,7 +136,9 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start(){}
+    void Start(){
+        _characterController.Move(_appliedMovement*Time.deltaTime);
+    }
 
     // Update is called once per frame
     void Update()
@@ -188,26 +190,27 @@ public class PlayerStateMachine : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
-    /*
+   /* 
  // These aren't working, but they don't hurt anything.
     public void OnCollisionEnter(Collision collision) {
         Debug.Log("Start Collide");
-        if (collision.gameObject.layer == _groundLayer) {
+        if (collision.gameObject.layer == 1 << _groundLayer) {
             _isGrounded = true;
-        } else if (collision.gameObject.layer == _wallLayer) {
+        } else if (collision.gameObject.layer == 1 << _wallLayer) {
             _isOnWall = true;
         }
     }
 
     public void OnCollisionExit(Collision collision) {
         Debug.Log("Exit Collision");
-        if (collision.gameObject.layer == _groundLayer) {
+        if (collision.gameObject.layer == 1 << _groundLayer) {
             _isGrounded = false;
-        } else if (collision.gameObject.layer == _wallLayer) {
+        } else if (collision.gameObject.layer == 1 << _wallLayer) {
             _isOnWall = false;
         }
     }
-
+*/
+/*
     public void OnCollisionStay(Collision collision) {
         Debug.Log("Colliding");
         if (!_isGrounded) {
@@ -222,8 +225,6 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
     */
-
-
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
