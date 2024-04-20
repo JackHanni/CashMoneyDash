@@ -257,7 +257,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
-        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 0.1f, ~_groundLayer);
+        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 0.03f, ~_groundLayer);
     }
 
     private Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {
