@@ -10,11 +10,12 @@ public class PlayerStateMachine : MonoBehaviour
     Animator _animator;
 
     // variables to store optimized setter/getter parameter IDs
-    int _isWalkingHash;
-    int _isRunningHash;
-    int _isJumpingHash;
-    int _jumpCountHash;
-    int _isFallingHash;
+    private int _isWalkingHash;
+    private int _isRunningHash;
+    private int _isJumpingHash;
+    private int _jumpCountHash;
+    private int _isFallingHash;
+    private int _isCrouchedHash;
 
     // variables to store player input
     private Vector2 _currentMovementInput;
@@ -38,18 +39,22 @@ public class PlayerStateMachine : MonoBehaviour
     bool _isJumpPressed = false;
     float _initialJumpVelocity;
     float _maxJumpHeight = .5f;
-    float _maxJumpTime = 0.5f;
+    float _maxJumpTime = 0.7f;
     bool _isJumping = false;
     bool _requireNewJumpPress = false;
     int _jumpCount = 0;
     Dictionary<int,float> _initialJumpVelocities = new Dictionary<int,float>();
     Dictionary<int,float> _jumpGravities = new Dictionary<int,float>();
     Coroutine _currentJumpResetRoutine = null;
-    [SerializeField]
     private bool _isGrounded;
     private int _groundLayer;
     private bool _isOnWall;
     private int _wallLayer;
+
+    // crouch variables
+    private float _skidMultiplier = 0.96f;
+    private float _longJumpThreshold = 0.2f;
+    private bool _isCrouchPressed = false;
 
     // State Variables
     PlayerBaseState _currentState;
@@ -68,9 +73,11 @@ public class PlayerStateMachine : MonoBehaviour
     public int IsRunningHash {get { return _isRunningHash;}}
     public int JumpCountHash {get{return _jumpCountHash;}}
     public int IsFallingHash { get { return _isFallingHash;}}
+    public int IsCrouchedHash { get { return _isCrouchedHash;}}
     public bool RequireNewJumpPress {get {return _requireNewJumpPress;} set { _requireNewJumpPress=value;}}
     public bool IsJumping {set {_isJumping = value;}}
     public bool IsJumpPressed {get { return _isJumpPressed; }}
+    public bool IsCrouchPressed { get {return _isCrouchPressed;}}
     public float CurrentMovementY {get { return _currentMovement.y;} set {_currentMovement.y = value;}}
     public float AppliedMovementY { get { return _appliedMovement.y;} set {_appliedMovement.y = value;}}
     public float GroundedGravity {get {return _groundedGravity;}}
@@ -78,16 +85,22 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsRunPressed {get {return _isRunPressed;}}
     public float AppliedMovementX {get {return _appliedMovement.x;} set {_appliedMovement.x = value;}}
     public float AppliedMovementZ {get {return _appliedMovement.z;} set {_appliedMovement.z = value;}}
+    public float CameraRelativeMovementX { get {return _cameraRelativeMovement.x;} set {_cameraRelativeMovement.x = value;}}
+    public float CameraRelativeMovementZ { get {return _cameraRelativeMovement.z;} set {_cameraRelativeMovement.z = value;}}
     public float RunMult { get { return _runMult;}}
     public Vector2 CurrentMovementInput { get { return _currentMovementInput;}}
     public float Gravity { get { return _gravity;}}
     public bool IsGrounded { get { return _isGrounded; } }
     public bool IsOnWall { get { return _isOnWall; } }
-    
+    public float SkidMultiplier { get { return _skidMultiplier;}}
+    public float LongJumpThreshold { get { return _longJumpThreshold;}}
+    public float TimeStep { get { return Time.deltaTime;}}
+    public float RotationSpeed { get { return _rotationSpeed;}}
+
     // Variables used locally
     private float _radius;
     private Vector3 _offset;
-    private RaycastHit hit;
+    private RaycastHit _hit;
 
     void Awake()
     {
@@ -111,6 +124,7 @@ public class PlayerStateMachine : MonoBehaviour
         _isJumpingHash = Animator.StringToHash("IsJumping");
         _jumpCountHash = Animator.StringToHash("jumpCount");
         _isFallingHash = Animator.StringToHash("isFalling");
+        _isCrouchedHash = Animator.StringToHash("isCrouched");
 
         _playerInput.CharacterControls.Move.started += OnMovementInput;
         _playerInput.CharacterControls.Move.canceled += OnMovementInput;
@@ -119,6 +133,8 @@ public class PlayerStateMachine : MonoBehaviour
         _playerInput.CharacterControls.Run.canceled += OnRun;
         _playerInput.CharacterControls.Jump.started += OnJump;
         _playerInput.CharacterControls.Jump.canceled += OnJump;
+        _playerInput.CharacterControls.Crouch.started += OnCrouch;
+        _playerInput.CharacterControls.Crouch.canceled += OnCrouch;
 
         SetupJumpVariables();
     }
@@ -159,7 +175,7 @@ public class PlayerStateMachine : MonoBehaviour
         
     }
 
-    void HandleRotation()
+    public void HandleRotation()
     {
         Vector3 toLookAt = new Vector3(_cameraRelativeMovement.x,0.0f,_cameraRelativeMovement.z);
         if (toLookAt != Vector3.zero) {
@@ -168,7 +184,11 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
-     void OnJump (InputAction.CallbackContext context)
+    void OnCrouch (InputAction.CallbackContext context) {
+        _isCrouchPressed = context.ReadValueAsButton();
+    }
+
+    void OnJump (InputAction.CallbackContext context)
     {
         _isJumpPressed = context.ReadValueAsButton();
         _requireNewJumpPress = false;
@@ -237,10 +257,10 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
-        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out hit, 0.1f, ~_groundLayer);
+        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 0.1f, ~_groundLayer);
     }
 
-    Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {
+    private Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
         cameraForward.y = 0;
