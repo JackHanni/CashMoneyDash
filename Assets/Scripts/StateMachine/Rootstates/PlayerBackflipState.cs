@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerBackflipState : PlayerBaseState, IRootState
 {
+    private float backflipMovement = 0.9f;
+
     public PlayerBackflipState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) {
         IsRootState = true;
     }
 
     public override void EnterState(){
-        Vector3 forward = Ctx.CharacterController.transform.forward*.75f;
-        Ctx.CameraRelativeMovementX = -forward.x;
-        Ctx.CameraRelativeMovementZ = -forward.z;
+        Ctx.IsBackflipping = true;
+        Vector3 forward = Ctx.CharacterController.transform.forward*backflipMovement;
+        Ctx.AppliedMovementX = -forward.x;
+        Ctx.AppliedMovementZ = -forward.z;
         InitializeSubState();
         HandleJump();
     }
@@ -23,6 +26,7 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
     }
 
     public override void ExitState(){
+        Ctx.IsBackflipping = false;
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
         if (Ctx.IsJumpPressed) {

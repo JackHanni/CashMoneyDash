@@ -51,6 +51,8 @@ public class PlayerStateMachine : MonoBehaviour
     private bool _isOnWall;
     private int _wallLayer;
 
+    private bool _isBackflipping = false;
+
     // crouch variables
     private float _skidMultiplier = 0.96f;
     private float _longJumpThreshold = 0.2f;
@@ -96,6 +98,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float LongJumpThreshold { get { return _longJumpThreshold;}}
     public float TimeStep { get { return Time.deltaTime;}}
     public float RotationSpeed { get { return _rotationSpeed;}}
+    public bool IsBackflipping {get {return _isBackflipping;} set {_isBackflipping = value;}}
 
     // Variables used locally
     private float _radius;
@@ -167,12 +170,17 @@ public class PlayerStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _isGrounded = checkIfGrounded();
-        HandleRotation();
+        if (!_isBackflipping) {
+            HandleRotation();
+        }
         _currentState.UpdateStates();
         _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
         _characterController.Move(_cameraRelativeMovement*Time.deltaTime*_moveSpeed);
         
+    }
+
+    void FixedUpdate() {
+        _isGrounded = checkIfGrounded();
     }
 
     public void HandleRotation()
@@ -257,7 +265,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
-        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 0.03f, ~_groundLayer);
+        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 0.13f, ~_groundLayer);
     }
 
     private Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {
