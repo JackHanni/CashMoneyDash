@@ -10,8 +10,8 @@ public class PlayerCrouchedState : PlayerBaseState
     public override void EnterState(){
         // start crouch animation
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,true);
-        Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
-        Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
+        //Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
+        //Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
     }
 
     public override void UpdateState(){

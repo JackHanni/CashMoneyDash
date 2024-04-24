@@ -16,6 +16,7 @@ public class PlayerStateMachine : MonoBehaviour
     private int _jumpCountHash;
     private int _isFallingHash;
     private int _isCrouchedHash;
+    private int _isSkiddingHash;
 
     // variables to store player input
     private Vector2 _currentMovementInput;
@@ -34,6 +35,7 @@ public class PlayerStateMachine : MonoBehaviour
     float _runMult = 3.0f;
     float _groundedGravity = -.1f;
     float _gravity = -1.5f;
+    public float _groundedThreshold;
 
     // jumping variables
     bool _isJumpPressed = false;
@@ -76,6 +78,7 @@ public class PlayerStateMachine : MonoBehaviour
     public int JumpCountHash {get{return _jumpCountHash;}}
     public int IsFallingHash { get { return _isFallingHash;}}
     public int IsCrouchedHash { get { return _isCrouchedHash;}}
+    public int IsSkiddingHash { get { return _isSkiddingHash;}}
     public bool RequireNewJumpPress {get {return _requireNewJumpPress;} set { _requireNewJumpPress=value;}}
     public bool IsJumping {set {_isJumping = value;}}
     public bool IsJumpPressed {get { return _isJumpPressed; }}
@@ -99,8 +102,10 @@ public class PlayerStateMachine : MonoBehaviour
     public float TimeStep { get { return Time.deltaTime;}}
     public float RotationSpeed { get { return _rotationSpeed;}}
     public bool IsBackflipping {get {return _isBackflipping;} set {_isBackflipping = value;}}
+    public float GroundedThreshold { get { return _groundedThreshold;}}
+    public Vector3 AppliedMovement { get { return _appliedMovement;} set { _appliedMovement = value;}}
 
-    // Variables used locally
+    // Variables used locally for determining grounded logic
     private float _radius;
     private Vector3 _offset;
     private RaycastHit _hit;
@@ -128,6 +133,7 @@ public class PlayerStateMachine : MonoBehaviour
         _jumpCountHash = Animator.StringToHash("jumpCount");
         _isFallingHash = Animator.StringToHash("isFalling");
         _isCrouchedHash = Animator.StringToHash("isCrouched");
+        _isSkiddingHash = Animator.StringToHash("isSkidding");
 
         _playerInput.CharacterControls.Move.started += OnMovementInput;
         _playerInput.CharacterControls.Move.canceled += OnMovementInput;
@@ -265,7 +271,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
-        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 0.13f, ~_groundLayer);
+        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, _groundedThreshold, ~_groundLayer);
     }
 
     private Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {

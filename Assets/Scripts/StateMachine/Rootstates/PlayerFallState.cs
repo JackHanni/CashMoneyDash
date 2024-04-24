@@ -10,6 +10,7 @@ public class PlayerFallState : PlayerBaseState, IRootState
      }
 
     public override void EnterState(){
+        //Debug.Log("Falling");
         InitializeSubState();
         Ctx.Animator.SetBool(Ctx.IsFallingHash, true);
     }

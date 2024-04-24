@@ -11,11 +11,10 @@ public class PlayerIdleState : PlayerBaseState
         Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
         Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
-        Ctx.AppliedMovementX = 0;
-        Ctx.AppliedMovementZ = 0;
     }
 
     public override void UpdateState(){
+        Ctx.AppliedMovement = Vector3.MoveTowards(Ctx.AppliedMovement,Vector3.zero,2.0f*Ctx.TimeStep);
         CheckSwitchState();
     }
 
