@@ -107,6 +107,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsBackflipping {get {return _isBackflipping;} set {_isBackflipping = value;}}
     public float GroundedThreshold { get { return _groundedThreshold;}}
     public Vector3 AppliedMovement { get { return _appliedMovement;} set { _appliedMovement = value;}}
+    public Transform CameraTransform {get { return Camera.main.transform;}}
 
     // Variables used locally for determining grounded logic
     private float _radius;
@@ -189,7 +190,11 @@ public class PlayerStateMachine : MonoBehaviour
         _currentState.UpdateStates();
         _isGrounded = checkIfGrounded();
         _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
-        _characterController.Move(_cameraRelativeMovement*_moveSpeed*_timeStep);  
+        if (!_isBackflipping) {
+            _characterController.Move(_cameraRelativeMovement*_moveSpeed*_timeStep);  
+        } else {
+            _characterController.Move(_appliedMovement*_moveSpeed*_timeStep);
+        }
     }
 
     public void HandleRotation()
