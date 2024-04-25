@@ -55,7 +55,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
 
     public void HandleGravity() {
         float previousYVel = Ctx.CurrentMovementY;
-        Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * Time.deltaTime);
+        Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * Ctx.TimeStep);
         Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
     }
 }

@@ -10,7 +10,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
      }
 
     public override void EnterState(){
-        Ctx.RequireNewJumpPress = false;
+        //Ctx.RequireNewJumpPress = false;
         InitializeSubState();
         HandleGravity();
     }
@@ -21,6 +21,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     }
 
     public override void UpdateState(){
+        //Debug.Log(Ctx.RequireNewJumpPress);
         CheckSwitchState();
     }
 
@@ -31,6 +32,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
         //Debug.Log("New Jump Not Needed: " + !Ctx.RequireNewJumpPress);
         if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) {
             if (!Ctx.IsCrouchPressed) {
+                // Debug.Log("Jump");
                 SwitchState(Factory.Jump());
             } else {
                 Vector2 velocity = new Vector2 (Ctx.AppliedMovementX,Ctx.AppliedMovementZ);
@@ -44,6 +46,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
                 }
             }
         } else if (!Ctx.IsGrounded) {
+            // Debug.Log("Fall");
             SwitchState(Factory.Fall());
         }
     }

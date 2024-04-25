@@ -13,9 +13,6 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
 
     public override void EnterState(){
         Ctx.IsBackflipping = true;
-        Vector3 forward = Ctx.CharacterController.transform.forward*backflipMovement;
-        Ctx.AppliedMovementX = -forward.x;
-        Ctx.AppliedMovementZ = -forward.z;
         InitializeSubState();
         HandleJump();
     }
@@ -49,15 +46,27 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
     }
 
     void HandleJump() {
+        Vector3 move = new Vector3 (0.0f,Ctx.GroundedThreshold*1.5f,0.0f);
+        Ctx.CharacterController.Move(move);
+
+        Vector3 forward = Ctx.CharacterController.transform.forward;
+        Vector2 backflipDirection = new Vector2 (-forward.x,-forward.z);
+        backflipDirection = backflipDirection.normalized*backflipMovement;
+        // Ctx.CurrentMovementX = backflipDirection.x;
+        Ctx.AppliedMovementX = backflipDirection.x;
+        // Ctx.CurrentMovementZ = backflipDirection.y;
+        Ctx.AppliedMovementZ = backflipDirection.y;
+
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,true);
         Ctx.IsJumping = true;
+
         Ctx.CurrentMovementY = Ctx.InitialJumpVelocities[3];
         Ctx.AppliedMovementY = Ctx.InitialJumpVelocities[3];
     }
 
     public void HandleGravity() {
         float previousYVel = Ctx.CurrentMovementY;
-        Ctx.CurrentMovementY += Ctx.JumpGravities[3] * Time.deltaTime;
+        Ctx.CurrentMovementY += Ctx.JumpGravities[3] * Ctx.TimeStep;
         Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
     }
 }

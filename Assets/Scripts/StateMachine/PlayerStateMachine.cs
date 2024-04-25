@@ -36,6 +36,7 @@ public class PlayerStateMachine : MonoBehaviour
     float _groundedGravity = -.1f;
     float _gravity = -1.5f;
     public float _groundedThreshold;
+    private float _timeStep = 0.02f;
 
     // jumping variables
     bool _isJumpPressed = false;
@@ -90,6 +91,8 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsRunPressed {get {return _isRunPressed;}}
     public float AppliedMovementX {get {return _appliedMovement.x;} set {_appliedMovement.x = value;}}
     public float AppliedMovementZ {get {return _appliedMovement.z;} set {_appliedMovement.z = value;}}
+    public float CurrentMovementX {get {return _currentMovement.x;} set {_currentMovement.x = value;}}
+    public float CurrentMovementZ {get {return _currentMovement.z;} set {_currentMovement.z = value;}}
     public float CameraRelativeMovementX { get {return _cameraRelativeMovement.x;} set {_cameraRelativeMovement.x = value;}}
     public float CameraRelativeMovementZ { get {return _cameraRelativeMovement.z;} set {_cameraRelativeMovement.z = value;}}
     public float RunMult { get { return _runMult;}}
@@ -99,7 +102,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsOnWall { get { return _isOnWall; } }
     public float SkidMultiplier { get { return _skidMultiplier;}}
     public float LongJumpThreshold { get { return _longJumpThreshold;}}
-    public float TimeStep { get { return Time.deltaTime;}}
+    public float TimeStep { get { return _timeStep;}}
     public float RotationSpeed { get { return _rotationSpeed;}}
     public bool IsBackflipping {get {return _isBackflipping;} set {_isBackflipping = value;}}
     public float GroundedThreshold { get { return _groundedThreshold;}}
@@ -122,7 +125,7 @@ public class PlayerStateMachine : MonoBehaviour
         _currentState = _states.Grounded();
         _currentState.EnterState();
 
-        _isGrounded = true;
+        _isGrounded = false;
 
         _groundLayer = LayerMask.NameToLayer("Ground");
         _wallLayer = LayerMask.NameToLayer("Wall");
@@ -169,24 +172,24 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start(){
-        _characterController.Move(_appliedMovement*Time.deltaTime);
-    }
+    // void Start(){
+    //     _characterController.Move(_appliedMovement*Time.deltaTime);
+    // }
 
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log(_isGrounded);
         if (!_isBackflipping) {
             HandleRotation();
         }
-        _currentState.UpdateStates();
-        _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
-        _characterController.Move(_cameraRelativeMovement*Time.deltaTime*_moveSpeed);
-        
     }
 
     void FixedUpdate() {
+        _currentState.UpdateStates();
         _isGrounded = checkIfGrounded();
+        _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+        _characterController.Move(_cameraRelativeMovement*_moveSpeed*_timeStep);  
     }
 
     public void HandleRotation()
@@ -204,8 +207,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     void OnJump (InputAction.CallbackContext context)
     {
-        _isJumpPressed = context.ReadValueAsButton();
         _requireNewJumpPress = false;
+        _isJumpPressed = context.ReadValueAsButton();
     }
 
     void OnRun (InputAction.CallbackContext context)
@@ -233,26 +236,26 @@ public class PlayerStateMachine : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
-    /*
+    
  // These aren't working, but they don't hurt anything.
-    public void OnTriggerEnter(Collider collision) {
-        Debug.Log("Start Collide");
-        if (collision.gameObject.layer == _groundLayer) {
-            _isGrounded = true;
-        } else if (collision.gameObject.layer == _wallLayer) {
-            _isOnWall = true;
-        }
-    }
+    // public void OnTriggerEnter(Collider collision) {
+    //     Debug.Log(collision.gameObject.layer);
+    //     if (collision.gameObject.layer == _groundLayer) {
+    //         _isGrounded = true;
+    //     } else if (collision.gameObject.layer == _wallLayer) {
+    //         _isOnWall = true;
+    //     }
+    // }
 
-    public void OnTriggerExit(Collider collision) {
-        Debug.Log("Exit Collision");
-        if (collision.gameObject.layer == _groundLayer) {
-            _isGrounded = false;
-        } else if (collision.gameObject.layer == _wallLayer) {
-            _isOnWall = false;
-        }
-    }
-*/
+    // public void OnTriggerExit(Collider collision) {
+    //     Debug.Log("Exit Collision");
+    //     if (collision.gameObject.layer == _groundLayer) {
+    //         _isGrounded = false;
+    //     } else if (collision.gameObject.layer == _wallLayer) {
+    //         _isOnWall = false;
+    //     }
+    // }
+
 /*
     public void OnCollisionStay(Collision collision) {
         Debug.Log("Colliding");

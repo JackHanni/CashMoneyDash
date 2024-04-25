@@ -18,6 +18,8 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     }
 
     public override void EnterState(){
+        Ctx.RequireNewJumpPress = false;
+        //Debug.Log(Ctx.JumpCount);
         InitializeSubState();
         HandleJump();
     }
@@ -29,8 +31,12 @@ public class PlayerJumpState : PlayerBaseState, IRootState
 
     public override void ExitState(){
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
+        Ctx.IsJumping = false;
         if (Ctx.IsJumpPressed) {
             Ctx.RequireNewJumpPress = true;
+        }
+        else {
+            Ctx.RequireNewJumpPress = false;
         }
         Ctx.CurrentJumpResetRoutine = Ctx.StartCoroutine(IJumpResetRoutine());
         if (Ctx.JumpCount == 3) {
@@ -48,6 +54,8 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     public override void InitializeSubState(){}
 
     void HandleJump() {
+        Vector3 move = new Vector3 (0.0f,Ctx.GroundedThreshold*2.0f,0.0f);
+        Ctx.CharacterController.Move(move);
         if (Ctx.JumpCount <3 && Ctx.CurrentJumpResetRoutine != null) {
             Ctx.StopCoroutine(Ctx.CurrentJumpResetRoutine);
         }
@@ -60,15 +68,15 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     }
 
     public void HandleGravity() {
-        bool isFalling = Ctx.CurrentMovementY <= 0.0f || !Ctx.IsJumpPressed;
+        bool isFalling = false;//Ctx.CurrentMovementY <= 0.0f || !Ctx.IsJumpPressed;
         if (isFalling) {
             float previousYVel = Ctx.CurrentMovementY;
-            Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * fallMultiplier * Time.deltaTime);
+            Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * fallMultiplier * Ctx.TimeStep);
             Ctx.AppliedMovementY = Mathf.Max((previousYVel+Ctx.CurrentMovementY)*0.5f,-20.0f);
         }
         else {
             float previousYVel = Ctx.CurrentMovementY;
-            Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * Time.deltaTime);
+            Ctx.CurrentMovementY += (Ctx.JumpGravities[Ctx.JumpCount] * Ctx.TimeStep);
             Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
         }
     }
