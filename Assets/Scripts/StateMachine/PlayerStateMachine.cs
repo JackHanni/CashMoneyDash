@@ -241,6 +241,12 @@ public class PlayerStateMachine : MonoBehaviour
         _playerInput.CharacterControls.Disable();
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Slime") {
+            other.GetComponent<Slime>().TakeDamage(1);
+        }
+    }
     
  // These aren't working, but they don't hurt anything.
     // public void OnTriggerEnter(Collider collision) {
