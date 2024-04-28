@@ -13,6 +13,8 @@ public class Slime : MonoBehaviour
         if (hp <= 0){
             //Play death animation
             animator.SetTrigger("die");
+            GetComponent<Collider>().enabled = false;
+            animator.SetTrigger("dead");
         } else {
             //Play get hit animation
             animator.SetTrigger("damage");
