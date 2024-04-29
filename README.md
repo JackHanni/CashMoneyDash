@@ -9,3 +9,9 @@
 ## Details 
 – Details regarding any pivots, rescoping, deviations, erc from your project proposal that you have made or plan to make.
 
+
+Terrain
+* Found interersting assets that made the development process so much easier. A lot of beautiful assets do not support URP. 
+* Water seems to be difficult to implement. Will try implement later. 
+* The asset I chose does not support PolyBrush Paint. I ended up creating my own landscape in Level02. I still having problem with paint vertex colors but it is not the top priority.
+* Some visual items are different from expected. I think we are developing our own game now instead of re-produce Mario. 
