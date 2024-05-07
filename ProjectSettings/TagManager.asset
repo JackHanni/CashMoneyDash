@@ -7,6 +7,7 @@ TagManager:
   - PlayerEyes
   - Waypoint
   - Slime
+  - Ground
   layers:
   - Default
   - TransparentFX
