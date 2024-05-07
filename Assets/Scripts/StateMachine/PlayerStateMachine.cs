@@ -33,7 +33,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField]
     protected float _rotationSpeed;
     float _runMult = 3.0f;
-    float _groundedGravity = -.1f;
+    float _groundedGravity = -1.0f;
     float _gravity = -1.5f;
     public float _groundedThreshold;
     private float _timeStep = 0.02f;
