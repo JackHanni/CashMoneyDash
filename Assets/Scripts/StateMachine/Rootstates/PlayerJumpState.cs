@@ -19,7 +19,6 @@ public class PlayerJumpState : PlayerBaseState, IRootState
 
     public override void EnterState(){
         Ctx.RequireNewJumpPress = false;
-        //Debug.Log(Ctx.JumpCount);
         InitializeSubState();
         HandleJump();
     }
@@ -51,7 +50,9 @@ public class PlayerJumpState : PlayerBaseState, IRootState
         }
     }
 
-    public override void InitializeSubState(){}
+    public override void InitializeSubState(){
+        SetSubState(Factory.Idle());
+    }
 
     void HandleJump() {
         Vector3 move = new Vector3 (0.0f,Ctx.GroundedThreshold*2.0f,0.0f);

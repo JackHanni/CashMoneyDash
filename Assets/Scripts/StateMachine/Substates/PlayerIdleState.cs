@@ -14,7 +14,6 @@ public class PlayerIdleState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        //Ctx.AppliedMovement = Vector3.MoveTowards(Ctx.AppliedMovement,Vector3.zero,2.0f*Ctx.TimeStep);
         CheckSwitchState();
     }
 

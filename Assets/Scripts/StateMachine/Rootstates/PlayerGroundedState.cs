@@ -10,7 +10,6 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
      }
 
     public override void EnterState(){
-        //Ctx.RequireNewJumpPress = false;
         InitializeSubState();
         HandleGravity();
     }
@@ -21,18 +20,14 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     }
 
     public override void UpdateState(){
-        //Debug.Log(Ctx.RequireNewJumpPress);
         CheckSwitchState();
     }
 
     public override void ExitState(){}
 
     public override void CheckSwitchState(){
-        //Debug.Log("Is Jump Pressed: " + Ctx.IsJumpPressed);
-        //Debug.Log("New Jump Not Needed: " + !Ctx.RequireNewJumpPress);
         if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) {
             if (!Ctx.IsCrouchPressed) {
-                // Debug.Log("Jump");
                 SwitchState(Factory.Jump());
             } else {
                 Vector2 velocity = new Vector2 (Ctx.AppliedMovementX,Ctx.AppliedMovementZ);
@@ -46,17 +41,16 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
                 }
             }
         } else if (!Ctx.IsGrounded) {
-            // Debug.Log("Fall");
             SwitchState(Factory.Fall());
         }
     }
 
     public override void InitializeSubState(){
         if (!Ctx.IsCrouchPressed) {
-            if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed) {
+            if (!Ctx.IsMovementPressed) {
                 SetSubState(Factory.Idle());
             }
-            else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed) {
+            else if (!Ctx.IsRunPressed) {
                 SetSubState(Factory.Walk());
             }
             else {

@@ -6,6 +6,7 @@ public class PlayerWalkState : PlayerBaseState
 {
     public PlayerWalkState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
      : base (currentContext,playerStateFactory) {}
+     
     public override void EnterState(){
         Ctx.Animator.SetBool(Ctx.IsWalkingHash,true);
         Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
@@ -16,6 +17,7 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
         Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
         CheckSwitchState();
+        // Debug.Log("Walk");
     }
 
     public override void ExitState(){}

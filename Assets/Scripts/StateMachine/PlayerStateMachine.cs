@@ -34,7 +34,7 @@ public class PlayerStateMachine : MonoBehaviour
     protected float _rotationSpeed;
     float _runMult = 3.0f;
     float _groundedGravity = -1.0f;
-    float _gravity = -1.5f;
+    float _gravity = -5.25f;
     public float _groundedThreshold;
     private float _timeStep = 0.02f;
 
@@ -42,7 +42,7 @@ public class PlayerStateMachine : MonoBehaviour
     bool _isJumpPressed = false;
     float _initialJumpVelocity;
     float _maxJumpHeight = .5f;
-    float _maxJumpTime = 0.7f;
+    float _maxJumpTime = 0.8f;
     bool _isJumping = false;
     bool _requireNewJumpPress = false;
     int _jumpCount = 0;
