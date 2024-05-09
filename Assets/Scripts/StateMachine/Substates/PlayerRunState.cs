@@ -14,8 +14,10 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
-        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
+        if (Ctx.IsGrounded) {
+            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
+            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
+        }
         CheckSwitchState();
     }
 

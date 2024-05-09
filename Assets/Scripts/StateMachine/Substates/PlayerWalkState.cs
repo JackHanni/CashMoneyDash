@@ -14,10 +14,11 @@ public class PlayerWalkState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
-        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
+        if (Ctx.IsGrounded) {
+            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
+            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
+        }
         CheckSwitchState();
-        // Debug.Log("Walk");
     }
 
     public override void ExitState(){}

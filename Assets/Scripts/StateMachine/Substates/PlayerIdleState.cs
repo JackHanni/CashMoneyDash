@@ -20,14 +20,19 @@ public class PlayerIdleState : PlayerBaseState
     public override void ExitState(){}
 
     public override void CheckSwitchState(){
-        if (!Ctx.IsCrouchPressed) {
+        if (!Ctx.IsCrouchPressed || Ctx.IsJumping) {
             if (Ctx.IsMovementPressed && Ctx.IsRunPressed) {
+                Debug.Log("Switch to Run");
                 SwitchState(Factory.Run());
             }
             else if (Ctx.IsMovementPressed) {
+                Debug.Log("Switch to Walk");
+
                 SwitchState(Factory.Walk());
             }
         } else {
+            Debug.Log("Switch to Crouched");
+
             SwitchState(Factory.Crouched());
         }
         

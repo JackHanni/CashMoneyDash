@@ -81,7 +81,7 @@ public class PlayerStateMachine : MonoBehaviour
     public int IsCrouchedHash { get { return _isCrouchedHash;}}
     public int IsSkiddingHash { get { return _isSkiddingHash;}}
     public bool RequireNewJumpPress {get {return _requireNewJumpPress;} set { _requireNewJumpPress=value;}}
-    public bool IsJumping {set {_isJumping = value;}}
+    public bool IsJumping {get {return _isJumping;} set {_isJumping = value;}}
     public bool IsJumpPressed {get { return _isJumpPressed; }}
     public bool IsCrouchPressed { get {return _isCrouchPressed;}}
     public float CurrentMovementY {get { return _currentMovement.y;} set {_currentMovement.y = value;}}
@@ -96,7 +96,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float CameraRelativeMovementX { get {return _cameraRelativeMovement.x;} set {_cameraRelativeMovement.x = value;}}
     public float CameraRelativeMovementZ { get {return _cameraRelativeMovement.z;} set {_cameraRelativeMovement.z = value;}}
     public float RunMult { get { return _runMult;}}
-    public Vector2 CurrentMovementInput { get { return _currentMovementInput;}}
+    public Vector2 CurrentMovementInput { get { return _currentMovementInput;} set {_currentMovementInput = value;}}
     public float Gravity { get { return _gravity;}}
     public bool IsGrounded { get { return _isGrounded; } }
     public bool IsOnWall { get { return _isOnWall; } }

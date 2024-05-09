@@ -17,6 +17,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
     }
 
     public override void UpdateState(){
+        Debug.Log(Ctx.AppliedMovement);
         HandleGravity();
         CheckSwitchState();
     }
@@ -28,6 +29,11 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         if (Ctx.IsJumpPressed) {
             Ctx.RequireNewJumpPress = true;
         }
+        Ctx.CurrentMovementX = 0;
+        Ctx.CurrentMovementZ = 0;
+        Ctx.AppliedMovementX = 0;
+        Ctx.AppliedMovementZ = 0;
+        Ctx.IsJumping = false;
     }
 
     public override void CheckSwitchState(){
@@ -36,7 +42,9 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         }
     }
 
-    public override void InitializeSubState(){}
+    public override void InitializeSubState(){
+        SetSubState(Factory.Idle());
+    }
 
     void HandleJump() {
         Ctx.Animator.SetBool(Ctx.IsSkiddingHash,true);
@@ -48,9 +56,11 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         Vector2 jumpVel = new Vector2 (Ctx.AppliedMovementX,Ctx.AppliedMovementZ);
         jumpVel = jumpVel.normalized * _longjumpVelocity;
         Ctx.AppliedMovementX = jumpVel.x;
+        Ctx.CurrentMovementX = jumpVel.x;
         Ctx.AppliedMovementZ = jumpVel.y;
-        Ctx.CurrentMovementY = Ctx.InitialJumpVelocities[1] * 0.8f;
-        Ctx.AppliedMovementY = Ctx.InitialJumpVelocities[1] * 0.8f;
+        Ctx.CurrentMovementZ = jumpVel.y;
+        Ctx.CurrentMovementY = Ctx.InitialJumpVelocities[1];
+        Ctx.AppliedMovementY = Ctx.InitialJumpVelocities[1];
     }
 
     public void HandleGravity() {

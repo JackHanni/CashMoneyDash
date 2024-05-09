@@ -20,6 +20,8 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
     public override void UpdateState(){
         HandleGravity();
         CheckSwitchState();
+        // Currently can't move while in backflip
+        Ctx.CurrentMovementInput = Vector2.zero;
     }
 
     public override void ExitState(){
