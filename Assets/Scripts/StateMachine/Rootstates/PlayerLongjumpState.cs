@@ -17,7 +17,6 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
     }
 
     public override void UpdateState(){
-        Debug.Log(Ctx.AppliedMovement);
         HandleGravity();
         CheckSwitchState();
     }
