@@ -83,7 +83,7 @@ namespace Boxophobic.StyledGUI
 
             var fullRect = GUILayoutUtility.GetRect(0, 0, 36, 0);
             var fillRect = new Rect(0, fullRect.position.y, fullRect.xMax + 3, 36);
-            var subRect = new Rect(18, 16, fullRect.width - 2, fullRect.height);
+            var subRect = new Rect(0, fullRect.position.y - 2, fullRect.xMax, 36);
             var lineRect = new Rect(0, fullRect.position.y, fullRect.xMax + 3, 1);
 
             if (EditorGUIUtility.isProSkin)
@@ -101,9 +101,7 @@ namespace Boxophobic.StyledGUI
             Color guiColor = CONSTANT.ColorDarkGray;
 
             GUI.Label(fullRect, "<size=16><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + ">" + title + "</color></size>", titleStyle);
-            GUI.enabled = false;
-            GUI.Label(subRect, "<size=10>" + subtitle + "</size>", subTitleStyle);
-            GUI.enabled = true;
+            GUI.Label(subRect, "<size=10><color=#808080>" + subtitle + "</color></size>", subTitleStyle);
 
             GUILayout.Space(10);
         }
@@ -126,7 +124,7 @@ namespace Boxophobic.StyledGUI
 
             var fullRect = GUILayoutUtility.GetRect(0, 0, 36, 0);
             var fillRect = new Rect(0, fullRect.position.y, fullRect.xMax + 3, 36);
-            var subRect = new Rect(18, 16, fullRect.width - 2, fullRect.height);
+            var subRect = new Rect(0, fullRect.position.y - 2, fullRect.xMax, 36);
             var lineRect = new Rect(0, fullRect.position.y, fullRect.xMax + 3, 1);
 
             Color color;
@@ -147,9 +145,7 @@ namespace Boxophobic.StyledGUI
             EditorGUI.DrawRect(lineRect, CONSTANT.LineColor);
 
             GUI.Label(fullRect, "<size=16><color=#" + ColorUtility.ToHtmlStringRGB(guiColor) + ">" + title + "</color></size>", titleStyle);
-            GUI.enabled = false;
-            GUI.Label(subRect, "<size=10>" + subtitle + "</size>", subTitleStyle);
-            GUI.enabled = true;
+            GUI.Label(subRect, "<size=10><color=#808080>" + subtitle + "</color></size>", subTitleStyle);
 
             GUILayout.Space(10);
         }

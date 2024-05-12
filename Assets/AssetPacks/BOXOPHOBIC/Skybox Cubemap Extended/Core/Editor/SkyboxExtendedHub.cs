@@ -40,18 +40,19 @@ public class SkyboxExtendedHub : EditorWindow
         }
 
         assetVersion = SettingsUtils.LoadSettingsData(assetFolder + "/Core/Editor/Version.asset", -99);
+
         bannerVersion = assetVersion.ToString();
         bannerVersion = bannerVersion.Insert(1, ".");
         bannerVersion = bannerVersion.Insert(3, ".");
 
         bannerColor = new Color(0.95f, 0.61f, 0.46f);
-        bannerText = "Skybox Cubemap Extended " + bannerVersion;
+        bannerText = "Skybox Cubemap Extended";
     }
 
     void OnGUI()
     {
         DrawToolbar();
-        StyledGUI.DrawWindowBanner(bannerColor, bannerText);
+        StyledGUI.DrawWindowBanner(bannerColor, bannerText, bannerVersion);
 
         GUILayout.BeginHorizontal();
         GUILayout.Space(15);
