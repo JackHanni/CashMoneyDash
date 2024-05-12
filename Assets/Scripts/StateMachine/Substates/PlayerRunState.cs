@@ -17,6 +17,9 @@ public class PlayerRunState : PlayerBaseState
         if (Ctx.IsGrounded) {
             Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
             Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
+        } else if (!Ctx.IsLongjumping) {
+            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
+            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
         }
         CheckSwitchState();
     }

@@ -55,6 +55,7 @@ public class PlayerStateMachine : MonoBehaviour
     private int _wallLayer;
 
     private bool _isBackflipping = false;
+    private bool _isLongjumping = false;
 
     // crouch variables
     private float _skidMultiplier = 0.96f;
@@ -105,6 +106,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float TimeStep { get { return _timeStep;}}
     public float RotationSpeed { get { return _rotationSpeed;}}
     public bool IsBackflipping {get {return _isBackflipping;} set {_isBackflipping = value;}}
+    public bool IsLongjumping {get {return _isLongjumping;} set {_isLongjumping = value;}}
     public float GroundedThreshold { get { return _groundedThreshold;}}
     public Vector3 AppliedMovement { get { return _appliedMovement;} set { _appliedMovement = value;}}
     public Transform CameraTransform {get { return Camera.main.transform;}}

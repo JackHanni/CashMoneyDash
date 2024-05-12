@@ -33,6 +33,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         Ctx.AppliedMovementX = 0;
         Ctx.AppliedMovementZ = 0;
         Ctx.IsJumping = false;
+        Ctx.IsLongjumping = false;
     }
 
     public override void CheckSwitchState(){
@@ -50,6 +51,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,true);
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,true);
         Ctx.IsJumping = true;
+        Ctx.IsLongjumping = true;
         Vector3 move = new Vector3 (0.0f,Ctx.GroundedThreshold*1.5f,0.0f);
         Ctx.CharacterController.Move(move);
         Vector2 jumpVel = new Vector2 (Ctx.AppliedMovementX,Ctx.AppliedMovementZ);

@@ -14,7 +14,7 @@ public class PlayerWalkState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        if (Ctx.IsGrounded) {
+        if (!Ctx.IsLongjumping) {
             Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
             Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
         }

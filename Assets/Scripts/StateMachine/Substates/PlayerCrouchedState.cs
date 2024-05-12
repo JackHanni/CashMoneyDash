@@ -15,8 +15,10 @@ public class PlayerCrouchedState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        Ctx.AppliedMovementX *= Ctx.SkidMultiplier;
-        Ctx.AppliedMovementZ *= Ctx.SkidMultiplier;
+        if (Ctx.IsGrounded) {
+            Ctx.AppliedMovementX *= Ctx.SkidMultiplier;
+            Ctx.AppliedMovementZ *= Ctx.SkidMultiplier;
+        }
         CheckSwitchState();
     }
 

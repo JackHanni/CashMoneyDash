@@ -31,6 +31,10 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     public override void ExitState(){
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
         Ctx.IsJumping = false;
+        Ctx.CurrentMovementX = 0;
+        Ctx.CurrentMovementZ = 0;
+        Ctx.AppliedMovementX = 0;
+        Ctx.AppliedMovementZ = 0;
         if (Ctx.IsJumpPressed) {
             Ctx.RequireNewJumpPress = true;
         }
