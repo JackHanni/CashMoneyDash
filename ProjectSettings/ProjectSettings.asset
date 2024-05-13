@@ -519,6 +519,13 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
+  - m_BuildTarget: VisionOS
+    m_Icons:
+    - m_Textures: []
+      m_Width: 1024
+      m_Height: 1024
+      m_Kind: 0
+      m_SubKind: 
   m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
@@ -939,11 +946,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 0d2bcab4-e66c-42ef-bccc-148946cfc70a
+  cloudProjectId: eb4b5e2f-181a-4566-a4ab-bbbbb5784244
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Cash Money Dash
-  organizationId: ichliebelongboarden
+  organizationId: ruiminz
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

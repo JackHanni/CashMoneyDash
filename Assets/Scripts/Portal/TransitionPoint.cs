@@ -24,8 +24,8 @@ public class TransitionPoint : MonoBehaviour
 
     void Update(){
         // Press Return Key, Start transition via portal
-        if (canTrans)
-        { //Input.GetKeyDown(KeyCode.Return) && 
+        if (Input.GetKeyDown(KeyCode.Return) &&  canTrans)
+        { 
             SceneController.Instance.TransitionToDestination(this);
         }
     }
@@ -35,9 +35,11 @@ public class TransitionPoint : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other){
-        if(other.CompareTag("Player")){
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
             canTrans = false;
-        } 
+        }
     }
 }
