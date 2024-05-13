@@ -9,18 +9,17 @@ using System;
 // [System.Serializable] // serializable
 // public class EventVector3:UnityEvent<Vector3> {}
 
-public class MouseManager : MonoBehaviour
+public class MouseManager : Singleton<MouseManager>
 {
-    public static MouseManager Instance;  // static variable
     RaycastHit hitInfo;
     // public EventVector3 OnMouseClicked;
 
     public event Action<Vector3> OnMouseClicked;
 
-    void Awake()
+    protected override void Awake()
     {
-        if (Instance != null) Destroy(gameObject);
-        Instance = this;
+        base.Awake();
+        //DontDestroyOnLoad(this);
     }
 
     void Update(){

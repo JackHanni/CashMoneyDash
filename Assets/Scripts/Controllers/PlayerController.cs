@@ -17,8 +17,11 @@ public class PlayerController : MonoBehaviour
 
     void Start(){
         // register method in event
-        MouseManager.Instance.OnMouseClicked += MoveToTarget;
-        characterStats.MaxHealth = 2; // edit values
+        MouseManager.Intance.OnMouseClicked += MoveToTarget;
+
+
+        GameManager.Intance.RegisterPlayer(characterStats);
+
     }   
 
     public void MoveToTarget(Vector3 target){

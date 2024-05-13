@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager manager;
+    //public static GameManager manager;
     int sceneNumber;
+    public CharacterStats playerStats;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (manager == null) {
-            manager = this;
-            DontDestroyOnLoad(this);
-        } else if(manager != this) {
-            Destroy(gameObject);
-        }
+        //if (manager == null) {
+        //    manager = this;
+        //    DontDestroyOnLoad(this);
+        //} else if(manager != this) {
+        //    Destroy(gameObject);
+        //}
+        base.Awake();
+        DontDestroyOnLoad(this);
     }
 
     void Start()
@@ -37,5 +40,10 @@ public class GameManager : MonoBehaviour
             sceneNumber = 0;
         }
         SceneManager.LoadScene(sceneNumber);
+    }
+
+    public void RegisterPlayer(CharacterStats player)
+    {
+        playerStats = player;
     }
 }

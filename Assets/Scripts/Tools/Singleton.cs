@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Singleton<T> : MonoBehaviour where T:Singleton<T>
+{
+    private static T instance;
+
+    public static T Intance
+    {
+        get { return instance; }
+    }
+
+    // protected: only itself and its children have access
+    // virtual: children can overwrite
+    protected virtual void Awake()
+    {
+        if (instance != null)
+            Destroy(gameObject);
+        else
+            instance=(T)this;
+    }
+
+
+    // check if singleton is generated or not
+    public static bool IsInitialized
+    {
+        get{ return instance != null; }
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
+}
