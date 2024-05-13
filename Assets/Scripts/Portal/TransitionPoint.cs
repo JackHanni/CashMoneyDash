@@ -23,10 +23,10 @@ public class TransitionPoint : MonoBehaviour
     private bool canTrans;
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Return) && canTrans){
-            // TODO: SceneController send
-
-            // SceneController.Instance.TransitionToDestination(this);
+        // Press Return Key, Start transition via portal
+        if (canTrans)
+        { //Input.GetKeyDown(KeyCode.Return) && 
+            SceneController.Instance.TransitionToDestination(this);
         }
     }
     void OnTriggerStay(Collider other){

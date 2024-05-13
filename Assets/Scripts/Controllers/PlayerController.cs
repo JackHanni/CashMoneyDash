@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
 
     void Start(){
         // register method in event
-        MouseManager.Intance.OnMouseClicked += MoveToTarget;
+        //MouseManager.Instance.OnMouseClicked += MoveToTarget;
 
 
-        GameManager.Intance.RegisterPlayer(characterStats);
+        GameManager.Instance.RegisterPlayer(characterStats);
 
     }   
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerHealthUI : MonoBehaviour
 {
     Text levelText;
     Image healthSlider;
@@ -18,7 +18,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
-        levelText.text = "Level " + GameManager.Intance.playerStats.characterData.currentLevel.ToString("00"); // e.g. Level 01, Level 02, ... 
+        levelText.text = "Level " + GameManager.Instance.playerStats.characterData.currentLevel.ToString("00"); // e.g. Level 01, Level 02, ... 
         UpdateHealth();
         UpdateExp();
     }
@@ -26,13 +26,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     void UpdateHealth()
     {
-        float sliderPercent = (float) GameManager.Intance.playerStats.CurrentHealth / GameManager.Intance.playerStats.MaxHealth;
+        float sliderPercent = (float) GameManager.Instance.playerStats.CurrentHealth / GameManager.Instance.playerStats.MaxHealth;
         healthSlider.fillAmount = sliderPercent;
     }
 
     void UpdateExp()
     {
-        float sliderPercent = ( float ) GameManager.Intance.playerStats.characterData.currentExp / GameManager.Intance.playerStats.characterData.baseExp;
+        float sliderPercent = ( float ) GameManager.Instance.playerStats.characterData.currentExp / GameManager.Instance.playerStats.characterData.baseExp;
         expSlider.fillAmount = sliderPercent;
     }
 }

@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     //public static GameManager manager;
     int sceneNumber;
     public CharacterStats playerStats;
+    List<IEndGameObserver> endGameObservers = new List<IEndGameObserver>();
 
     protected override void Awake()
     {
@@ -28,7 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update() 
     {
-        if (sceneNumber < 3 && Input.GetKeyDown(KeyCode.Space)) {
+        if (sceneNumber < 3 && Input.GetKeyDown(KeyCode.Z)) {
             NextScene();
         }
     }
@@ -45,5 +46,28 @@ public class GameManager : Singleton<GameManager>
     public void RegisterPlayer(CharacterStats player)
     {
         playerStats = player;
+    }
+
+    public void AddObserver(IEndGameObserver observer)
+    {
+        endGameObservers.Add(observer);
+    }
+
+    public void RemoveObserver(IEndGameObserver observer)
+    {
+        endGameObservers.Remove(observer);
+    }
+
+
+    // TODO: Enemies add broadcast notify methods
+
+
+    // for each observer, execute EndNotify() in enemycontroller
+    public void NotifyObservers()
+    {
+        foreach(var observer in endGameObservers)
+        {
+            observer.EndNotify();
+        }
     }
 }
