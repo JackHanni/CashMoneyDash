@@ -18,7 +18,7 @@ public class PlayerStateMachine : MonoBehaviour
     private int _isCrouchedHash;
     private int _isSkiddingHash;
 
-    // variables to store player input
+    // variables to store player movement
     private Vector2 _currentMovementInput;
     private Vector3 _currentMovement;
     private Vector3 _currentRunMovement;
@@ -26,6 +26,7 @@ public class PlayerStateMachine : MonoBehaviour
     private Vector3 _cameraRelativeMovement;
     private bool _isMovementPressed;
     private bool _isRunPressed;
+    private Vector3 _externalMovement = Vector3.zero;
 
     // constants
     [SerializeField]
@@ -190,13 +191,18 @@ public class PlayerStateMachine : MonoBehaviour
 
     void FixedUpdate() {
         _currentState.UpdateStates();
-        _isGrounded = checkIfGrounded();
+        if (_isGrounded) {
+            _externalMovement = GetExternalMovement();
+        } else {
+            _externalMovement = Vector3.zero;
+        }
         _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
         if (!_isBackflipping) {
-            _characterController.Move(_cameraRelativeMovement*_moveSpeed*_timeStep);  
+            _characterController.Move(_cameraRelativeMovement*_moveSpeed*_timeStep + _externalMovement);  
         } else {
             _characterController.Move(_appliedMovement*_moveSpeed*_timeStep);
         }
+        _isGrounded = checkIfGrounded();
     }
 
     public void HandleRotation()
@@ -288,6 +294,17 @@ public class PlayerStateMachine : MonoBehaviour
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
         return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, _groundedThreshold, ~_groundLayer);
+    }
+
+    private Vector3 GetExternalMovement() {
+        if (_hit.transform.CompareTag("MovingPlatform")) {
+            // return the platform velocity
+            var platformMovementScript = _hit.transform.gameObject.GetComponent<MovingPlatform>();
+            var currentPlatformMovement = platformMovementScript.CurrentMovement;
+            return currentPlatformMovement;
+        } else {
+            return Vector3.zero;
+        }
     }
 
     private Vector3 ConvertToCameraSpace(Vector3 vectorToRotate) {

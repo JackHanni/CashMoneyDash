@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Users/ruimin/Desktop/Projects/UO-CS510-GameProgramming/AlphaBuild;C:/Users/jhann/OneDrive/Documents/My Games/CashMoneyDash/WebGL Builds/Build;C:/Users/Jack/GameDev/Unity/CashMoneyDash/WebGL Builds;;;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/jhann/OneDrive/Documents/My Games/CashMoneyDash/WebGL Builds/AlphaBuild;/Users/ruimin/Desktop/Projects/UO-CS510-GameProgramming/AlphaBuild;C:/Users/jhann/OneDrive/Documents/My Games/CashMoneyDash/WebGL Builds/Build;C:/Users/Jack/GameDev/Unity/CashMoneyDash/WebGL Builds;;;;;;\"}"
             }
         ]
     }

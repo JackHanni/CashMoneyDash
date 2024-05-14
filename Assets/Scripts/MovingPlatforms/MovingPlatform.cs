@@ -15,6 +15,10 @@ public class MovingPlatform : MonoBehaviour
 
     private float _timeToWayPoint;
     private float _elapsedTime;
+    [SerializeField]
+    private Vector3 _currentMovement;
+
+    public Vector3 CurrentMovement {get {return _currentMovement;}}
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +29,12 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        var currentPos = transform.position;
         _elapsedTime += .02f;
         float elapsedPercentage = _elapsedTime / _timeToWayPoint;
         elapsedPercentage = Mathf.SmoothStep(0,1,elapsedPercentage);
         transform.position = Vector3.Lerp(_previousWayPoint.position, _targetWayPoint.position, elapsedPercentage);
+        _currentMovement = transform.position - currentPos;
 
         if (elapsedPercentage >= 1.0f){
             TargetNextWaypoint();
@@ -45,13 +51,13 @@ public class MovingPlatform : MonoBehaviour
         _timeToWayPoint = distanceToWayPoint / _speed;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        other.transform.SetParent(transform);
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     other.transform.SetParent(transform);
+    // }
 
-    private void OnTriggerExit(Collider other)
-    {
-        other.transform.SetParent(null);
-    }
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     other.transform.SetParent(null);
+    // }
 }
