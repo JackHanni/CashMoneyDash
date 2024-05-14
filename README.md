@@ -1,4 +1,4 @@
-# Game Programming Project: Proof of Concept 
+# Game Programming Project: Alpha Build
 #### Trello Link: https://trello.com/b/6e9WcBwF/cashmoneydash 
 #### Github Link: https://github.com/JackHanni/CashMoneyDash 
 #### Alpha Build: [unity link](https://play.unity.com/mg/other/alphabuild)
