@@ -6,8 +6,8 @@
 
 ## Description 
 – A description of each team member’s contribution to the build.
-* Jack: Movements of main character and enemy Slime, coins and gems, Level 1 design, moving platforms, camera, UI
-* Ruimin: Build three Scenes - Portals, Level 2 design, Occlusion, UI
+* Jack: Movements of main character (via Finite State Machine) and enemy Slime, Camera Settings, Coins and Gems, Level 1 design, Moving Platforms, camera, UI
+* Ruimin: MainScreen, Mouse Movement(deprecated), Character Stats(ScriptableObject and Monobehavior), Singleton for all Managers, Portals, Level 2 design, Occlusion, UI 
 
 ## Details 
 – Details regarding any changes made to your core gameplay mechanics based on playtest feedback.
