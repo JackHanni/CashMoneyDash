@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.172768, g: 0.21589169, b: 0.29782546, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276824, g: 0.2158923, b: 0.2978262, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1165,6 +1165,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 437540205}
   m_SourcePrefab: {fileID: 100100000, guid: 95fe2533720aeb743ade98ad01dc2812, type: 3}
+--- !u!4 &166865542 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4718649785291096813, guid: 4643c6a53446b4763bbada212ad61ff0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1668494788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &169298650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3295,7 +3301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505063842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18763717, y: -0.000328254, z: 0.00006270643, w: 0.9822384}
+  m_LocalRotation: {x: 0.18763717, y: -0.00032821868, z: 0.00006269968, w: 0.9822384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7230,7 +7236,7 @@ GameObject:
   - component: {fileID: 1553387207}
   m_Layer: 3
   m_Name: StationaryIslands
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8520,6 +8526,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1254881148}
   m_LocalEulerAnglesHint: {x: -8.345, y: 0, z: 0}
+--- !u!1 &1748734584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2035994940493338905, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+    type: 3}
+  m_PrefabInstance: {fileID: 7946808145185926374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1749690855
 GameObject:
   m_ObjectHideFlags: 0
@@ -10551,13 +10563,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
       propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 776389360}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 776389360}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateCoinText
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: InventoryUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 7946808145185926378}
+    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: PlayerInventory, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2035994940493338905, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7946808145185926384}
   m_SourcePrefab: {fileID: 100100000, guid: fec0a0c7e088e7842b8c8fb83ab055df, type: 3}
 --- !u!4 &7946808145185926375 stripped
 Transform:
@@ -10571,6 +10627,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7946808145185926374}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7946808145185926378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+    type: 3}
+  m_PrefabInstance: {fileID: 7946808145185926374}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748734584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e77f799ef4790499c89f163e41d9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7946808145185926384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748734584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2ee3eec48754a2ca1972e0023ca831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: -6
+  respawnPoints:
+  - {fileID: 166865542}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
