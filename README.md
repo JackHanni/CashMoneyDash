@@ -21,3 +21,9 @@
 * Instead of ensuring only one character exists (done by generating a prefab and load in data during transitioning), I decided to put a prefab at the portal and ask the portal just change scene.
 
 * The tutorial I found for UI does not suit our goal, so I will design on my own or look for other ones that is closer to Mario 64 (Ruimin).
+
+
+## References
+- Terrain, Portal, Occlusion: [Unity - 3drpg-core](https://learn.u3d.cn/tutorial/3drpg-core)
+- Coin Effects: [Youtube - 3D Platformer](https://www.youtube.com/playlist?list=PLiyfvmtjWC_V_H-VMGGAZi7n5E0gyhc37)
+- Health System:
