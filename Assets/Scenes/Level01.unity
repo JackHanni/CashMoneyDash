@@ -2417,7 +2417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435895833}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15183355, y: -0.00033029824, z: 0.00005073861, w: 0.98840606}
+  m_LocalRotation: {x: 0.15183355, y: -0.00033031523, z: 0.000050741226, w: 0.98840606}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3301,7 +3301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505063842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18763717, y: -0.00032821868, z: 0.00006269968, w: 0.9822384}
+  m_LocalRotation: {x: 0.18763717, y: -0.00032823713, z: 0.0000627032, w: 0.9822384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10456,6 +10456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ff0185bbac85849b9c32146deab05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupEffect: {fileID: 0}
 --- !u!95 &4260032143389174418
 Animator:
   serializedVersion: 5

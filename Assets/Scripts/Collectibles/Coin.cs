@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    public GameObject pickupEffect;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,12 @@ public class Coin : MonoBehaviour
         {
             playerInventory.CoinCollected();
             gameObject.SetActive(false);
+
+            Instantiate(pickupEffect, transform.position, transform.rotation);
+            Destroy(gameObject);
+            
         }
+
+
     }
 }
