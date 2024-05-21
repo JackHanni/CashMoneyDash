@@ -24,7 +24,7 @@ public class TransitionPoint : MonoBehaviour
 
     void Update(){
         // Press Return Key, Start transition via portal
-        if (Input.GetKeyDown(KeyCode.Return) &&  canTrans)
+        if (canTrans) // Input.GetKeyDown(KeyCode.Return) && 
         { 
             SceneController.Instance.TransitionToDestination(this);
         }
