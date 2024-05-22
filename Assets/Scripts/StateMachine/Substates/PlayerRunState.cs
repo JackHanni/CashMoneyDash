@@ -14,28 +14,28 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        if (Ctx.IsGrounded) {
-            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
-            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
-        } else if (!Ctx.IsLongjumping) {
-            Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
-            Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
-        }
+        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
+        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
         CheckSwitchState();
     }
 
-    public override void ExitState(){}
+    public override void ExitState(){
+        Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
+    }
 
     public override void CheckSwitchState(){
-        if (!Ctx.IsCrouchPressed) {
-            if (!Ctx.IsMovementPressed) {
+        if (Ctx.IsGrounded) {
+            if (Ctx.IsCrouchPressed) {
+                SwitchState(Factory.Crouched());
+            }
+            else if (!Ctx.IsMovementPressed) {
                 SwitchState(Factory.Idle());
             }
-            else if (!Ctx.IsRunPressed) {
+            else if (!Ctx.IsRunPressed && Ctx.IsMovementPressed) {
                 SwitchState(Factory.Walk());
             }
-        } else {
-            SwitchState(Factory.Crouched());
+        } else if (Ctx.IsJumping) {
+            SwitchState(Factory.Jumpsub());
         }
     }
 

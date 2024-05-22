@@ -36,7 +36,6 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
                     SwitchState(Factory.Longjump());
                 } else {
                     // else backflip
-                    SetSubState(Factory.Idle());
                     SwitchState(Factory.Backflip());
                 }
             }

@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 2131259692758047853}
   - component: {fileID: 1654634426605350628}
   - component: {fileID: 6477959157545286044}
+  - component: {fileID: 6097967121484230835}
   m_Layer: 7
   m_Name: Timmy
   m_TagString: Player
@@ -587,7 +588,7 @@ CharacterController:
   m_Height: 1.65
   m_Radius: 0.4
   m_SlopeLimit: 45
-  m_StepOffset: 1.5
+  m_StepOffset: 0.5
   m_SkinWidth: 0.022
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.825, z: 0}
@@ -698,6 +699,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6097967121484230835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035994940493338905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2ee3eec48754a2ca1972e0023ca831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: -6
+  respawnPoints:
+  - {fileID: 0}
 --- !u!1 &2068727344913763348
 GameObject:
   m_ObjectHideFlags: 0

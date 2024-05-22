@@ -43,7 +43,8 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
-        SetSubState(Factory.Idle());
+        // SetSubState(Factory.Idle());
+        SetSubState(Factory.Jumpsub());
     }
 
     void HandleJump() {
@@ -60,13 +61,13 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         Ctx.CurrentMovementX = jumpVel.x;
         Ctx.AppliedMovementZ = jumpVel.y;
         Ctx.CurrentMovementZ = jumpVel.y;
-        Ctx.CurrentMovementY = Ctx.InitialJumpVelocities[1]*0.7f;
-        Ctx.AppliedMovementY = Ctx.InitialJumpVelocities[1]*0.7f;
+        Ctx.CurrentMovementY = Ctx.InitialJumpVelocities[1]*0.5f;
+        Ctx.AppliedMovementY = Ctx.InitialJumpVelocities[1]*0.5f;
     }
 
     public void HandleGravity() {
         float previousYVel = Ctx.CurrentMovementY;
-        Ctx.CurrentMovementY += Ctx.JumpGravities[Ctx.JumpCount] * Ctx.TimeStep * 0.7f;
+        Ctx.CurrentMovementY += Ctx.JumpGravities[Ctx.JumpCount] * Ctx.TimeStep * 0.5f;
         Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
     }
 }

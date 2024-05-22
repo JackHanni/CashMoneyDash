@@ -9,7 +9,8 @@ enum PlayerStates {
     fall,
     crouched,
     backflip,
-    longjump
+    longjump,
+    jumpsub
 }
 
 public class PlayerStateFactory
@@ -28,6 +29,7 @@ public class PlayerStateFactory
         _states[PlayerStates.crouched]  = new PlayerCrouchedState(_context,this);
         _states[PlayerStates.backflip]  = new PlayerBackflipState(_context,this);
         _states[PlayerStates.longjump]  = new PlayerLongjumpState(_context,this);
+        _states[PlayerStates.jumpsub]   = new PlayerJumpSubstate(_context,this);
     }
 
     public PlayerBaseState Idle() {
@@ -56,5 +58,8 @@ public class PlayerStateFactory
     }
     public PlayerBaseState Longjump() {
         return _states[PlayerStates.longjump];
+    }
+    public PlayerBaseState Jumpsub() {
+        return _states[PlayerStates.jumpsub];
     }
 }

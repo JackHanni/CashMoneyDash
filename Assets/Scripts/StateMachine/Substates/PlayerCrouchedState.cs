@@ -10,8 +10,6 @@ public class PlayerCrouchedState : PlayerBaseState
     public override void EnterState(){
         // start crouch animation
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,true);
-        //Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
-        //Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
     }
 
     public override void UpdateState(){
@@ -22,10 +20,11 @@ public class PlayerCrouchedState : PlayerBaseState
         CheckSwitchState();
     }
 
-    public override void ExitState(){}
+    public override void ExitState(){
+    }
 
     public override void CheckSwitchState(){
-        if (!Ctx.IsCrouchPressed) {
+        if (!Ctx.IsCrouchPressed && Ctx.IsGrounded) {
             if (!Ctx.IsMovementPressed) {
                 SwitchState(Factory.Idle());
             }
@@ -35,6 +34,8 @@ public class PlayerCrouchedState : PlayerBaseState
             else {
                 SwitchState(Factory.Run());
             }
+        } else if (Ctx.IsJumping) {
+            SwitchState(Factory.Jumpsub());
         }
     }
 

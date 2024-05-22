@@ -2418,7 +2418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435895833}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15183355, y: -0.00033031523, z: 0.000050741226, w: 0.98840606}
+  m_LocalRotation: {x: 0.15183355, y: -0.00033029742, z: 0.00005073849, w: 0.98840606}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3302,7 +3302,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505063842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18763717, y: -0.00032823137, z: 0.0000627021, w: 0.9822384}
+  m_LocalRotation: {x: 0.18763717, y: -0.00032823297, z: 0.000062702406, w: 0.9822384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8520,19 +8520,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743817819}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15900727, y: -0.00032996756, z: 0.00005314337, w: 0.9872774}
+  m_LocalRotation: {x: 0.15900727, y: -0.00032989177, z: 0.000053131167, w: 0.9872774}
   m_LocalPosition: {x: -69.181, y: -814.123, z: 325.41763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1254881148}
   m_LocalEulerAnglesHint: {x: -8.345, y: 0, z: 0}
---- !u!1 &1748734584 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2035994940493338905, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-    type: 3}
-  m_PrefabInstance: {fileID: 7946808145185926374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1749690855
 GameObject:
   m_ObjectHideFlags: 0
@@ -9371,7 +9365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879147787}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15900725, y: -0.00032991063, z: 0.000053134183, w: 0.9872774}
+  m_LocalRotation: {x: 0.15900725, y: -0.00032991098, z: 0.000053134238, w: 0.9872774}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10563,59 +10557,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+    - target: {fileID: 6097967121484230835, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: respawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 166865542}
     - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 776389360}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 776389360}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateCoinText
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: InventoryUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 7946808145185926378}
-    - target: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: PlayerInventory, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2035994940493338905, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7946808145185926384}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec0a0c7e088e7842b8c8fb83ab055df, type: 3}
 --- !u!4 &7946808145185926375 stripped
 Transform:
@@ -10629,33 +10584,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7946808145185926374}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7946808145185926378 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6477959157545286044, guid: fec0a0c7e088e7842b8c8fb83ab055df,
-    type: 3}
-  m_PrefabInstance: {fileID: 7946808145185926374}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748734584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e77f799ef4790499c89f163e41d9c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7946808145185926384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748734584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d2ee3eec48754a2ca1972e0023ca831, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshold: -6
-  respawnPoints:
-  - {fileID: 166865542}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

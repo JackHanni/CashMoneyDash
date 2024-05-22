@@ -21,19 +21,21 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
         HandleGravity();
         CheckSwitchState();
         // Currently can't move while in backflip
-        Ctx.CurrentMovementInput = Vector2.zero;
+        // Ctx.CurrentMovementInput = Vector2.zero;
     }
 
     public override void ExitState(){
-        Ctx.IsBackflipping = false;
-        Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
+        Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
+        Ctx.IsJumping = false;
+        Ctx.IsBackflipping = false;
         if (Ctx.IsJumpPressed) {
             Ctx.RequireNewJumpPress = true;
         }
         Ctx.AppliedMovementX = 0;
         Ctx.AppliedMovementZ = 0;
-        
+        Ctx.CurrentMovementX = 0;
+        Ctx.CurrentMovementZ = 0;
     }
 
     public override void CheckSwitchState(){
@@ -44,7 +46,7 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
-        SetSubState(Factory.Idle());
+        SetSubState(Factory.Jumpsub());
     }
 
     void HandleJump() {

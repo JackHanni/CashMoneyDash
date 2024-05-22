@@ -42,8 +42,8 @@ public class PlayerStateMachine : MonoBehaviour
     // jumping variables
     bool _isJumpPressed = false;
     float _initialJumpVelocity;
-    float _maxJumpHeight = .5f;
-    float _maxJumpTime = 0.8f;
+    float _maxJumpHeight = .3f;
+    float _maxJumpTime = 0.6f;
     bool _isJumping = false;
     bool _requireNewJumpPress = false;
     int _jumpCount = 0;
