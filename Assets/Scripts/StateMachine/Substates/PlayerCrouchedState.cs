@@ -18,6 +18,8 @@ public class PlayerCrouchedState : PlayerBaseState
             Ctx.AppliedMovementZ *= Ctx.SkidMultiplier;
         }
         CheckSwitchState();
+        // Debug.Log("Crouching");
+
     }
 
     public override void ExitState(){

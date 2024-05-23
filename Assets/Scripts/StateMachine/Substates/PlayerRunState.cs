@@ -17,6 +17,8 @@ public class PlayerRunState : PlayerBaseState
         Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
         Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
         CheckSwitchState();
+        // Debug.Log("Running");
+
     }
 
     public override void ExitState(){

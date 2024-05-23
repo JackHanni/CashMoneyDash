@@ -17,6 +17,7 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x;
         Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y;
         CheckSwitchState();
+        // Debug.Log("Walking");
     }
 
     public override void ExitState(){}
