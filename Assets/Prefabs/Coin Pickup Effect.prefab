@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1543011217720418475}
   - component: {fileID: -1548945236031012635}
   m_Layer: 0
-  m_Name: Gold Pickup Effect
+  m_Name: Coin Pickup Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupEffect: {fileID: 1394538218516810983, guid: bc265c93de45447748907a5e18f95b51,
     type: 3}
+  audioEffect: {fileID: 8300000, guid: d7afb7f69b5844d7e805d6b2118e0e7d, type: 3}
 --- !u!95 &4260032142400470780
 Animator:
   serializedVersion: 5
