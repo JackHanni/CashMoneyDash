@@ -46,7 +46,7 @@ public class SceneController : Singleton<SceneController>
         {
             // Diff scene: load scene
             yield return SceneManager.LoadSceneAsync(sceneName);
-            //yield return Instantiate(playerPrefab, GetDestination(destinationTag).transform.position, GetDestination(destinationTag).transform.rotation);
+            yield return Instantiate(playerPrefab, GetDestination(destinationTag).transform.position, GetDestination(destinationTag).transform.rotation);
             yield break;
         }
         //else

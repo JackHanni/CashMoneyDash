@@ -3296,7 +3296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505063842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18763718, y: -0.000328254, z: 0.00006270644, w: 0.9822384}
+  m_LocalRotation: {x: 0.18763718, y: -0.00032823713, z: 0.000062703206, w: 0.9822384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10745,6 +10745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Timmy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035994940493338905, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4193659238330384887, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
