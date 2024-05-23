@@ -21,6 +21,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
         Ctx.RequireNewJumpPress = false;
         InitializeSubState();
         HandleJump();
+        Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
     }
 
     public override void UpdateState(){

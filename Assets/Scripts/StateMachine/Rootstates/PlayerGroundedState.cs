@@ -45,18 +45,19 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
-        if (!Ctx.IsCrouchPressed) {
-            if (!Ctx.IsMovementPressed) {
-                SetSubState(Factory.Idle());
-            }
-            else if (!Ctx.IsRunPressed) {
-                SetSubState(Factory.Walk());
-            }
-            else {
-                SetSubState(Factory.Run());
-            }
-        } else {
-            SetSubState(Factory.Crouched());
-        }
+        //if (!Ctx.IsCrouchPressed) {
+        //    if (!Ctx.IsMovementPressed) {
+        //        SetSubState(Factory.Idle());
+        //    }
+        //    else if (!Ctx.IsRunPressed) {
+        //        SetSubState(Factory.Walk());
+        //    }
+        //    else {
+        //        SetSubState(Factory.Run());
+        //    }
+        //} else {
+        //    SetSubState(Factory.Crouched());
+        //}
+        SetSubState(Factory.Idle());
     }
 }

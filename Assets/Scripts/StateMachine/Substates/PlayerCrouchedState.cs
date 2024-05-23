@@ -10,6 +10,7 @@ public class PlayerCrouchedState : PlayerBaseState
     public override void EnterState(){
         // start crouch animation
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,true);
+        Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
     }
 
     public override void UpdateState(){
@@ -36,9 +37,11 @@ public class PlayerCrouchedState : PlayerBaseState
             else {
                 SwitchState(Factory.Run());
             }
-        } else if (Ctx.IsJumping) {
-            SwitchState(Factory.Jumpsub());
         }
+        //else if (Ctx.IsJumping) {
+        //    Debug.Log("crouched update called for backflip");
+        //    SwitchState(Factory.Jumpsub());
+        //}
     }
 
     public override void InitializeSubState(){}

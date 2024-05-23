@@ -13,8 +13,8 @@ public class PlayerJumpSubstate : PlayerBaseState
 
     public override void EnterState(){
         deltaVelocity = Vector2.zero;
-        Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
-        Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
+        //Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
+        //Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
         // Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
         // Ctx.Animator.SetBool(Ctx.IsJumpingHash,true);
     }
@@ -23,10 +23,27 @@ public class PlayerJumpSubstate : PlayerBaseState
         MoveAboutVelocity();
         CheckSwitchState();
         // Debug.Log("Jumping");
+        //if (Ctx.IsMovementPressed)
+        //{
+        //    Ctx.Animator.SetBool(Ctx.IsWalkingHash, true);
+        //    if (Ctx.IsRunPressed)
+        //    {
+        //        Ctx.Animator.SetBool(Ctx.IsRunningHash, true);
+        //    }
+        //    else
+        //    {
+        //        Ctx.Animator.SetBool(Ctx.IsRunningHash, false);
+        //    }
+        //}
+        //else
+        //{
+        //    Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
+            
+        //}
     }
 
     public override void ExitState(){
-        Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
+        //Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
     }
 
     public override void CheckSwitchState(){}
