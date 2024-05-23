@@ -15,6 +15,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void UpdateState(){
         CheckSwitchState();
+        // Debug.Log("Idling");
     }
 
     public override void ExitState(){}

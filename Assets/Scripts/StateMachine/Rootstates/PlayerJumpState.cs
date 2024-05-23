@@ -55,7 +55,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
-        SetSubState(Factory.Idle());
+        SetSubState(Factory.Jumpsub());
     }
 
     void HandleJump() {

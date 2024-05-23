@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLongjumpState : PlayerBaseState, IRootState
 {
-    float _longjumpVelocity = 3.0f;
+    float _longjumpVelocity = 2.0f;
 
     public PlayerLongjumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) {
@@ -67,7 +67,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
 
     public void HandleGravity() {
         float previousYVel = Ctx.CurrentMovementY;
-        Ctx.CurrentMovementY += Ctx.JumpGravities[Ctx.JumpCount] * Ctx.TimeStep * 0.5f;
+        Ctx.CurrentMovementY += Ctx.JumpGravities[Ctx.JumpCount] * Ctx.TimeStep * 0.4f;
         Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
     }
 }
