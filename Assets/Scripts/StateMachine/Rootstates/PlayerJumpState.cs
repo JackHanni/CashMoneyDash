@@ -22,6 +22,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
         InitializeSubState();
         HandleJump();
         Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
+        Ctx.Animator.SetBool(Ctx.IsRunningHash, false);
     }
 
     public override void UpdateState(){
@@ -50,7 +51,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     }
 
     public override void CheckSwitchState(){
-        if (Ctx.IsGrounded) {
+        if (Ctx.IsGrounded && Ctx.AppliedMovementY < 0.0f) {
             SwitchState(Factory.Grounded());
         }
     }

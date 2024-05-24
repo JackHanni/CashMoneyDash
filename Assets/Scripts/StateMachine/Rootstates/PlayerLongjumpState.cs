@@ -37,7 +37,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
     }
 
     public override void CheckSwitchState(){
-        if (Ctx.IsGrounded) {
+        if (Ctx.IsGrounded && Ctx.AppliedMovementY < 0.0f) {
             SwitchState(Factory.Grounded());
         }
     }
@@ -53,7 +53,7 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,true);
         Ctx.IsJumping = true;
         Ctx.IsLongjumping = true;
-        Vector3 move = new Vector3 (0.0f,Ctx.GroundedThreshold*1.5f,0.0f);
+        Vector3 move = new Vector3 (0.0f,Ctx.GroundedThreshold*2.5f,0.0f);
         Ctx.CharacterController.Move(move);
         Vector2 jumpVel = new Vector2 (Ctx.AppliedMovementX,Ctx.AppliedMovementZ);
         jumpVel = jumpVel.normalized * _longjumpVelocity;

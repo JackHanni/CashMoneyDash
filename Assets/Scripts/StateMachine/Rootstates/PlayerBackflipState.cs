@@ -39,7 +39,7 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
     }
 
     public override void CheckSwitchState(){
-        if (Ctx.IsGrounded) {
+        if (Ctx.IsGrounded && Ctx.AppliedMovementY < 0.0f) {
             new WaitForSeconds(.3f);
             SwitchState(Factory.Grounded());
         }
