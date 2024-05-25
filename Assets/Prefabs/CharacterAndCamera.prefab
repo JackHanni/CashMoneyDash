@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2588792049745574765}
   m_Layer: 0
   m_Name: CharacterAndCamera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,12 +74,12 @@ PrefabInstance:
     - target: {fileID: 1004944417527574509, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00032989183
+      value: -0.00032996756
       objectReference: {fileID: 0}
     - target: {fileID: 1004944417527574509, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000053131174
+      value: 0.00005314337
       objectReference: {fileID: 0}
     - target: {fileID: 1148887204871083360, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
@@ -89,12 +89,12 @@ PrefabInstance:
     - target: {fileID: 1148887204871083360, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00033031616
+      value: -0.00033031523
       objectReference: {fileID: 0}
     - target: {fileID: 1148887204871083360, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00005074137
+      value: 0.000050741226
       objectReference: {fileID: 0}
     - target: {fileID: 1360338037371812513, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
@@ -124,12 +124,12 @@ PrefabInstance:
     - target: {fileID: 3794514259758889829, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00032823888
+      value: -0.00032823725
       objectReference: {fileID: 0}
     - target: {fileID: 3794514259758889829, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00006270354
+      value: 0.00006270322
       objectReference: {fileID: 0}
     - target: {fileID: 4670280206042548769, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
@@ -194,12 +194,12 @@ PrefabInstance:
     - target: {fileID: 5978535831833615069, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0003299111
+      value: -0.0003299486
       objectReference: {fileID: 0}
     - target: {fileID: 5978535831833615069, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00005313426
+      value: 0.0000531403
       objectReference: {fileID: 0}
     - target: {fileID: 6606529239235836566, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
