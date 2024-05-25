@@ -256,18 +256,29 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        // Damage to Slime
-        if (other.tag == "Slime") {
-            RaycastHit hit;
-            if (Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out hit, _groundedThreshold, ~_smashableEnemyLayer)) {
-                _appliedMovement.y = _initialJumpVelocity*0.5f;
-                _currentMovement.y = _initialJumpVelocity*0.5f;
-                other.GetComponent<Slime>().TakeDamage(1);
-            }
-            else {
-                // Get me hurt
-                DamagePlayer(1);
-            }
+        // Debug.Log("Trigger Slime Hit");
+        // // Damage to Slime
+        // if (other.tag == "Slime") {
+        //     RaycastHit hit;
+        //     var slime = other.GetComponent<Slime>();
+        //     if (Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out hit, _groundedThreshold, ~_smashableEnemyLayer)) {
+        //         _appliedMovement.y = _initialJumpVelocity*0.5f;
+        //         _currentMovement.y = _initialJumpVelocity*0.5f;
+        //         slime.TakeDamage(1);
+        //         Debug.Log("Slime Die");
+        //     }
+        //     else {
+        //         // Get me hurt
+        //         DamagePlayer(1);
+        //         // move away from slime.transform.position
+        //         // Maybe have a coroutine for damaging the player
+        //         Debug.Log("Player Hurt");
+        //     }
+        // }
+        if (other.tag == "Slime" ) {
+            _appliedMovement.y = _initialJumpVelocity;
+            _currentMovement.y = _initialJumpVelocity;
+            other.GetComponent<Slime>().TakeDamage(1);
         }
     }
     
@@ -334,9 +345,10 @@ public class PlayerStateMachine : MonoBehaviour
         return rotatedVector;
     }
 
-    private void DamagePlayer(int damage) {
+    public void DamagePlayer(int damage,Transform otherTransform) {
         // Alter stat to hurt health
         _stats.CurrentHealth -= damage;
+        
     } 
 
     private void SetStats()

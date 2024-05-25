@@ -5,36 +5,39 @@ using UnityEngine.AI;
 
 public class ChaseState : StateMachineBehaviour
 {
-    NavMeshAgent agent;
-    Transform player;
-    float chaseRange = 8.0f;
-    float attackRange = 1.0f;
+    NavMeshAgent _agent;
+    Transform _player;
+    float _chaseRange = 8.0f;
+    float _attackRange = 0.84f;
+    Animator _animator;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent = animator.GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        agent.speed = 9.0f;
+        _animator = animator;
+        _agent = animator.GetComponent<NavMeshAgent>();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _agent.speed = 9.0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(player.position);
-        float distance = Vector3.Distance(player.position,animator.transform.position);
-        if (distance > chaseRange*1.2f) {
+        _agent.SetDestination(_player.position);
+        float distance = Vector3.Distance(_player.position,animator.transform.position);
+        if (distance > _chaseRange*1.2f) {
             animator.SetBool("isChasing",false);
         }
-        if (distance < attackRange) {
+        if (distance < _attackRange) {
             animator.SetBool("isAttacking", true);
         }
     }
 
+
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(animator.transform.position);
+        _agent.SetDestination(animator.transform.position);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

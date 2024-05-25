@@ -37,14 +37,16 @@ public class PlayerFallState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
-        if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed) {
-            SetSubState(Factory.Idle());
-        }
-        else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed) {
-            SetSubState(Factory.Walk());
-        }
-        else {
-            SetSubState(Factory.Run());
-        }
+        // if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed) {
+        //     SetSubState(Factory.Idle());
+        // }
+        // else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed) {
+        //     SetSubState(Factory.Walk());
+        // }
+        // else {
+        //     SetSubState(Factory.Run());
+        // }
+        SetSubState(Factory.Idle());
+
     }
 }
