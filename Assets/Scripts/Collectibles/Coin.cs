@@ -10,6 +10,10 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+            // play audio
+            AudioSource.PlayClipAtPoint(audioEffect, other.transform.position);
+
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
@@ -17,9 +21,7 @@ public class Coin : MonoBehaviour
             playerInventory.CoinCollected();
             gameObject.SetActive(false);
 
-            // play audio
-            AudioSource.PlayClipAtPoint(audioEffect, playerInventory.transform.position);
-
+            
             // show pick up effects
             Instantiate(pickupEffect, transform.position, transform.rotation);
             Destroy(gameObject);

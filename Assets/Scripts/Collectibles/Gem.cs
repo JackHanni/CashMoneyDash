@@ -10,14 +10,15 @@ public class Gem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+            // play audio
+            AudioSource.PlayClipAtPoint(audioEffect, other.transform.position);
+
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
             gameObject.SetActive(false);
-
-            // play audio
-            AudioSource.PlayClipAtPoint(audioEffect, playerInventory.transform.position);
-
+           
             // show pick up effects - win
             //Instantiate(pickupEffect, transform.position, transform.rotation);
             Destroy(gameObject);
