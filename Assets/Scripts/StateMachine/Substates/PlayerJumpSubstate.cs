@@ -22,24 +22,6 @@ public class PlayerJumpSubstate : PlayerBaseState
     public override void UpdateState(){
         MoveAboutVelocity();
         CheckSwitchState();
-        // Debug.Log("Jumping");
-        //if (Ctx.IsMovementPressed)
-        //{
-        //    Ctx.Animator.SetBool(Ctx.IsWalkingHash, true);
-        //    if (Ctx.IsRunPressed)
-        //    {
-        //        Ctx.Animator.SetBool(Ctx.IsRunningHash, true);
-        //    }
-        //    else
-        //    {
-        //        Ctx.Animator.SetBool(Ctx.IsRunningHash, false);
-        //    }
-        //}
-        //else
-        //{
-        //    Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
-            
-        //}
     }
 
     public override void ExitState(){

@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class AttackState : StateMachineBehaviour
 {
-     UnityEngine.AI.NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
     Transform player;
     float attackRange = 2.5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // This is fixed time animation and time in state.
         agent = animator.GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        DamagePlayer(animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        animator.transform.LookAt(player);
-        float distance = Vector3.Distance(player.position,animator.transform.position);
-        if (distance > attackRange) {
-            animator.SetBool("isAttacking", false);
-        }
+    // override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     animator.transform.LookAt(player);
+    //     float distance = Vector3.Distance(player.position,animator.transform.position);
+    //     if (distance > attackRange) {
+    //         animator.SetBool("isAttacking", false);
+    //     }
 
+    // }
+
+    void DamagePlayer(Animator animator) {
+        animator.transform.LookAt(player);
+        // Transition atomatically to chasing again
+        animator.SetBool("isAttacking", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

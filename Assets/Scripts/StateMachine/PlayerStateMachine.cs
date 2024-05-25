@@ -8,6 +8,7 @@ public class PlayerStateMachine : MonoBehaviour
     private PlayerInput _playerInput;
     private CharacterController _characterController;
     Animator _animator;
+    private CharacterStats _stats;
 
     // variables to store optimized setter/getter parameter IDs
     private int _isWalkingHash;
@@ -54,6 +55,7 @@ public class PlayerStateMachine : MonoBehaviour
     private int _groundLayer;
     private bool _isOnWall;
     private int _wallLayer;
+    private int _smashableEnemyLayer;
 
     private bool _isBackflipping = false;
     private bool _isLongjumping = false;
@@ -124,6 +126,8 @@ public class PlayerStateMachine : MonoBehaviour
         _animator = GetComponent<Animator>();
         _radius = CharacterController.radius;
         _offset = new Vector3(0.0f,_radius,0.0f);
+        _stats = GetComponent<CharacterStats>();
+        SetStats();
 
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
@@ -133,6 +137,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         _groundLayer = LayerMask.NameToLayer("Ground");
         _wallLayer = LayerMask.NameToLayer("Wall");
+        _smashableEnemyLayer = LayerMask.NameToLayer("SmashableEnemies");
 
         _isWalkingHash = Animator.StringToHash("IsWalking");
         _isRunningHash = Animator.StringToHash("IsRunning");
@@ -251,8 +256,18 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        // Damage to Slime
         if (other.tag == "Slime") {
-            other.GetComponent<Slime>().TakeDamage(1);
+            RaycastHit hit;
+            if (Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out hit, _groundedThreshold, ~_smashableEnemyLayer)) {
+                _appliedMovement.y = _initialJumpVelocity*0.5f;
+                _currentMovement.y = _initialJumpVelocity*0.5f;
+                other.GetComponent<Slime>().TakeDamage(1);
+            }
+            else {
+                // Get me hurt
+                DamagePlayer(1);
+            }
         }
     }
     
@@ -317,6 +332,16 @@ public class PlayerStateMachine : MonoBehaviour
         Vector3 rotatedVector = vectorToRotate.x*cameraRight + vectorToRotate.z*cameraForward;
         rotatedVector.y = vectorToRotate.y;
         return rotatedVector;
+    }
+
+    private void DamagePlayer(int damage) {
+        // Alter stat to hurt health
+        _stats.CurrentHealth -= damage;
+    } 
+
+    private void SetStats()
+    {
+        _stats.CurrentHealth = _stats.MaxHealth;
     }
     
 }

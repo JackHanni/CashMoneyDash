@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: m_FollowOffset.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 5587481588945146652, guid: 52339b8c92d79a147a1931016f7bf61f,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 479
+      objectReference: {fileID: 0}
     - target: {fileID: 5978535831833615069, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.y
