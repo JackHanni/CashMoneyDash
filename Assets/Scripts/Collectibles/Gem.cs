@@ -17,6 +17,7 @@ public class Gem : MonoBehaviour
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
+            playerInventory.GemCollected();
             gameObject.SetActive(false);
            
             // show pick up effects - win

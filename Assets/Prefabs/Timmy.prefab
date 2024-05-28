@@ -699,6 +699,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnGemCollected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6097967121484230835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,12 +711,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2035994940493338905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d2ee3eec48754a2ca1972e0023ca831, type: 3}
+  m_Script: {fileID: 11500000, guid: 23912f3d3b99f4094baefa67d04ef426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: -6
-  respawnPoints:
-  - {fileID: 0}
+  respawnPoints: []
 --- !u!1 &2068727344913763348
 GameObject:
   m_ObjectHideFlags: 0
