@@ -27,3 +27,4 @@
 - Terrain, Portal, Occlusion: [Unity - 3drpg-core](https://learn.u3d.cn/tutorial/3drpg-core)
 - Coin Effects: [Youtube - Unity 3D Platformer](https://www.youtube.com/playlist?list=PLiyfvmtjWC_V_H-VMGGAZi7n5E0gyhc37)
 - Respawn, Checkpoint: [Youtube - 3D Platformer in Unity](https://www.youtube.com/watch?v=MxEgXOWBNFA&list=PLkp23zg4CAMV8fcsUYX1EwihX7WXhFH6N&index=20)
+- Circular Health Bar: [Youtube - Sam Schiffer](https://www.youtube.com/watch?v=V5h2ClMUguQ)
