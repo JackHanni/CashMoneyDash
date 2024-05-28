@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
-    public float threshold = -6f;
+    public float threshold = -20f;
     private CharacterController characterController;
     public Transform[] respawnPoints; // Array of respawn points
 

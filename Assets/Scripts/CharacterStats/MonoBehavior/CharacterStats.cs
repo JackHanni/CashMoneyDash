@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     public CharacterData_SO characterData;
+    public GameObject healthPrefab;
 
     #region Read from Data_SO
     // readable writable properties
@@ -34,5 +35,14 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
 
+    public void PlayerTakeDamage(int damage)
+    {
+        // update character data
+        characterData.currentHealth -= damage;
+
+        // notify UI
+        HealthBar healthBar = healthPrefab.GetComponent<HealthBar>();
+        healthBar.TakeDamage(damage);
+    }
 
 }

@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     private Color colorB;
     #endregion
 
-    private Renderer renderer;
+    private new Renderer renderer;
     private MaterialPropertyBlock propertyBlock;
 
     //public GameObject player;
@@ -25,14 +25,12 @@ public class HealthBar : MonoBehaviour
         propertyBlock = new MaterialPropertyBlock();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        Debug.Log("here");
         // dynamically edit Shader Graph material attribute
         removeSegments = propertyBlock.GetFloat("_RemoveSegments");
-        propertyBlock.SetFloat("_RemoveSegments", removeSegments + 1);
+        propertyBlock.SetFloat("_RemoveSegments", removeSegments + damage);
         renderer.SetPropertyBlock(propertyBlock);
-        Debug.Log("here" + removeSegments);
     }
 }
 

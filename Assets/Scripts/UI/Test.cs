@@ -12,7 +12,7 @@ public class Test : MonoBehaviour
         {
             // execute the take damage method in healthPrefab
             HealthBar healthBar = healthPrefab.GetComponent<HealthBar>();
-            healthBar.TakeDamage();
+            healthBar.TakeDamage(1);
         }
     }
 }

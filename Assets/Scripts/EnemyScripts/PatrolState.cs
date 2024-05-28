@@ -9,7 +9,7 @@ public class PatrolState : StateMachineBehaviour
     private List<Transform> waypoints = new List<Transform>();
     private NavMeshAgent agent;
     private Transform player;
-    private float chaseRange = 8.0f;
+    private float chaseRange = 13.0f;
     private GameObject path;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

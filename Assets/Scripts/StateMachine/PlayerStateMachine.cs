@@ -346,8 +346,8 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     public void DamagePlayer(int damage,Transform otherTransform) {
-        // Alter stat to hurt health
-        _stats.CurrentHealth -= damage;
+        // Alter stat to hurt health and update ui health bar
+        _stats.PlayerTakeDamage(damage);
         
     } 
 
