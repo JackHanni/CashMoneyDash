@@ -4626,12 +4626,12 @@ PrefabInstance:
     - target: {fileID: 187654108392065061, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00032822974
+      value: -0.000328254
       objectReference: {fileID: 0}
     - target: {fileID: 187654108392065061, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00006270179
+      value: 0.00006270643
       objectReference: {fileID: 0}
     - target: {fileID: 2249194737055378751, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
@@ -4751,12 +4751,12 @@ PrefabInstance:
     - target: {fileID: 4162405934051239456, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00033031523
+      value: -0.00033029824
       objectReference: {fileID: 0}
     - target: {fileID: 4162405934051239456, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000050741226
+      value: 0.00005073861
       objectReference: {fileID: 0}
     - target: {fileID: 4185593171987831139, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
@@ -10061,7 +10061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23912f3d3b99f4094baefa67d04ef426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: -6
+  threshold: -20
   respawnPoints:
   - {fileID: 1324915056}
 --- !u!1 &1612188397 stripped
