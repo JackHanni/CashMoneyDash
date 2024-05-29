@@ -1,7 +1,7 @@
-# Game Programming Project: Alpha Build
+# Game Programming Project: Beta Build
 #### Trello Link: https://trello.com/b/6e9WcBwF/cashmoneydash 
 #### Github Link: https://github.com/JackHanni/CashMoneyDash 
-#### Alpha Build: [unity link](https://play.unity.com/mg/other/alphabuild-2)
+#### Beta Build: [unity link](https://play.unity.com/mg/other/webgl-builds-414377)
 
 
 ## Description 
@@ -12,15 +12,21 @@
 ## Details 
 – Details regarding any changes made to your core gameplay mechanics based on playtest feedback.
 
-* The camera aiming has been slowed down a bit and the auto-centering turned off to make it easier to control.
+* Enemies fully implemented with patrols, agro range, attack and damage for both enemy and player, death animation, coin spawn on death, and smoke poof (bugged in build).
 
-* Fixed the way the character moved along with the platform to avoid weirdness.
+* Respawn at a low height.
 
-* Need to fix some transition bugs from jumping to grounding.
+* Background music and sound effects on coin collect and gem collect.
 
-* Instead of ensuring only one character exists (done by generating a prefab and load in data during transitioning), I decided to put a prefab at the portal and ask the portal just change scene.
+* Portal transitions.
 
-* The tutorial I found for UI does not suit our goal, so I will design on my own or look for other ones that is closer to Mario 64 (Ruimin).
+* Canvas displays health and number of coins and gems collected.
+
+* Want to change movement to momentum-based movement and change controlled jump velocity to feel better.
+
+* Enemies need to travel past the player rather than moving to them and waiting.
+
+* Need to fix some transition bugs from falling to grounding.
 
 
 ## References
