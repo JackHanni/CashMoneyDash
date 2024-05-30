@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         //}
         base.Awake();
         DontDestroyOnLoad(this);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Start()
