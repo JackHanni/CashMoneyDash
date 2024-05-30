@@ -4626,12 +4626,12 @@ PrefabInstance:
     - target: {fileID: 187654108392065061, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000328254
+      value: -0.00032822974
       objectReference: {fileID: 0}
     - target: {fileID: 187654108392065061, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00006270643
+      value: 0.00006270179
       objectReference: {fileID: 0}
     - target: {fileID: 2249194737055378751, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
@@ -4700,26 +4700,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
-      propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
       propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1099882359}
@@ -4735,18 +4715,8 @@ PrefabInstance:
       objectReference: {fileID: 1099882359}
     - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
-      propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
       propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateGemText
       objectReference: {fileID: 0}
     - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
@@ -4755,28 +4725,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
-      propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventoryUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
       propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: InventoryUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnGemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
-        type: 3}
-      propertyPath: OnCoinCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3343955600722929866, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
@@ -4836,12 +4786,12 @@ PrefabInstance:
     - target: {fileID: 4305506562483494061, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0003298916
+      value: -0.00032996756
       objectReference: {fileID: 0}
     - target: {fileID: 4305506562483494061, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000053131138
+      value: 0.00005314337
       objectReference: {fileID: 0}
     - target: {fileID: 6430883997189730919, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
@@ -4861,12 +4811,12 @@ PrefabInstance:
     - target: {fileID: 7262751895216466333, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00032991063
+      value: -0.0003299486
       objectReference: {fileID: 0}
     - target: {fileID: 7262751895216466333, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000053134183
+      value: 0.0000531403
       objectReference: {fileID: 0}
     - target: {fileID: 7898583261418162646, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
