@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpSubstate : PlayerBaseState
 {
-    float deltaSpeed = 3.0f;
+    float deltaSpeed = 2.0f;
     Vector2 deltaVelocity = Vector2.zero;
     float deltaAcceleration = 10.0f;
 
