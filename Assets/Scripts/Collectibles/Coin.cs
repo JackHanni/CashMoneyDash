@@ -26,7 +26,9 @@ public class Coin : MonoBehaviour
             Instantiate(pickupEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
-
+        // heal player for 1
+        CharacterStats stats = other.GetComponent<CharacterStats>();
+        stats.PlayerHeal(1);
 
     }
 }

@@ -45,4 +45,15 @@ public class CharacterStats : MonoBehaviour
         healthBar.TakeDamage(damage);
     }
 
+    public void PlayerHeal(int heal)
+    {
+        if (characterData.currentHealth < characterData.maxHealth) {
+            // update character data
+            characterData.currentHealth += heal;
+            // notify UI
+            HealthBar healthBar = healthPrefab.GetComponent<HealthBar>();
+            healthBar.Heal(heal);
+        }
+    }
+
 }

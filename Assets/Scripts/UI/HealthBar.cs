@@ -32,5 +32,12 @@ public class HealthBar : MonoBehaviour
         propertyBlock.SetFloat("_RemoveSegments", removeSegments + damage);
         renderer.SetPropertyBlock(propertyBlock);
     }
+
+    public void Heal(int heal)
+    {
+        removeSegments = propertyBlock.GetFloat("_RemoveSegments");
+        propertyBlock.SetFloat("_RemoveSegments", removeSegments - heal);
+        renderer.SetPropertyBlock(propertyBlock);
+    }
 }
 
