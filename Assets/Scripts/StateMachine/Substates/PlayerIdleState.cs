@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerIdleState : PlayerBaseState
 {
     // 1 over the time it takes to skid to a halt
-    private float invTimeToSkid = 4.0f;
+    private float invTimeToSkid = 3.0f;
+    private float initialSpeed;
     public PlayerIdleState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
      : base (currentContext,playerStateFactory) {}
 
@@ -13,16 +14,28 @@ public class PlayerIdleState : PlayerBaseState
         Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
         Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
+        if (Ctx.CurrentSpeed > 0) {
+            initialSpeed = Ctx.CurrentSpeed;
+        } else {
+            initialSpeed = 1;
+        }
     }
 
     public override void UpdateState(){
+        if (Ctx.AdditionalJumpMovementX != 0) {
+            Ctx.AdditionalJumpMovementX = 0;
+        }
+        if (Ctx.AdditionalJumpMovementZ != 0) {
+            Ctx.AdditionalJumpMovementZ = 0;
+        }
         if (Ctx.CurrentSpeed > 0.0f) {
             Ctx.CurrentSpeed -= Ctx.TimeStep*invTimeToSkid;
         } else {
             Ctx.CurrentSpeed = 0.0f;
         }
+        Ctx.AppliedMovementX *= Ctx.CurrentSpeed/initialSpeed;
+        Ctx.AppliedMovementZ *= Ctx.CurrentSpeed/initialSpeed;
         CheckSwitchState();
-        // Debug.Log("Idling");
     }
 
     public override void ExitState(){}
@@ -38,7 +51,7 @@ public class PlayerIdleState : PlayerBaseState
             else if (Ctx.IsMovementPressed) {
                 SwitchState(Factory.Walk());
             }
-        } else if (Ctx.IsJumping) {
+        } else {
             SwitchState(Factory.Jumpsub());
         }
     }

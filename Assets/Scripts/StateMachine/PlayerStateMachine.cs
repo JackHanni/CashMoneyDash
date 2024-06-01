@@ -29,14 +29,16 @@ public class PlayerStateMachine : MonoBehaviour
     private bool _isRunPressed;
     private Vector3 _externalMovement = Vector3.zero;
     private float _currentSpeed = 0.0f;
+    private Vector3 _additionalJumpMovement = Vector3.zero;
+    private Vector3 _addJumpMovementCamRel = Vector3.zero;
 
     // constants
     [SerializeField]
     protected float _moveSpeed;
     [SerializeField]
     protected float _rotationSpeed;
-    float _runMult = 3.0f;
-    float _groundedGravity = -1.0f;
+    float _runMult = 2.0f;
+    float _groundedGravity = -3.0f;
     float _gravity = -5.25f;
     public float _groundedThreshold;
     private float _timeStep = 0.02f;
@@ -44,7 +46,7 @@ public class PlayerStateMachine : MonoBehaviour
     // jumping variables
     bool _isJumpPressed = false;
     float _initialJumpVelocity;
-    float _maxJumpHeight = .3f;
+    float _maxJumpHeight = 2.3f;
     float _maxJumpTime = 0.6f;
     bool _isJumping = false;
     bool _requireNewJumpPress = false;
@@ -63,7 +65,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // crouch variables
     private float _skidMultiplier = 0.96f;
-    private float _longJumpThreshold = 0.2f;
+    private float _longJumpThreshold = 3.0f;
     private bool _isCrouchPressed = false;
 
     // State Variables
@@ -115,7 +117,10 @@ public class PlayerStateMachine : MonoBehaviour
     public Vector3 AppliedMovement { get { return _appliedMovement;} set { _appliedMovement = value;}}
     public Transform CameraTransform {get { return Camera.main.transform;}}
     public float CurrentSpeed {get {return _currentSpeed;} set {_currentSpeed = value;}}
-
+    public float AdditionalJumpMovementX {get {return _additionalJumpMovement.x;} set {_additionalJumpMovement.x = value;}}
+    public float AdditionalJumpMovementZ {get {return _additionalJumpMovement.z;} set {_additionalJumpMovement.z = value;}}
+    
+    public Vector3 AddJumpMovementCamRel {get {return _addJumpMovementCamRel;}}
     public float MoveSpeed {get {return _moveSpeed;}}
     // Variables used locally for determining grounded logic
     private float _radius;
@@ -132,6 +137,14 @@ public class PlayerStateMachine : MonoBehaviour
         _stats = GetComponent<CharacterStats>();
         SetStats();
 
+        _isWalkingHash = Animator.StringToHash("IsWalking");
+        _isRunningHash = Animator.StringToHash("IsRunning");
+        _isJumpingHash = Animator.StringToHash("IsJumping");
+        _jumpCountHash = Animator.StringToHash("jumpCount");
+        _isFallingHash = Animator.StringToHash("isFalling");
+        _isCrouchedHash = Animator.StringToHash("isCrouched");
+        _isSkiddingHash = Animator.StringToHash("isSkidding");
+
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
@@ -141,14 +154,6 @@ public class PlayerStateMachine : MonoBehaviour
         _groundLayer = LayerMask.NameToLayer("Ground");
         _wallLayer = LayerMask.NameToLayer("Wall");
         _smashableEnemyLayer = LayerMask.NameToLayer("SmashableEnemies");
-
-        _isWalkingHash = Animator.StringToHash("IsWalking");
-        _isRunningHash = Animator.StringToHash("IsRunning");
-        _isJumpingHash = Animator.StringToHash("IsJumping");
-        _jumpCountHash = Animator.StringToHash("jumpCount");
-        _isFallingHash = Animator.StringToHash("isFalling");
-        _isCrouchedHash = Animator.StringToHash("isCrouched");
-        _isSkiddingHash = Animator.StringToHash("isSkidding");
 
         _playerInput.CharacterControls.Move.started += OnMovementInput;
         _playerInput.CharacterControls.Move.canceled += OnMovementInput;
@@ -195,6 +200,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (!_isBackflipping) {
             HandleRotation();
         }
+
     }
 
     void FixedUpdate() {
@@ -205,10 +211,11 @@ public class PlayerStateMachine : MonoBehaviour
             _externalMovement = Vector3.zero;
         }
         _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+        _addJumpMovementCamRel = ConvertToCameraSpace(_additionalJumpMovement);
         if (!_isBackflipping) {
-            _characterController.Move(_cameraRelativeMovement*_moveSpeed*_timeStep + _externalMovement);  
+            _characterController.Move((_cameraRelativeMovement+_addJumpMovementCamRel)*_timeStep + _externalMovement);  
         } else {
-            _characterController.Move(_appliedMovement*_moveSpeed*_timeStep);
+            _characterController.Move((_appliedMovement+_addJumpMovementCamRel)*_timeStep);
         }
         _isGrounded = checkIfGrounded();
     }

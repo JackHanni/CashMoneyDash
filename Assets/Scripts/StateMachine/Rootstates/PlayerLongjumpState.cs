@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLongjumpState : PlayerBaseState, IRootState
 {
-    float _longjumpVelocity = 2.0f;
+    float _longjumpVelocity = 11.0f;
 
     public PlayerLongjumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) {
@@ -34,6 +34,8 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         Ctx.AppliedMovementZ = 0;
         Ctx.IsJumping = false;
         Ctx.IsLongjumping = false;
+        Ctx.AdditionalJumpMovementX = 0;
+        Ctx.AdditionalJumpMovementZ = 0;
     }
 
     public override void CheckSwitchState(){
@@ -43,7 +45,6 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
-        // SetSubState(Factory.Idle());
         SetSubState(Factory.Jumpsub());
     }
 

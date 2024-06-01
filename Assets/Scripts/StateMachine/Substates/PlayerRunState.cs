@@ -14,16 +14,15 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        if (Ctx.CurrentSpeed < 1) {
+        if (Ctx.CurrentSpeed < Ctx.RunMult) {
             // increase the speed to max in a second. Can be faster if you multiply time step.
-            Ctx.CurrentSpeed += Ctx.TimeStep;
+            Ctx.CurrentSpeed += Ctx.TimeStep*2.0f;
         } else {
-            Ctx.CurrentSpeed = 1;
+            Ctx.CurrentSpeed = Ctx.RunMult;
         }
-        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult * Ctx.CurrentSpeed;
-        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult * Ctx.CurrentSpeed;
+        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.CurrentSpeed*Ctx.MoveSpeed;
+        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.CurrentSpeed*Ctx.MoveSpeed;
         CheckSwitchState();
-        // Debug.Log("Running");
 
     }
 
@@ -42,7 +41,7 @@ public class PlayerRunState : PlayerBaseState
             else if (!Ctx.IsRunPressed && Ctx.IsMovementPressed) {
                 SwitchState(Factory.Walk());
             }
-        } else if (Ctx.IsJumping) {
+        } else {
             SwitchState(Factory.Jumpsub());
         }
     }

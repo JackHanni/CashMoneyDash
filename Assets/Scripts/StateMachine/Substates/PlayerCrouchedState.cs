@@ -19,7 +19,6 @@ public class PlayerCrouchedState : PlayerBaseState
             Ctx.AppliedMovementZ *= Ctx.SkidMultiplier;
         }
         CheckSwitchState();
-        // Debug.Log("Crouching");
 
     }
 
@@ -38,10 +37,9 @@ public class PlayerCrouchedState : PlayerBaseState
                 SwitchState(Factory.Run());
             }
         }
-        //else if (Ctx.IsJumping) {
-        //    Debug.Log("crouched update called for backflip");
-        //    SwitchState(Factory.Jumpsub());
-        //}
+        else if (Ctx.IsJumping || !Ctx.IsGrounded) {
+            SwitchState(Factory.Jumpsub());
+        }
     }
 
     public override void InitializeSubState(){}

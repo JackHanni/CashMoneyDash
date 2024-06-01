@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBackflipState : PlayerBaseState, IRootState
 {
-    private float backflipMovement = 0.9f;
+    private float backflipMovement = 2.0f;
+    private float backflipVelocity;
 
     public PlayerBackflipState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) {
@@ -14,6 +15,7 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
     public override void EnterState(){
         Ctx.IsBackflipping = true;
         InitializeSubState();
+        backflipVelocity = (Ctx.InitialJumpVelocities[3]+Ctx.InitialJumpVelocities[2])*.5f;
         HandleJump();
     }
 
@@ -36,11 +38,13 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
         Ctx.AppliedMovementZ = 0;
         Ctx.CurrentMovementX = 0;
         Ctx.CurrentMovementZ = 0;
+        Ctx.AdditionalJumpMovementX = 0;
+        Ctx.AdditionalJumpMovementZ = 0;
     }
 
     public override void CheckSwitchState(){
         if (Ctx.IsGrounded && Ctx.AppliedMovementY < 0.0f) {
-            new WaitForSeconds(.3f);
+            // new WaitForSeconds(.3f);
             SwitchState(Factory.Grounded());
         }
     }
@@ -64,13 +68,13 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
         Ctx.Animator.SetBool(Ctx.IsJumpingHash,true);
         Ctx.IsJumping = true;
 
-        Ctx.CurrentMovementY = Ctx.InitialJumpVelocities[3];
-        Ctx.AppliedMovementY = Ctx.InitialJumpVelocities[3];
+        Ctx.CurrentMovementY = backflipVelocity;
+        Ctx.AppliedMovementY = backflipVelocity;
     }
 
     public void HandleGravity() {
         float previousYVel = Ctx.CurrentMovementY;
-        Ctx.CurrentMovementY += Ctx.JumpGravities[3] * Ctx.TimeStep;
+        Ctx.CurrentMovementY += Ctx.JumpGravities[2] * Ctx.TimeStep;
         Ctx.AppliedMovementY = (previousYVel+Ctx.CurrentMovementY)*0.5f;
     }
 }

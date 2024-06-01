@@ -48,6 +48,8 @@ public class PlayerJumpState : PlayerBaseState, IRootState
             Ctx.JumpCount = 0;
             Ctx.Animator.SetInteger(Ctx.JumpCountHash,Ctx.JumpCount);
         }
+        Ctx.AdditionalJumpMovementX = 0;
+        Ctx.AdditionalJumpMovementZ = 0;
     }
 
     public override void CheckSwitchState(){

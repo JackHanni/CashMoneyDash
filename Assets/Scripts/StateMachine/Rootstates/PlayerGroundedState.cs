@@ -20,6 +20,8 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     }
 
     public override void UpdateState(){
+        // Ctx.AdditionalJumpMovementX = 0;
+        // Ctx.AdditionalJumpMovementZ = 0;
         CheckSwitchState();
     }
 
@@ -45,6 +47,8 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     }
 
     public override void InitializeSubState(){
+        SetSubState(Factory.Idle());
+        
         //if (!Ctx.IsCrouchPressed) {
         //    if (!Ctx.IsMovementPressed) {
         //        SetSubState(Factory.Idle());
@@ -58,6 +62,6 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
         //} else {
         //    SetSubState(Factory.Crouched());
         //}
-        SetSubState(Factory.Idle());
+        // 
     }
 }

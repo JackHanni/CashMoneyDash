@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public abstract class PlayerBaseState
 {
     private bool _isRootState = false;
@@ -5,6 +9,7 @@ public abstract class PlayerBaseState
     private PlayerStateFactory _factory;
     private PlayerBaseState _currentSubState;
     private PlayerBaseState _currentSuperState;
+    protected PlayerBaseState CurrentSubState {get {return _currentSubState;}}
 
     protected bool IsRootState {get {return _isRootState;} set {_isRootState = value;}}
     protected PlayerStateMachine Ctx { get { return _ctx;}}
@@ -28,6 +33,7 @@ public abstract class PlayerBaseState
     public void UpdateStates(){
         UpdateState();
         if (_currentSubState != null) {
+            // Debug.Log(_currentSubState);
             _currentSubState.UpdateStates();
         }
     }
@@ -61,7 +67,11 @@ public abstract class PlayerBaseState
     }
 
     protected void SetSubState(PlayerBaseState newSubState){
+        if (_currentSubState != null) {
+            _currentSubState.ExitState();
+        }
         _currentSubState = newSubState;
+        newSubState.EnterState();
         newSubState.SetSuperState(this);
     }
 }

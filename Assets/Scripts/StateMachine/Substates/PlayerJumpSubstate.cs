@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class PlayerJumpSubstate : PlayerBaseState
 {
-    float deltaSpeed = 2.0f;
+    float deltaSpeed = 4.0f;
     Vector2 deltaVelocity = Vector2.zero;
-    float deltaAcceleration = 10.0f;
+    float deltaAcceleration = 0.0f;
 
     public PlayerJumpSubstate(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
      : base (currentContext,playerStateFactory) {}
 
     public override void EnterState(){
+        // the multiplier means 1 over time to get to max speed
+        deltaAcceleration = deltaSpeed*5.0f;
         deltaVelocity = Vector2.zero;
-        //Ctx.Animator.SetBool(Ctx.IsWalkingHash,false);
-        //Ctx.Animator.SetBool(Ctx.IsRunningHash,false);
-        // Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
-        // Ctx.Animator.SetBool(Ctx.IsJumpingHash,true);
     }
 
     public override void UpdateState(){
@@ -25,16 +23,36 @@ public class PlayerJumpSubstate : PlayerBaseState
     }
 
     public override void ExitState(){
-        //Ctx.Animator.SetBool(Ctx.IsJumpingHash,false);
+        // This does get called, but for some reason doesn't successfully set it to zero
+
+        // deltaVelocity = Vector2.zero;
+        // deltaSpeed = 0;
+        Ctx.AdditionalJumpMovementX = 0;
+        Ctx.AdditionalJumpMovementZ = 0;
+        // Debug.Log("jump sub exit");
     }
 
-    public override void CheckSwitchState(){}
+    public override void CheckSwitchState(){
+        // if (Ctx.IsGrounded) {
+        //     if (Ctx.IsMovementPressed) {
+        //         if (Ctx.IsRunPressed) {
+        //             SwitchState(Factory.Run());
+        //         } else {
+        //             SwitchState(Factory.Walk());
+        //         }
+        //     } else {
+        //         SwitchState(Factory.Idle());
+        //     }
+        // }
+    }
 
     // Experimental to cap out added velocity in air
     private void MoveAboutVelocity() {
-        deltaVelocity = Vector2.MoveTowards(deltaVelocity,deltaSpeed*Ctx.CurrentMovementInput*Ctx.TimeStep,deltaAcceleration*Ctx.TimeStep);
-        Ctx.AppliedMovementX += deltaVelocity.x;
-        Ctx.AppliedMovementZ += deltaVelocity.y;
+        // Debug.Log("Target" + deltaSpeed*Ctx.CurrentMovementInput);
+        // Debug.Log("Actual" + deltaVelocity);
+        deltaVelocity = Vector2.MoveTowards(deltaVelocity,deltaSpeed*Ctx.CurrentMovementInput,deltaAcceleration*Ctx.TimeStep);
+        Ctx.AdditionalJumpMovementX = deltaVelocity.x;
+        Ctx.AdditionalJumpMovementZ = deltaVelocity.y;
     }
 
     public override void InitializeSubState(){}
