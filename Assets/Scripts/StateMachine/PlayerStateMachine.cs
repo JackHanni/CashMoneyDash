@@ -21,6 +21,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     // variables to store player movement
     private Vector2 _currentMovementInput;
+    private Vector3 _currentMovementInput3D = Vector3.zero;
+    private Vector3 _currentLateralMovement = Vector3.zero;
     private Vector3 _currentMovement;
     private Vector3 _currentRunMovement;
     private Vector3 _appliedMovement;
@@ -28,7 +30,7 @@ public class PlayerStateMachine : MonoBehaviour
     private bool _isMovementPressed;
     private bool _isRunPressed;
     private Vector3 _externalMovement = Vector3.zero;
-    private float _currentSpeed = 0.0f;
+    // private float _currentSpeed = 0.0f;
     private Vector3 _additionalJumpMovement = Vector3.zero;
     private Vector3 _addJumpMovementCamRel = Vector3.zero;
 
@@ -46,7 +48,7 @@ public class PlayerStateMachine : MonoBehaviour
     // jumping variables
     bool _isJumpPressed = false;
     float _initialJumpVelocity;
-    float _maxJumpHeight = 2.3f;
+    float _maxJumpHeight = 2.1f;
     float _maxJumpTime = 0.6f;
     bool _isJumping = false;
     bool _requireNewJumpPress = false;
@@ -116,7 +118,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float GroundedThreshold { get { return _groundedThreshold;}}
     public Vector3 AppliedMovement { get { return _appliedMovement;} set { _appliedMovement = value;}}
     public Transform CameraTransform {get { return Camera.main.transform;}}
-    public float CurrentSpeed {get {return _currentSpeed;} set {_currentSpeed = value;}}
+    // public float CurrentSpeed {get {return _currentSpeed;} set {_currentSpeed = value;}}
     public float AdditionalJumpMovementX {get {return _additionalJumpMovement.x;} set {_additionalJumpMovement.x = value;}}
     public float AdditionalJumpMovementZ {get {return _additionalJumpMovement.z;} set {_additionalJumpMovement.z = value;}}
     
@@ -133,7 +135,7 @@ public class PlayerStateMachine : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         _radius = CharacterController.radius;
-        _offset = new Vector3(0.0f,_radius,0.0f);
+        _offset = new Vector3(0.0f,_radius+_groundedThreshold,0.0f);
         _stats = GetComponent<CharacterStats>();
         SetStats();
 
@@ -222,7 +224,14 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void HandleRotation()
     {
-        Vector3 toLookAt = new Vector3(_cameraRelativeMovement.x,0.0f,_cameraRelativeMovement.z);
+        // I think I want this to look at where I'm trying to go in some cases.
+        // Or an average of where I'm going and where I want to go.
+        _currentMovementInput3D.x = _currentMovementInput.x;
+        _currentMovementInput3D.z = _currentMovementInput.y;
+        _currentLateralMovement.x = _cameraRelativeMovement.x;
+        _currentLateralMovement.z = _cameraRelativeMovement.z;
+        Vector3 toLookAt = (ConvertToCameraSpace(_currentMovementInput3D)+_currentLateralMovement)*.5f;
+        // Vector3 toLookAt = new Vector3(_cameraRelativeMovement.x,0.0f,_cameraRelativeMovement.z);
         if (toLookAt != Vector3.zero) {
             Quaternion toRotation = Quaternion.LookRotation(toLookAt,Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation,toRotation,_rotationSpeed*Time.deltaTime);
@@ -266,25 +275,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("Trigger Slime Hit");
-        // // Damage to Slime
-        // if (other.tag == "Slime") {
-        //     RaycastHit hit;
-        //     var slime = other.GetComponent<Slime>();
-        //     if (Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out hit, _groundedThreshold, ~_smashableEnemyLayer)) {
-        //         _appliedMovement.y = _initialJumpVelocity*0.5f;
-        //         _currentMovement.y = _initialJumpVelocity*0.5f;
-        //         slime.TakeDamage(1);
-        //         Debug.Log("Slime Die");
-        //     }
-        //     else {
-        //         // Get me hurt
-        //         DamagePlayer(1);
-        //         // move away from slime.transform.position
-        //         // Maybe have a coroutine for damaging the player
-        //         Debug.Log("Player Hurt");
-        //     }
-        // }
         if (other.tag == "Slime" ) {
             _appliedMovement.y = _initialJumpVelocity;
             _currentMovement.y = _initialJumpVelocity;
@@ -329,7 +319,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Using a raycast to check if we're grounded. Might be inefficient.
     private bool checkIfGrounded() {
-        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, _groundedThreshold, ~_groundLayer);
+        // sphere cast for 2 times the grounded threshold because it will originate at 
+        // the grounded threshold above the bottom of the feet.
+        return Physics.SphereCast(transform.position+_offset, _radius, Vector3.down, out _hit, 2*_groundedThreshold, ~_groundLayer);
     }
 
     private Vector3 GetExternalMovement() {

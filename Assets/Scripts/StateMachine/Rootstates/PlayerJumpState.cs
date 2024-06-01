@@ -35,8 +35,8 @@ public class PlayerJumpState : PlayerBaseState, IRootState
         Ctx.IsJumping = false;
         Ctx.CurrentMovementX = 0;
         Ctx.CurrentMovementZ = 0;
-        Ctx.AppliedMovementX = 0;
-        Ctx.AppliedMovementZ = 0;
+        // Ctx.AppliedMovementX = 0;
+        // Ctx.AppliedMovementZ = 0;
         if (Ctx.IsJumpPressed) {
             Ctx.RequireNewJumpPress = true;
         }
@@ -48,8 +48,8 @@ public class PlayerJumpState : PlayerBaseState, IRootState
             Ctx.JumpCount = 0;
             Ctx.Animator.SetInteger(Ctx.JumpCountHash,Ctx.JumpCount);
         }
-        Ctx.AdditionalJumpMovementX = 0;
-        Ctx.AdditionalJumpMovementZ = 0;
+        // Ctx.AdditionalJumpMovementX = 0;
+        // Ctx.AdditionalJumpMovementZ = 0;
     }
 
     public override void CheckSwitchState(){

@@ -14,12 +14,23 @@ public class PlayerCrouchedState : PlayerBaseState
     }
 
     public override void UpdateState(){
+        SkidToHalt();
+        CheckSwitchState();
+
+    }
+
+    private void SkidToHalt()
+    {
+        if (Ctx.AdditionalJumpMovementX != 0) {
+            Ctx.AdditionalJumpMovementX = 0;
+        }
+        if (Ctx.AdditionalJumpMovementZ != 0) {
+            Ctx.AdditionalJumpMovementZ = 0;
+        }
         if (Ctx.IsGrounded) {
             Ctx.AppliedMovementX *= Ctx.SkidMultiplier;
             Ctx.AppliedMovementZ *= Ctx.SkidMultiplier;
         }
-        CheckSwitchState();
-
     }
 
     public override void ExitState(){
