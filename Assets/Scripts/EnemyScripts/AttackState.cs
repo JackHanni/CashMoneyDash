@@ -8,6 +8,7 @@ public class AttackState : StateMachineBehaviour
     Transform player;
     float stunTimespan = 0.8f;
     float stunTime;
+    Vector3 slideVec;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,15 +18,19 @@ public class AttackState : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         DamagePlayer(animator);
         stunTime = 0.0f;
-        // animator.SetBool("isAttacking", false);
-
+        // set the direction of the slide here so it doesn't change
+        var sep = animator.transform.position - player.position;
+        slideVec.x = sep.x;
+        slideVec.y = 0;
+        slideVec.z = sep.z;
+        Vector3.Normalize(slideVec);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.LookAt(player);
-        agent.Warp(animator.transform.position + 0.01f*Vector3.Normalize(animator.transform.position - player.position));
+        agent.Warp(animator.transform.position + 0.07f*slideVec);
         // float distance = Vector3.Distance(player.position,animator.transform.position);
         // if (distance > attackRange) {
         //     animator.SetBool("isAttacking", false);

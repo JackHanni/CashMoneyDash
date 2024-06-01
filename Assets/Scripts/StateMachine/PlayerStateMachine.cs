@@ -275,7 +275,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Slime" ) {
+        if (other.tag == "Slime") {
             _appliedMovement.y = _initialJumpVelocity;
             _currentMovement.y = _initialJumpVelocity;
             other.GetComponent<Slime>().TakeDamage(1);
