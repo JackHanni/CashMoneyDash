@@ -28,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
     private bool _isMovementPressed;
     private bool _isRunPressed;
     private Vector3 _externalMovement = Vector3.zero;
+    private float _currentSpeed = 0.0f;
 
     // constants
     [SerializeField]
@@ -113,7 +114,9 @@ public class PlayerStateMachine : MonoBehaviour
     public float GroundedThreshold { get { return _groundedThreshold;}}
     public Vector3 AppliedMovement { get { return _appliedMovement;} set { _appliedMovement = value;}}
     public Transform CameraTransform {get { return Camera.main.transform;}}
+    public float CurrentSpeed {get {return _currentSpeed;} set {_currentSpeed = value;}}
 
+    public float MoveSpeed {get {return _moveSpeed;}}
     // Variables used locally for determining grounded logic
     private float _radius;
     private Vector3 _offset;

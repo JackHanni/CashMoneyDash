@@ -14,8 +14,14 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void UpdateState(){
-        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult;
-        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult;
+        if (Ctx.CurrentSpeed < 1) {
+            // increase the speed to max in a second. Can be faster if you multiply time step.
+            Ctx.CurrentSpeed += Ctx.TimeStep;
+        } else {
+            Ctx.CurrentSpeed = 1;
+        }
+        Ctx.AppliedMovementX = Ctx.CurrentMovementInput.x * Ctx.RunMult * Ctx.CurrentSpeed;
+        Ctx.AppliedMovementZ = Ctx.CurrentMovementInput.y * Ctx.RunMult * Ctx.CurrentSpeed;
         CheckSwitchState();
         // Debug.Log("Running");
 

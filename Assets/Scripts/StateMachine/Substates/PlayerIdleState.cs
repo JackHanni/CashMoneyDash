@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerBaseState
 {
+    // 1 over the time it takes to skid to a halt
+    private float invTimeToSkid = 4.0f;
     public PlayerIdleState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
      : base (currentContext,playerStateFactory) {}
 
@@ -14,6 +16,11 @@ public class PlayerIdleState : PlayerBaseState
     }
 
     public override void UpdateState(){
+        if (Ctx.CurrentSpeed > 0.0f) {
+            Ctx.CurrentSpeed -= Ctx.TimeStep*invTimeToSkid;
+        } else {
+            Ctx.CurrentSpeed = 0.0f;
+        }
         CheckSwitchState();
         // Debug.Log("Idling");
     }

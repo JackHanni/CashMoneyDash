@@ -6,7 +6,6 @@ public class AttackState : StateMachineBehaviour
 {
     UnityEngine.AI.NavMeshAgent agent;
     Transform player;
-    float attackRange = 1.0f;
     float stunTimespan = 0.8f;
     float stunTime;
 
