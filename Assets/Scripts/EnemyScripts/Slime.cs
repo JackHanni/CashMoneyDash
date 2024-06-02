@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Slime : MonoBehaviour
     {
         hp -= damageAmount;
         if (hp <= 0){
+            PlaySound();
             //Play death animation
             animator.SetTrigger("die");
             var colliders = GetComponentsInChildren<Collider>();
@@ -26,6 +28,13 @@ public class Slime : MonoBehaviour
             //Play get hit animation
             animator.SetTrigger("damage");
         }
+    }
+
+    private void PlaySound()
+    {
+        SFXSlime slimeSounds = animator.GetComponentInChildren<SFXSlime>();
+        int index = Array.IndexOf(Enum.GetValues(SFXSlime.SoundEnum.DIE.GetType()), SFXSlime.SoundEnum.DIE);
+        AudioSource.PlayClipAtPoint((AudioClip)slimeSounds.sounds.GetValue(index), animator.transform.position);
     }
 
     public void Kill()

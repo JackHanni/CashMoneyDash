@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AttackState : StateMachineBehaviour
 {
@@ -47,6 +48,11 @@ public class AttackState : StateMachineBehaviour
         var playerScript = player.GetComponent<PlayerStateMachine>();
         playerScript.DamagePlayer(1,agent.transform);
         // Transition atomatically to chasing again
+
+        // Play Sound
+        SFXSlime slimeSounds = animator.GetComponentInChildren<SFXSlime>();
+        int index = Array.IndexOf(Enum.GetValues(SFXSlime.SoundEnum.ATTACK.GetType()), SFXSlime.SoundEnum.ATTACK);
+        AudioSource.PlayClipAtPoint((AudioClip)slimeSounds.sounds.GetValue(index), animator.transform.position);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
