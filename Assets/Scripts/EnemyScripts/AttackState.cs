@@ -23,14 +23,15 @@ public class AttackState : StateMachineBehaviour
         slideVec.x = sep.x;
         slideVec.y = 0;
         slideVec.z = sep.z;
-        Vector3.Normalize(slideVec);
+        slideVec = Vector3.Normalize(slideVec);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.LookAt(player);
-        agent.Warp(animator.transform.position + 0.07f*slideVec);
+        //agent.Warp(animator.transform.position + 0.07f*slideVec);
+        agent.Move(5f * slideVec * Time.deltaTime);
         // float distance = Vector3.Distance(player.position,animator.transform.position);
         // if (distance > attackRange) {
         //     animator.SetBool("isAttacking", false);
