@@ -68,9 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ff0185bbac85849b9c32146deab05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupEffect: {fileID: 1394538218516810983, guid: bc265c93de45447748907a5e18f95b51,
+  pickUpSFX: {fileID: 8300000, guid: 616cf7f5cffb52e4caa0df9070ee4067, type: 3}
+  pickUpVFX: {fileID: 1394538218516810983, guid: bc265c93de45447748907a5e18f95b51,
     type: 3}
-  audioEffect: {fileID: 8300000, guid: d7afb7f69b5844d7e805d6b2118e0e7d, type: 3}
 --- !u!95 &4260032142400470780
 Animator:
   serializedVersion: 5

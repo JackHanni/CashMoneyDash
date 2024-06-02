@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerLongjumpState : PlayerBaseState, IRootState
 {
@@ -13,7 +14,14 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
 
     public override void EnterState(){
         InitializeSubState();
+        PlaySound();
         HandleJump();
+    }
+
+    private void PlaySound()
+    {
+        int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.FALL.GetType()), SFXPlayer.SoundEnum.FALL);
+        AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
     }
 
     public override void UpdateState(){

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,14 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
         Ctx.IsBackflipping = true;
         InitializeSubState();
         backflipVelocity = (Ctx.InitialJumpVelocities[3]+Ctx.InitialJumpVelocities[2])*.5f;
+        PlaySound();
         HandleJump();
+    }
+
+    private void PlaySound()
+    {
+        int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.BACKFLIP.GetType()), SFXPlayer.SoundEnum.BACKFLIP);
+        AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
     }
 
     public override void UpdateState(){

@@ -4658,6 +4658,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2534995144028529125, guid: 0a51623c6fd3d6049bc74a4f748f166d,
+        type: 3}
+      propertyPath: respawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534995144028529125, guid: 0a51623c6fd3d6049bc74a4f748f166d,
+        type: 3}
+      propertyPath: respawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1324915056}
     - target: {fileID: 2588792049745574765, guid: 0a51623c6fd3d6049bc74a4f748f166d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6838,10 +6848,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 24dfd5097fd2e4b85aa07ebf5813f2b0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 402af42d3d1964916b4c0ebbb6bb8457, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
-  m_Pitch: 1
+  m_Volume: 0.1
+  m_Pitch: 0.7
   Loop: 1
   Mute: 0
   Spatialize: 0

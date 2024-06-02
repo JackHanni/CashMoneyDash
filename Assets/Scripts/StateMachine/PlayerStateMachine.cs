@@ -124,6 +124,10 @@ public class PlayerStateMachine : MonoBehaviour
     
     public Vector3 AddJumpMovementCamRel {get {return _addJumpMovementCamRel;}}
     public float MoveSpeed {get {return _moveSpeed;}}
+
+    public SFXPlayer SFXPlayer { get; private set; }
+
+
     // Variables used locally for determining grounded logic
     private float _radius;
     private Vector3 _offset;
@@ -168,6 +172,8 @@ public class PlayerStateMachine : MonoBehaviour
         _playerInput.CharacterControls.Crouch.canceled += OnCrouch;
 
         SetupJumpVariables();
+
+        SFXPlayer = GetComponentInChildren<SFXPlayer>();
     }
 
     void SetupJumpVariables()

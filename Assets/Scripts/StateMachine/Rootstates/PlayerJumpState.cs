@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJumpState : PlayerBaseState, IRootState
 {
     float fallMultiplier = 1.3f;
+    //[SerializeField] AudioClip jumpSFX;
+    //[SerializeField] AudioClip[] complexJumpSFX;
 
     IEnumerator IJumpResetRoutine()
     {
@@ -20,9 +22,32 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     public override void EnterState(){
         Ctx.RequireNewJumpPress = false;
         InitializeSubState();
+        PlaySound();
         HandleJump();
         Ctx.Animator.SetBool(Ctx.IsWalkingHash, false);
         Ctx.Animator.SetBool(Ctx.IsRunningHash, false);
+    }
+
+    private void PlaySound()
+    {
+        if (Ctx.JumpCount < 1)
+        {
+            int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.SINGLE_JUMP.GetType()), SFXPlayer.SoundEnum.SINGLE_JUMP); 
+            AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
+        }
+        else if (Ctx.JumpCount == 1)
+        {
+            int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.DOUBLE_JUMP.GetType()), SFXPlayer.SoundEnum.DOUBLE_JUMP);
+            index = UnityEngine.Random.Range(index, index+2);
+            AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
+        }
+        else
+        {
+            int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.TRIPLE_JUMP.GetType()), SFXPlayer.SoundEnum.TRIPLE_JUMP);
+            index = UnityEngine.Random.Range(index, index + 2);
+            AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
+        }
+
     }
 
     public override void UpdateState(){

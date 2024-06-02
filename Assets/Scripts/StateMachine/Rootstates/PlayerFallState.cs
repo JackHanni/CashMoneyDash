@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerFallState : PlayerBaseState, IRootState
 {
@@ -12,6 +13,13 @@ public class PlayerFallState : PlayerBaseState, IRootState
     public override void EnterState(){
         InitializeSubState();
         Ctx.Animator.SetBool(Ctx.IsFallingHash, true);
+        PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.LONG_JUMP.GetType()), SFXPlayer.SoundEnum.LONG_JUMP);
+        AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
     }
 
     public override void UpdateState(){

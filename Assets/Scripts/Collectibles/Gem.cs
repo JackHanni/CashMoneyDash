@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
-    //public GameObject pickupEffect;
-    public AudioClip audioEffect;
+    [SerializeField] AudioClip pickUpSFX;
+    [SerializeField] GameObject pickUpVFX;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-            // play audio
-            AudioSource.PlayClipAtPoint(audioEffect, other.transform.position);
 
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
             playerInventory.GemCollected();
             gameObject.SetActive(false);
-           
+
             // show pick up effects - win
-            //Instantiate(pickupEffect, transform.position, transform.rotation);
+            Instantiate(pickUpVFX, transform.position, transform.rotation);
+
+            AudioSource.PlayClipAtPoint(pickUpSFX, other.transform.position);
             Destroy(gameObject);
         }
     }
