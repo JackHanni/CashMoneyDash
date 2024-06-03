@@ -7,21 +7,20 @@ public class SFXPlayer : MonoBehaviour
 
     public enum SoundEnum
     {
-        ENTER, //0 - here we go
+        GREETING, //0 - let's go
+        GREETING_1, // yoohoo
 
-        SINGLE_JUMP, // waha
-        DOUBLE_JUMP, // woohoo
-        DOUBLE_JUMP_1, // whoa
-        TRIPLE_JUMP, // yahoo
-        TRIPLE_JUMP_1, //5 - yippee
 
-        BACKFLIP, // boing
-        LONG_JUMP, // mamamia
+        SINGLE_JUMP, // whistle
+        DOUBLE_JUMP, // woo
+        TRIPLE_JUMP, // wee3
 
-        FALL, // 
-        DIE, //
-        GAME_OVER,
-        VICTORY // okie-dokie
+        BACKFLIP, // wow - meme 
+        LONG_JUMP, // whooo - meme
+
+        FALL, // uh-oh
+        DIE, // disappoint
+        VICTORY // yay
 
     }
 

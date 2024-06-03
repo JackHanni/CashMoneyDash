@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4ed31491cf4bc45b5308524f052fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpSFX: {fileID: 8300000, guid: 2bae6e2783e104db9aab5de9c53147f9, type: 3}
-  pickUpVFX: {fileID: 7802979462468201273, guid: bddb971e34eb14d48be30c7b922eb077,
+  pickUpSFX: {fileID: 8300000, guid: 1e6c7455d666e469085874a796eb37e1, type: 3}
+  pickUpVFX: {fileID: 7177991128484655659, guid: 59a35ab9f68edff40b6e5332bed330f5,
     type: 3}
 --- !u!95 &94359775808070209
 Animator:
@@ -122,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010140368820, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010140368820, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
       propertyPath: m_LocalPosition.z

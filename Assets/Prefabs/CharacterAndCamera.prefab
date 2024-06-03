@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 74b444983beff4ccb9aaca858f08dcc7, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -142,18 +142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 81da1b97f667a461585e7a176903b72e, type: 3}
-  - {fileID: 8300000, guid: 3370e27be6785457bbd9f5306a5e2de3, type: 3}
-  - {fileID: 8300000, guid: 9aa35b41ef559487db385c3c9173641c, type: 3}
-  - {fileID: 8300000, guid: 035c630568ad146af821c1ae719b9ca0, type: 3}
-  - {fileID: 8300000, guid: f06e1c511bafd48db93d445f04a5295f, type: 3}
-  - {fileID: 8300000, guid: 5a1acfbfa2bd349469385fb07661270b, type: 3}
-  - {fileID: 8300000, guid: f966db5ad581f4032a577e4e5400f993, type: 3}
-  - {fileID: 8300000, guid: 8599e7dbda339427fae5397721a1346d, type: 3}
-  - {fileID: 8300000, guid: cf8361662ed5543a5b78185d2e8c3017, type: 3}
-  - {fileID: 8300000, guid: 74b444983beff4ccb9aaca858f08dcc7, type: 3}
-  - {fileID: 8300000, guid: 077cb82b647d54250ab82898d0420817, type: 3}
-  - {fileID: 8300000, guid: d63c902367625432a8929cacbb24d262, type: 3}
+  - {fileID: 8300000, guid: 618814047e826475cb5f010d99754d22, type: 3}
+  - {fileID: 8300000, guid: ba417eb7e11ea4f47afa0cfad892c67b, type: 3}
+  - {fileID: 8300000, guid: f736f1679c255467cbdadbb2d1c2725d, type: 3}
+  - {fileID: 8300000, guid: 9df528a02eacf4070a2843f91f863375, type: 3}
+  - {fileID: 8300000, guid: 82cafb4813c554919b7d430303813cc9, type: 3}
+  - {fileID: 8300000, guid: 868dd7b0c78864dc1bf2806e06fcffa9, type: 3}
+  - {fileID: 8300000, guid: 13481498401314927801491cd3204e62, type: 3}
+  - {fileID: 8300000, guid: e4c8cb19f328140fea5a187c5834ba6b, type: 3}
+  - {fileID: 8300000, guid: 399781a72aead4870be0c3f28e2e845d, type: 3}
+  - {fileID: 8300000, guid: 17b39468752c34c85b8ee5d3632495f9, type: 3}
 --- !u!1 &8219892701171955531
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,17 +206,17 @@ PrefabInstance:
     - target: {fileID: 1004944417527574509, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -76.708
+      value: -69.137505
       objectReference: {fileID: 0}
     - target: {fileID: 1004944417527574509, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -814.196
+      value: -814.446
       objectReference: {fileID: 0}
     - target: {fileID: 1004944417527574509, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 300.83563
+      value: 325.10107
       objectReference: {fileID: 0}
     - target: {fileID: 1004944417527574509, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}

@@ -18,7 +18,7 @@ public class PlayerFallState : PlayerBaseState, IRootState
 
     private void PlaySound()
     {
-        int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.LONG_JUMP.GetType()), SFXPlayer.SoundEnum.LONG_JUMP);
+        int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.FALL.GetType()), SFXPlayer.SoundEnum.FALL);
         AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
     }
 
