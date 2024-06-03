@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject sceneController;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +25,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         gameIsPaused = false;
+        sceneController.GetComponent<SceneController>().LockCursor();
     }
 
     void Pause()
@@ -31,20 +33,18 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
         gameIsPaused = true;
-    }
-
-    public void SaveGame()
-    {
-        Debug.Log("Saving Game...");
+        sceneController.GetComponent<SceneController>().UnlockCursor();
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quitting Game...");
+        SceneController.QuitGame();
     }
 
     public void ExitLevel()
     {
         Debug.Log("Exit Level...");
     }
+
+
 }

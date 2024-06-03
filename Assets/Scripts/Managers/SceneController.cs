@@ -19,8 +19,17 @@ public class SceneController : Singleton<SceneController>
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        Cursor.lockState = CursorLockMode.Locked;
+        LockCursor();
+    }
 
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void TransitionToDestination(TransitionPoint transitionPoint){
