@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
+    
+    [SerializeField] VoidEventChannel levelClearedEventChannel;
     [SerializeField] AudioClip pickUpSFX;
     [SerializeField] GameObject pickUpVFX;
 
+    public event System.Action Delegate;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-
+        levelClearedEventChannel.Broadcast();
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
@@ -23,5 +26,7 @@ public class Gem : MonoBehaviour
             AudioSource.PlayClipAtPoint(pickUpSFX, other.transform.position);
             Destroy(gameObject);
         }
+        
     }
+
 }

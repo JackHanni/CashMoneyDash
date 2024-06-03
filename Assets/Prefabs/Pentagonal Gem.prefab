@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4ed31491cf4bc45b5308524f052fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelClearedEventChannel: {fileID: 11400000, guid: ff2f5a80a14f94b569fb884267756c51,
+    type: 2}
   pickUpSFX: {fileID: 8300000, guid: 1e6c7455d666e469085874a796eb37e1, type: 3}
   pickUpVFX: {fileID: 7177991128484655659, guid: 59a35ab9f68edff40b6e5332bed330f5,
     type: 3}
@@ -122,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010140368820, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4000010140368820, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -126,6 +127,8 @@ public class PlayerStateMachine : MonoBehaviour
     public float MoveSpeed {get {return _moveSpeed;}}
 
     public SFXPlayer SFXPlayer { get; private set; }
+    [SerializeField] VoidEventChannel levelClearedEventChannel;
+    public bool Victory { get; private set; }
 
 
     // Variables used locally for determining grounded logic
@@ -272,11 +275,18 @@ public class PlayerStateMachine : MonoBehaviour
     void OnEnable()
     {
         _playerInput.CharacterControls.Enable();
+        levelClearedEventChannel.AddListener(action: OnLevelCleared);
     }
 
     void OnDisable()
     {
         _playerInput.CharacterControls.Disable();
+        levelClearedEventChannel.RemoveListener(action: OnLevelCleared);
+    }
+
+    private void OnLevelCleared()
+    {
+        Victory = true;
     }
 
     public void OnTriggerEnter(Collider other)

@@ -43,7 +43,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
         else
         {
             int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.TRIPLE_JUMP.GetType()), SFXPlayer.SoundEnum.TRIPLE_JUMP);
-            index = UnityEngine.Random.Range(index, index + 2);
+            //index = UnityEngine.Random.Range(index, index + 2);
             AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
         }
 

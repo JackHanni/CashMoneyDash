@@ -10,7 +10,6 @@ public class SFXPlayer : MonoBehaviour
         GREETING, //0 - let's go
         GREETING_1, // yoohoo
 
-
         SINGLE_JUMP, // whistle
         DOUBLE_JUMP, // woo
         TRIPLE_JUMP, // wee3
@@ -21,7 +20,6 @@ public class SFXPlayer : MonoBehaviour
         FALL, // uh-oh
         DIE, // disappoint
         VICTORY // yay
-
     }
 
 
