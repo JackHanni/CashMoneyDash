@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 5244108694557105838}
   - component: {fileID: 7865220864200047441}
   - component: {fileID: 7542875478592816987}
+  - component: {fileID: 7297959112383119259}
   m_Layer: 7
   m_Name: SFXPlayer
   m_TagString: Untagged
@@ -562,6 +563,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ffe49b719e7464391a1b0dcf31abe16e, type: 3}
   - {fileID: 8300000, guid: 399781a72aead4870be0c3f28e2e845d, type: 3}
   - {fileID: 8300000, guid: 7ea45395ac2ef40a490e5f9bc317179c, type: 3}
+--- !u!114 &7297959112383119259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772802049535079571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c899d0de79928734d8720b9f8253e621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1804017847109096228
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +821,7 @@ MonoBehaviour:
   _rotationSpeed: 1000
   _groundedThreshold: 0.08
   levelClearedEventChannel: {fileID: 0}
+  playerDefeatedEventChannel: {fileID: 0}
 --- !u!136 &1654634426605350628
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class TransitionPoint : MonoBehaviour
     public TransitionDestination.DestinationTag destinationTag;
     private bool canTrans;
 
-    [SerializeField] VoidEventChannel levelStartedEventChannel;
+    [SerializeField] VoidEventChannel levelStartEventChannel;
 
     void Update(){
         // Press Return Key, Start transition via portal
@@ -30,14 +30,14 @@ public class TransitionPoint : MonoBehaviour
 
     void OnEnable()
     {
-        if (levelStartedEventChannel != null)
-            levelStartedEventChannel.AddListener(action: Open);
+        if (levelStartEventChannel != null)
+            levelStartEventChannel.AddListener(action: Open);
     }
 
     void OnDisable()
     {
-        if (levelStartedEventChannel != null)
-            levelStartedEventChannel.RemoveListener(action: Open);
+        if (levelStartEventChannel != null)
+            levelStartEventChannel.RemoveListener(action: Open);
     }
 
     private void Open()
