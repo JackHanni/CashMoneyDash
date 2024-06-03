@@ -26,7 +26,16 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
     public override void ExitState(){}
 
     public override void CheckSwitchState(){
-        if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) {
+        if (Ctx.Victory)
+        {
+            SwitchState(Factory.Victory());
+        }
+        else if (Ctx.Defeated && !Ctx.DefeatedCalled)
+        {
+            Ctx.DefeatedCalled = true;
+            SwitchState(Factory.Defeated());
+        }
+        else if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) {
             if (!Ctx.IsCrouchPressed) {
                 SwitchState(Factory.Jump());
             } else {

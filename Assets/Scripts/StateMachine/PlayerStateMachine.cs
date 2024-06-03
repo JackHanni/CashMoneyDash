@@ -126,9 +126,12 @@ public class PlayerStateMachine : MonoBehaviour
     public Vector3 AddJumpMovementCamRel {get {return _addJumpMovementCamRel;}}
     public float MoveSpeed {get {return _moveSpeed;}}
 
-    public SFXPlayer SFXPlayer { get; private set; }
+    public SFX_VFX_Player SFX_VFX_Player { get; private set; }
     [SerializeField] VoidEventChannel levelClearedEventChannel;
+    public VoidEventChannel playerDefeatedEventChannel;
     public bool Victory { get; private set; }
+    public bool Defeated { get; private set; }
+    public bool DefeatedCalled { get; internal set; }
 
 
     // Variables used locally for determining grounded logic
@@ -176,7 +179,10 @@ public class PlayerStateMachine : MonoBehaviour
 
         SetupJumpVariables();
 
-        SFXPlayer = GetComponentInChildren<SFXPlayer>();
+        SFX_VFX_Player = GetComponentInChildren<SFX_VFX_Player>();
+        Victory = false;
+        Defeated = false;
+        DefeatedCalled = false;
     }
 
     void SetupJumpVariables()
@@ -284,9 +290,25 @@ public class PlayerStateMachine : MonoBehaviour
         levelClearedEventChannel.RemoveListener(action: OnLevelCleared);
     }
 
-    private void OnLevelCleared()
+     void OnLevelCleared()
     {
         Victory = true;
+    }
+
+    void OnDefeated()
+    {
+        // cannot read player input
+        _playerInput.CharacterControls.Disable();
+
+        // enter float state - zero velocity, no gravity, no collision detection
+
+        // notice the state machine to switch to defeated
+        Defeated = true;
+
+        // play effects
+        int index = Array.IndexOf(Enum.GetValues(SFX_VFX_Player.VFXEnum.DEFEAT.GetType()), SFX_VFX_Player.VFXEnum.DEFEAT);
+        GameObject effect = (GameObject)SFX_VFX_Player.effects.GetValue(index);
+        Instantiate(effect, transform.position, transform.rotation);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -366,7 +388,9 @@ public class PlayerStateMachine : MonoBehaviour
     public void DamagePlayer(int damage,Transform otherTransform) {
         // Alter stat to hurt health and update ui health bar
         _stats.PlayerTakeDamage(damage);
-        
+
+        if (_stats.CurrentHealth == 0)
+            OnDefeated();
     } 
 
     private void SetStats()

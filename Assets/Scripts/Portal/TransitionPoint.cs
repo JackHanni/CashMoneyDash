@@ -30,12 +30,14 @@ public class TransitionPoint : MonoBehaviour
 
     void OnEnable()
     {
-        levelStartedEventChannel.AddListener(action: Open);
+        if (levelStartedEventChannel != null)
+            levelStartedEventChannel.AddListener(action: Open);
     }
 
     void OnDisable()
     {
-        levelStartedEventChannel.RemoveListener(action: Open);
+        if (levelStartedEventChannel != null)
+            levelStartedEventChannel.RemoveListener(action: Open);
     }
 
     private void Open()

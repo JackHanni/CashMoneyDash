@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gem : MonoBehaviour
-{
-    
+{ 
     [SerializeField] VoidEventChannel levelClearedEventChannel;
     [SerializeField] AudioClip pickUpSFX;
     [SerializeField] GameObject pickUpVFX;
 
-    public event System.Action Delegate;
 
     void OnTriggerEnter(Collider other)
     {

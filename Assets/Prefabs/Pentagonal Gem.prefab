@@ -71,7 +71,7 @@ MonoBehaviour:
   levelClearedEventChannel: {fileID: 11400000, guid: ff2f5a80a14f94b569fb884267756c51,
     type: 2}
   pickUpSFX: {fileID: 8300000, guid: 1e6c7455d666e469085874a796eb37e1, type: 3}
-  pickUpVFX: {fileID: 7177991128484655659, guid: 59a35ab9f68edff40b6e5332bed330f5,
+  pickUpVFX: {fileID: 8176850701479282271, guid: b219c04f384e7f345bb8ae1fef443965,
     type: 3}
 --- !u!95 &94359775808070209
 Animator:

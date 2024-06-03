@@ -23,8 +23,8 @@ public class PlayerBackflipState : PlayerBaseState, IRootState
 
     private void PlaySound()
     {
-        int index = Array.IndexOf(Enum.GetValues(SFXPlayer.SoundEnum.BACKFLIP.GetType()), SFXPlayer.SoundEnum.BACKFLIP);
-        AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFXPlayer.sounds.GetValue(index), Ctx.transform.position);
+        int index = Array.IndexOf(Enum.GetValues(SFX_VFX_Player.VoiceEnum.BACKFLIP.GetType()), SFX_VFX_Player.VoiceEnum.BACKFLIP);
+        AudioSource.PlayClipAtPoint((AudioClip)Ctx.SFX_VFX_Player.voices.GetValue(index), Ctx.transform.position);
     }
 
     public override void UpdateState(){

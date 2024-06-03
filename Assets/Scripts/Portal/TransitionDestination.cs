@@ -6,7 +6,10 @@ public class TransitionDestination : MonoBehaviour
 {
     public enum DestinationTag
     {
-        MAIN, A, B, C
+        MAIN_1,
+        MAIN_2,
+        START_1,
+        START_2
     }
 
     public DestinationTag destinationTag;
