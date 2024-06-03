@@ -99,12 +99,12 @@ PrefabInstance:
     - target: {fileID: 1148887204871083360, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00033224508
+      value: -0.000332228
       objectReference: {fileID: 0}
     - target: {fileID: 1148887204871083360, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000036000678
+      value: 0.000035998823
       objectReference: {fileID: 0}
     - target: {fileID: 1360338037371812513, guid: 52339b8c92d79a147a1931016f7bf61f,
         type: 3}
@@ -971,8 +971,7 @@ PrefabInstance:
         type: 3}
       propertyPath: effects.Array.data[0]
       value: 
-      objectReference: {fileID: 245581523800709616, guid: 9442d241d2d8ecc47b49f256b55325c6,
-        type: 3}
+      objectReference: {fileID: 118434, guid: bb266f46b1cf64146ba6d47074785030, type: 3}
     - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: effects.Array.data[1]

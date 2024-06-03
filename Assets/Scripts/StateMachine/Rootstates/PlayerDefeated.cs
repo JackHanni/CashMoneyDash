@@ -21,7 +21,7 @@ public class PlayerDefeated : PlayerBaseState, IRootState
         PlaySound();
 
 
-        Ctx.playerDefeatedEventChannel.Broadcast();
+        
         // lock cursor
 
         // rotate character to face camera
@@ -29,6 +29,9 @@ public class PlayerDefeated : PlayerBaseState, IRootState
         // zoom in
 
         Ctx.Animator.Play("Defeated");
+
+        Ctx.playerDefeatedEventChannel.Broadcast();
+
     }
 
     private void PlaySound()
