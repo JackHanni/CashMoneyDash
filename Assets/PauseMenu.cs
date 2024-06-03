@@ -42,4 +42,9 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting Game...");
     }
+
+    public void ExitLevel()
+    {
+        Debug.Log("Exit Level...");
+    }
 }

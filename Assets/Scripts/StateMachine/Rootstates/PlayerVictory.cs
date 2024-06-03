@@ -54,7 +54,7 @@ public class PlayerVictory : PlayerBaseState, IRootState
 
     public override void UpdateState()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
 
