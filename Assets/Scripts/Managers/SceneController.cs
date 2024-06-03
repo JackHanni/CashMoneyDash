@@ -14,11 +14,13 @@ public class SceneController : Singleton<SceneController>
     Transform playerAgent; // current player in the scene
 
 
+
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
         Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     public void TransitionToDestination(TransitionPoint transitionPoint){

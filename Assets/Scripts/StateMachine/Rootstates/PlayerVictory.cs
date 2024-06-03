@@ -44,7 +44,10 @@ public class PlayerVictory : PlayerBaseState, IRootState
 
     public void HandleGravity()
     {
-        throw new NotImplementedException();
+        if(Ctx.IsGrounded)
+            Ctx.AppliedMovementY = Ctx.GroundedGravity;
+        else
+            Ctx.AppliedMovementY += Ctx.GroundedGravity*Ctx.TimeStep;
     }
 
     public override void InitializeSubState()
@@ -54,7 +57,13 @@ public class PlayerVictory : PlayerBaseState, IRootState
 
     public override void UpdateState()
     {
-        // throw new NotImplementedException();
+        HandleGravity();
+        Ctx.CurrentMovementX = 0;
+        Ctx.CurrentMovementZ = 0;
+        Ctx.AppliedMovementX = 0;
+        Ctx.AppliedMovementZ = 0;
+        Ctx.AdditionalJumpMovementX = 0;
+        Ctx.AdditionalJumpMovementZ = 0;
     }
 
 

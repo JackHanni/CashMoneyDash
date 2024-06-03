@@ -161,7 +161,7 @@ public class PlayerStateMachine : MonoBehaviour
         _currentState = _states.Grounded();
         _currentState.EnterState();
 
-        _isGrounded = false;
+        _isGrounded = checkIfGrounded();
 
         _groundLayer = LayerMask.NameToLayer("Ground");
         _wallLayer = LayerMask.NameToLayer("Wall");
