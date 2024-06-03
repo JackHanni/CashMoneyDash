@@ -293,6 +293,11 @@ public class PlayerStateMachine : MonoBehaviour
      void OnLevelCleared()
     {
         Victory = true;
+
+        // play effects
+        int index = Array.IndexOf(Enum.GetValues(SFX_VFX_Player.VFXEnum.VICTORY.GetType()), SFX_VFX_Player.VFXEnum.VICTORY);
+        GameObject effect = (GameObject)SFX_VFX_Player.effects.GetValue(index);
+        Instantiate(effect, transform.position, transform.rotation);
     }
 
     void OnDefeated()
