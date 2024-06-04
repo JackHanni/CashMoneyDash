@@ -321,6 +321,15 @@ public class PlayerStateMachine : MonoBehaviour
         int index = Array.IndexOf(Enum.GetValues(SFX_VFX_Player.VFXEnum.DEFEAT.GetType()), SFX_VFX_Player.VFXEnum.DEFEAT);
         GameObject effect = (GameObject)SFX_VFX_Player.effects.GetValue(index);
         Instantiate(effect, transform.position, transform.rotation);
+
+        OnFloat();
+    }
+
+    void OnFloat()
+    {
+        int index = Array.IndexOf(Enum.GetValues(SFX_VFX_Player.VFXEnum.FLOAT.GetType()), SFX_VFX_Player.VFXEnum.FLOAT);
+        GameObject effect = (GameObject)SFX_VFX_Player.effects.GetValue(index);
+        Instantiate(effect, transform.position + new Vector3(0.25f, 0.5f, 0f), Quaternion.identity, transform);
     }
 
     public void OnTriggerEnter(Collider other)

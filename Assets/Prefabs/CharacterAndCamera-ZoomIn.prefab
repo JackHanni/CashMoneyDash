@@ -1129,8 +1129,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4362119704286742540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09062839, y: 0.6877024, z: -0.087165855, w: 0.7150203}
-  m_LocalPosition: {x: 61.019325, y: -815.07733, z: 559.233}
+  m_LocalRotation: {x: 0.12574339, y: -0.00033152025, z: 0.00004202, w: 0.99206275}
+  m_LocalPosition: {x: -76.687996, y: -814.394, z: 300.82764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1821,7 +1821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8143797387285340040}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12574337, y: -0.00033153303, z: 0.00004202162, w: 0.9920628}
+  m_LocalRotation: {x: 0.12574337, y: -0.00033152447, z: 0.00004202054, w: 0.9920628}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2243,7 +2243,7 @@ PrefabInstance:
     - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: effects.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
@@ -2260,10 +2260,16 @@ PrefabInstance:
         type: 3}
       propertyPath: effects.Array.data[1]
       value: 
-      objectReference: {fileID: 118434, guid: bb266f46b1cf64146ba6d47074785030, type: 3}
+      objectReference: {fileID: 4171809622890374511, guid: 5bfc8a5a68b0a714e98c07c88d52ca53,
+        type: 3}
     - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: effects.Array.data[2]
+      value: 
+      objectReference: {fileID: 118434, guid: bb266f46b1cf64146ba6d47074785030, type: 3}
+    - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: effects.Array.data[3]
       value: 
       objectReference: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa,
         type: 3}
