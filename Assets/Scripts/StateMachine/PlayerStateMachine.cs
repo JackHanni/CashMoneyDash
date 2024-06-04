@@ -262,6 +262,11 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _requireNewJumpPress = false;
         _isJumpPressed = context.ReadValueAsButton();
+
+        // play jump particle effects
+        int index = Array.IndexOf(Enum.GetValues(SFX_VFX_Player.VFXEnum.JUMP.GetType()), SFX_VFX_Player.VFXEnum.JUMP);
+        GameObject effect = (GameObject)SFX_VFX_Player.effects.GetValue(index);
+        Instantiate(effect, transform.position, transform.rotation);
     }
 
     void OnRun (InputAction.CallbackContext context)

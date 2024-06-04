@@ -2113,6 +2113,11 @@ PrefabInstance:
       propertyPath: m_StepOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1772802049535079571, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: m_Name
+      value: SFX_VFX_Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2035994940493338905, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: m_Name
@@ -2237,6 +2242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
+      propertyPath: effects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
       propertyPath: voices.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: 1a562e9686f5849a49525ee4c7dae1ee, type: 3}
@@ -2244,10 +2254,16 @@ PrefabInstance:
         type: 3}
       propertyPath: effects.Array.data[0]
       value: 
-      objectReference: {fileID: 118434, guid: bb266f46b1cf64146ba6d47074785030, type: 3}
+      objectReference: {fileID: 4677385770792116971, guid: 31beca5807f326246860109c534f1383,
+        type: 3}
     - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: effects.Array.data[1]
+      value: 
+      objectReference: {fileID: 118434, guid: bb266f46b1cf64146ba6d47074785030, type: 3}
+    - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: effects.Array.data[2]
       value: 
       objectReference: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa,
         type: 3}
