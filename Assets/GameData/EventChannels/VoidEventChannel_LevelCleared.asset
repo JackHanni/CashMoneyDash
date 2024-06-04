@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0439f05e487ce4964930cb397787ee53, type: 3}
-  m_Name: VoidEventChannel_LevelClearedTrigger
+  m_Name: VoidEventChannel_LevelCleared
   m_EditorClassIdentifier: 

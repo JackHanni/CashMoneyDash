@@ -5,11 +5,11 @@ using UnityEngine;
 public class ReadyScreen : MonoBehaviour
 {
     [SerializeField] AudioClip startVoice;
-    [SerializeField] VoidEventChannel levelStartEventChannel;
+    [SerializeField] VoidEventChannel levelStartedEventChannel;
 
     void LevelStart()
     {
-        levelStartEventChannel.Broadcast();
+        levelStartedEventChannel.Broadcast();
 
         GetComponent<Canvas>().enabled = false;
         GetComponent<Animator>().enabled = false;

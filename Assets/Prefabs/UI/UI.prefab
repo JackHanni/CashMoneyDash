@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1467496967575292945}
   - component: {fileID: 1467496967575292948}
+  - component: {fileID: 1879850687871635654}
   m_Layer: 5
   m_Name: Clear Timer
   m_TagString: Untagged
@@ -130,7 +131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -120, y: -20}
+  m_AnchoredPosition: {x: -700, y: -40}
   m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1467496967575292948
@@ -140,7 +141,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467496967575292946}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -156,6 +157,27 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1879850687871635654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467496967575292946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13847fec7fed54d8085154d8e663c449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 1467496969087110719}
+  levelStartedEventChannel: {fileID: 11400000, guid: 840d366332caf47c6aec0bb94086e647,
+    type: 2}
+  levelClearedEventChannel: {fileID: 11400000, guid: ff2f5a80a14f94b569fb884267756c51,
+    type: 2}
+  playerDefeatedEventChannel: {fileID: 11400000, guid: 745396a8a45f84c8bb6e71f65ee03ed0,
+    type: 2}
+  clearTimeTextEventChannel: {fileID: 11400000, guid: 105419d6367ee46b596ba0a75a48578a,
+    type: 2}
 --- !u!1 &1467496967588288347
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1467496968123732385
 RectTransform:
   m_ObjectHideFlags: 0
@@ -915,7 +937,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 35, y: 0}
-  m_SizeDelta: {x: 300, y: 30}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1467496968123732391
 CanvasRenderer:
@@ -947,7 +969,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1402,12 +1424,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelClearedEventChannel: {fileID: 11400000, guid: ff2f5a80a14f94b569fb884267756c51,
     type: 2}
+  clearTimeTextEventChannel: {fileID: 11400000, guid: 105419d6367ee46b596ba0a75a48578a,
+    type: 2}
   sound:
   - {fileID: 8300000, guid: e115d1d000f5e47c4ac3fd3671f2293c, type: 3}
   - {fileID: 8300000, guid: 78e075d781b104c24a112d4da3273d98, type: 3}
   - {fileID: 8300000, guid: fb20601505c3440ada49b6a5d5d48ff2, type: 3}
   - {fileID: 8300000, guid: 87d451e3adb22428bafd06e19a26b412, type: 3}
   - {fileID: 8300000, guid: 3b6468e58284d46ee9d8723b0fd0ae75, type: 3}
+  timeText: {fileID: 1467496967505517433}
 --- !u!1 &1467496969204292968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,7 +1861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startVoice: {fileID: 8300000, guid: 618814047e826475cb5f010d99754d22, type: 3}
-  levelStartEventChannel: {fileID: 11400000, guid: 840d366332caf47c6aec0bb94086e647,
+  levelStartedEventChannel: {fileID: 11400000, guid: 840d366332caf47c6aec0bb94086e647,
     type: 2}
 --- !u!95 &398571773147892536
 Animator:

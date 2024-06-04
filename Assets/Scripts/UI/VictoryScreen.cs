@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VictoryScreen : MonoBehaviour
 {
     [SerializeField] VoidEventChannel levelClearedEventChannel;
+    [SerializeField] StringEventChannel clearTimeTextEventChannel;
     [SerializeField] AudioClip[] sound;
+    [SerializeField] Text timeText;
+
 
     private void OnEnable()
     {
         levelClearedEventChannel.AddListener(ShowUI);
+        clearTimeTextEventChannel.AddListener(SetTimeText);
     }
 
     private void OnDisable()
     {
         levelClearedEventChannel.RemoveListener(ShowUI);
+        clearTimeTextEventChannel.RemoveListener(SetTimeText);
+    }
+
+    void SetTimeText(string obj)
+    {
+        timeText.text = obj;
     }
 
     void ShowUI()
