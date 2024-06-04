@@ -9,9 +9,9 @@ using UnityEngine.SceneManagement;
 // Generally speaking, a singleton in Unity is a globally accessible class that exists in the scene, but only once.
 public class SceneController : Singleton<SceneController> 
 {
-    public GameObject playerPrefab; // player prefab for loading and applying existing data when transfer to new scene
-    GameObject player; 
-    Transform playerAgent; // current player in the scene
+    //public GameObject playerPrefab; // player prefab for loading and applying existing data when transfer to new scene
+    //GameObject player; 
+    //Transform playerAgent; // current player in the scene
 
 
 
@@ -37,27 +37,29 @@ public class SceneController : Singleton<SceneController>
 
         switch (transitionPoint.transitionType)
         {
-            case TransitionPoint.TransitionType.SameScene:
-                // current scene, go to portal at the destination tag
-                StartCoroutine(Transition(SceneManager.GetActiveScene().name, transitionPoint.destinationTag));
-                break;
+            //case TransitionPoint.TransitionType.SameScene:
+            //    // current scene, go to portal at the destination tag
+            //    StartCoroutine(Transition(SceneManager.GetActiveScene().name, transitionPoint.destinationTag));
+            //    break;
             case TransitionPoint.TransitionType.DifferentScene:
                 // async load the future level
-                StartCoroutine(Transition(transitionPoint.sceneName, transitionPoint.destinationTag));
+                //StartCoroutine(Transition(transitionPoint.sceneId, transitionPoint.destinationTag));
+
+                SceneManager.LoadScene(transitionPoint.sceneId);
                 break;
         }
     }
 
 
     // async load 
-    IEnumerator Transition(string sceneName, TransitionDestination.DestinationTag destinationTag)
+    IEnumerator Transition(int sceneId, TransitionDestination.DestinationTag destinationTag)
     {
         // TODO: SAVE DATA
 
-        if (SceneManager.GetActiveScene().name != sceneName)
+        if (SceneManager.GetActiveScene().buildIndex != sceneId)
         {
             // Diff scene: load scene
-            yield return SceneManager.LoadSceneAsync(sceneName);
+            yield return SceneManager.LoadSceneAsync(sceneId);
             // yield return Instantiate(playerPrefab, GetDestination(destinationTag).transform.position, GetDestination(destinationTag).transform.rotation);
             yield break;
         }
@@ -107,6 +109,11 @@ public class SceneController : Singleton<SceneController>
         }
 
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public static void LoadMainScene()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public static void QuitGame()

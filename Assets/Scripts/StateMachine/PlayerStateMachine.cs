@@ -183,6 +183,7 @@ public class PlayerStateMachine : MonoBehaviour
         Victory = false;
         Defeated = false;
         DefeatedCalled = false;
+        Time.timeScale = 1.0f;
     }
 
     void SetupJumpVariables()
@@ -307,8 +308,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         // cannot read player input
         _playerInput.CharacterControls.Disable();
-
-        // enter float state - zero velocity, no gravity, no collision detection
 
         // notice the state machine to switch to defeated
         Defeated = true;

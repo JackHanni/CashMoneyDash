@@ -42,7 +42,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitLevel()
     {
-        Debug.Log("Exit Level...");
+        SceneController.LoadMainScene();
+        Resume();
     }
 
 

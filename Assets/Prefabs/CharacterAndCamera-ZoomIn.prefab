@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946028242361772920}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13503838, y: -0.00033110316, z: 0.00004512497, w: 0.9908403}
+  m_LocalRotation: {x: 0.13503838, y: -0.00033113727, z: 0.000045129607, w: 0.9908403}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1129,8 +1129,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4362119704286742540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12574339, y: -0.00033153733, z: 0.000042022166, w: 0.99206275}
-  m_LocalPosition: {x: -76.687996, y: -814.394, z: 300.82764}
+  m_LocalRotation: {x: 0.09062839, y: 0.6877024, z: -0.087165855, w: 0.7150203}
+  m_LocalPosition: {x: 61.019325, y: -815.07733, z: 559.233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2034,7 +2034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8976414815174539830}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12630399, y: -0.00033151344, z: 0.000042209507, w: 0.9919915}
+  m_LocalRotation: {x: 0.12630399, y: -0.00033149635, z: 0.000042207335, w: 0.9919915}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2251,6 +2251,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa,
         type: 3}
+    - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: lose_sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: lose_sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 82d24929870ac48809d7e711135efd7d, type: 3}
+    - target: {fileID: 7542875478592816987, guid: fec0a0c7e088e7842b8c8fb83ab055df,
+        type: 3}
+      propertyPath: lose_sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ea45395ac2ef40a490e5f9bc317179c, type: 3}
     - target: {fileID: 7865220864200047441, guid: fec0a0c7e088e7842b8c8fb83ab055df,
         type: 3}
       propertyPath: m_Enabled
