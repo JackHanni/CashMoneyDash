@@ -36,14 +36,10 @@ public class PlayerLongjumpState : PlayerBaseState, IRootState
         if (Ctx.IsJumpPressed) {
             Ctx.RequireNewJumpPress = true;
         }
-        Ctx.CurrentMovementX = 0;
-        Ctx.CurrentMovementZ = 0;
-        Ctx.AppliedMovementX = 0;
-        Ctx.AppliedMovementZ = 0;
         Ctx.IsJumping = false;
         Ctx.IsLongjumping = false;
-        Ctx.AdditionalJumpMovementX = 0;
-        Ctx.AdditionalJumpMovementZ = 0;
+        // Ctx.AdditionalJumpMovementX = 0;
+        // Ctx.AdditionalJumpMovementZ = 0;
     }
 
     public override void CheckSwitchState(){
