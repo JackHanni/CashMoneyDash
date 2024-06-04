@@ -26,7 +26,7 @@ public class InventoryUI : MonoBehaviour
     public void UpdateGemText(PlayerInventory playerInventory)
     {
         gemText.text = playerInventory.NumberOfGems.ToString();
-        Debug.Log("gem text:" + gemText.text);
+        //Debug.Log("gem text:" + gemText.text);
     }
 
 

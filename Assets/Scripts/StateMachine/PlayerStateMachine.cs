@@ -292,6 +292,9 @@ public class PlayerStateMachine : MonoBehaviour
 
      void OnLevelCleared()
     {
+        // cannot read player input
+        _playerInput.CharacterControls.Disable();
+
         Victory = true;
 
         // play effects

@@ -16,13 +16,37 @@ public class PlayerVictory : PlayerBaseState, IRootState
     {
         PlaySound();
 
-        // lock cursor
-
         // rotate character to face camera
+        FaceCamera();
 
-        // zoom in
+        // slows down timer
+        SlowDownTimer();
 
         Ctx.Animator.Play("Victory");
+    }
+
+    private void SlowDownTimer()
+    {
+        // Set the time scale to slow down the game
+        // For example, setting it to 0.5 will make the game run at half speed
+        Time.timeScale = 0.5f;
+    }
+
+    private void FaceCamera()
+    {
+        Camera mainCamera = Camera.main;
+
+        // Calculate the direction from the character to the camera
+        Vector3 directionToCamera = mainCamera.transform.position - Ctx.transform.position;
+
+        // Remove the y component to keep the character upright
+        directionToCamera.y = 0;
+
+        // Calculate the new rotation
+        Quaternion newRotation = Quaternion.LookRotation(directionToCamera);
+
+        // Apply the new rotation
+        Ctx.transform.rotation = newRotation;
     }
 
     private void PlaySound()
@@ -39,7 +63,7 @@ public class PlayerVictory : PlayerBaseState, IRootState
 
     public override void ExitState()
     {
-        throw new NotImplementedException();
+        Time.timeScale = 1.0f;
     }
 
     public void HandleGravity()
