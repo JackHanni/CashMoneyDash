@@ -1094,7 +1094,9 @@ MonoBehaviour:
   playerDefeatedEventChannel: {fileID: 11400000, guid: 745396a8a45f84c8bb6e71f65ee03ed0,
     type: 2}
   sound:
-  - {fileID: 8300000, guid: 8606c24ac77054dc79439bd2b3af8ba4, type: 3}
+  - {fileID: 8300000, guid: ffe49b719e7464391a1b0dcf31abe16e, type: 3}
+  - {fileID: 8300000, guid: 7ea45395ac2ef40a490e5f9bc317179c, type: 3}
+  - {fileID: 8300000, guid: 399781a72aead4870be0c3f28e2e845d, type: 3}
 --- !u!95 &1607001326439421039
 Animator:
   serializedVersion: 5
