@@ -14,9 +14,9 @@
 
 * Character Movement - Fixed movement midair, Momentum-based movement and acceleration on movement.
 
-* Character SFX and VFX effects - jump, walk, run, die, win, trail, 
+* Character SFX and VFX effects - jump, walk, run, die, win, trail. 
 
-* Level Design - Tutorial, More challenging slimes, Synchronized moving platforms, Rotating platforms, More gems and larger levels, Zoom In Cam, 
+* Level Design - Tutorial, More challenging slimes, Synchronized moving platforms, Rotating platforms, More gems and larger levels, Zoom In Cam. 
 
 * UI - Pause Menu, Ready/Win/Defeat Screen.
 
