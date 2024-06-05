@@ -18,6 +18,6 @@ public class ReadyScreen : MonoBehaviour
 
     void PlayerStartVoice()
     {
-        SoundEffectsPlayer.AudioSource.PlayOneShot(startVoice);
+        AudioSource.PlayClipAtPoint((AudioClip)startVoice, SoundEffectsPlayer.AudioSource.transform.position);
     }
 }

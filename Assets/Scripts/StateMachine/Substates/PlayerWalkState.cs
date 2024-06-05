@@ -16,7 +16,19 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.Animator.SetBool(Ctx.IsCrouchedHash,false);
     }
 
+    private void PlaySound()
+    {
+        AudioClip walk = Ctx.SFX_VFX_Player.walk;
+        AudioSource source = SoundEffectsPlayer.AudioSource;
+        if (!source.isPlaying)
+        {
+            source.clip = walk;
+            source.Play();
+        }
+    }
+
     public override void UpdateState(){
+        PlaySound();
         HandleMovement();
         CheckSwitchState();
     }

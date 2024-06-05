@@ -13,7 +13,7 @@ public class TransitionPoint : MonoBehaviour
     }
     
     [Header("Transition Info")]
-    public int sceneId;
+    public string sceneName;
     public TransitionType transitionType;
     public TransitionDestination.DestinationTag destinationTag;
     private bool canTrans;

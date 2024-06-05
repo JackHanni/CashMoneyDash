@@ -29,5 +29,8 @@ public class SFX_VFX_Player : MonoBehaviour
     public GameObject[] effects;
     public AudioClip[] win_sounds;
     public AudioClip[] lose_sounds;
+
+    public AudioClip walk;
+    public AudioClip run;
 }
 

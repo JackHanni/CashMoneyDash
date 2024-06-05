@@ -17,8 +17,20 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void UpdateState(){
+        PlaySound();
         HandleMovement();
         CheckSwitchState();
+    }
+
+    private void PlaySound()
+    {
+        AudioClip run = Ctx.SFX_VFX_Player.run;
+        AudioSource source = SoundEffectsPlayer.AudioSource;
+        if (!source.isPlaying)
+        {
+            source.clip = run;
+            source.Play();
+        }
     }
 
     private void HandleMovement() 

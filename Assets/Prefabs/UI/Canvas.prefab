@@ -217,7 +217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 2606930292993434385}
-  sceneController: {fileID: 0}
 --- !u!1 &818075263447107310
 GameObject:
   m_ObjectHideFlags: 0

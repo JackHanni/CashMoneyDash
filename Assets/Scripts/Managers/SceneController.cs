@@ -9,17 +9,33 @@ using UnityEngine.SceneManagement;
 // Generally speaking, a singleton in Unity is a globally accessible class that exists in the scene, but only once.
 public class SceneController : Singleton<SceneController> 
 {
-    //public GameObject playerPrefab; // player prefab for loading and applying existing data when transfer to new scene
-    //GameObject player; 
-    //Transform playerAgent; // current player in the scene
-
-
+    private static HashSet<string> destroyedObjects = new HashSet<string>();
 
     protected override void Awake()
     {
         base.Awake();
+        // is this line working?
         DontDestroyOnLoad(this);
         LockCursor();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        foreach (var gemName in destroyedObjects)
+        {
+            GameObject gem = GameObject.Find(gemName);
+            if (gem != null)
+            {
+                Destroy(gem);
+            }
+        }
+    }
+
+    public static void MarkObjectAsDestroyed(string gemName)
+    {
+        destroyedObjects.Add(gemName);
+        PlayerPrefs.SetString("DestroyedObjects", string.Join(",", destroyedObjects));
     }
 
     public static void LockCursor()
@@ -33,61 +49,9 @@ public class SceneController : Singleton<SceneController>
     }
 
     public void TransitionToDestination(TransitionPoint transitionPoint){
-        // two possible conditions - same scene or different scene
-
-        switch (transitionPoint.transitionType)
-        {
-            //case TransitionPoint.TransitionType.SameScene:
-            //    // current scene, go to portal at the destination tag
-            //    StartCoroutine(Transition(SceneManager.GetActiveScene().name, transitionPoint.destinationTag));
-            //    break;
-            case TransitionPoint.TransitionType.DifferentScene:
-                // async load the future level
-                //StartCoroutine(Transition(transitionPoint.sceneId, transitionPoint.destinationTag));
-
-                SceneManager.LoadScene(transitionPoint.sceneId);
-                break;
-        }
+        // load next scene based on portal
+        SceneManager.LoadScene(transitionPoint.sceneName);
     }
-
-
-    // async load 
-    IEnumerator Transition(int sceneId, TransitionDestination.DestinationTag destinationTag)
-    {
-        // TODO: SAVE DATA
-
-        if (SceneManager.GetActiveScene().buildIndex != sceneId)
-        {
-            // Diff scene: load scene
-            yield return SceneManager.LoadSceneAsync(sceneId);
-            // yield return Instantiate(playerPrefab, GetDestination(destinationTag).transform.position, GetDestination(destinationTag).transform.rotation);
-            yield break;
-        }
-        //else
-        //{
-        //    // put player to the portal at destinationTag
-        //    player = GameManager.Instance.playerStats.gameObject;
-        //    //playerAgent = GameObject.FindGameObjectWithTag("Player").transform;
-        //    //playerAgent.enable = false;
-        //    player.transform.SetPositionAndRotation(GetDestination(destinationTag).transform.position, GetDestination(destinationTag).transform.rotation);
-        //    yield return null;
-        //}
-        
-    }
-
-    private TransitionDestination GetDestination(TransitionDestination.DestinationTag destinationTag)
-    {
-        
-        var entrances = FindObjectsOfType<TransitionDestination>();
-
-        for (int i = 0; i < entrances.Length; i++)
-        {
-            if (entrances[i].destinationTag == destinationTag)
-                return entrances[i];
-        }
-        return null;
-    }
-
 
     public static void ReloadScene()
     {
@@ -96,24 +60,31 @@ public class SceneController : Singleton<SceneController>
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public static int FindCurrentSceneIdx()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        return sceneIndex;
+    }
+
     public static void LoadNextScene()
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
         if (sceneIndex >= SceneManager.sceneCount)
         {
-            // Do something. E.g. Load your main menu scene
             ReloadScene();
-
             return;
         }
-
         SceneManager.LoadScene(sceneIndex);
     }
 
     public static void LoadMainScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public static void LoadAllGemClear()
+    {
+        SceneManager.LoadScene(3);
     }
 
     public static void QuitGame()
