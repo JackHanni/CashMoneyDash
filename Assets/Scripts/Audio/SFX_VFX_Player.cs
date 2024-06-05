@@ -19,6 +19,7 @@ public class SFX_VFX_Player : MonoBehaviour
     public enum VFXEnum
     {
         JUMP,
+        FLOAT,
         DEFEAT,
         VICTORY
     }
