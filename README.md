@@ -36,5 +36,5 @@
 - Coin Effects: [Youtube - Unity 3D Platformer](https://www.youtube.com/playlist?list=PLiyfvmtjWC_V_H-VMGGAZi7n5E0gyhc37)
 - Respawn, Checkpoint: [Youtube - 3D Platformer in Unity](https://www.youtube.com/watch?v=MxEgXOWBNFA&list=PLkp23zg4CAMV8fcsUYX1EwihX7WXhFH6N&index=20)
 - Circular Health Bar: [Youtube - Sam Schiffer](https://www.youtube.com/watch?v=V5h2ClMUguQ)
-- https://github.com/RYanXuDev/PlatformerControllerTutorial
+- Ready, Victory, Defeat, Timer: [Youtube/Github - RYanIndieDev](https://github.com/RYanXuDev/PlatformerControllerTutorial)
 - Character Controller and State Machine: [Youtube - IHeartGameDev](https://youtube.com/playlist?list=PLwyUzJb_FNeQrIxCEjj5AMPwawsw5beAy&si=gIcM2GG25uy952Xj)
