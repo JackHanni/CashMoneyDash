@@ -12,13 +12,20 @@ public class MovingPlatform : MonoBehaviour
     private int _targetWayPointIndex;
     private Transform _previousWayPoint;
     private Transform _targetWayPoint;
-
+    
     private float _timeToWayPoint;
     private float _elapsedTime;
     [SerializeField]
     private Vector3 _currentMovement;
 
     public Vector3 CurrentMovement {get {return _currentMovement;}}
+    private float distance;
+    public float Distance {get {return distance;}}
+    public float Speed {get {return _speed;} set {_speed = value;}}
+    public float TimeToWayPoint {get {return _timeToWayPoint;} set {_timeToWayPoint = value;}}
+
+    public bool _synced = false;
+    public GameObject _syncPath;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +48,21 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    private void TargetNextWaypoint()
+    public void TargetNextWaypoint()
     {
         _previousWayPoint = _wayPointPath.GetWayPoint(_targetWayPointIndex);
         _targetWayPointIndex = _wayPointPath.GetNextWayPointIndex(_targetWayPointIndex);
         _targetWayPoint = _wayPointPath.GetWayPoint(_targetWayPointIndex);
         _elapsedTime = 0;
         float distanceToWayPoint = Vector3.Distance(_previousWayPoint.position, _targetWayPoint.position);
-        _timeToWayPoint = distanceToWayPoint / _speed;
+        distance = Vector3.Distance(transform.position,_targetWayPoint.position);
+        if (!_synced) {
+            _timeToWayPoint = distanceToWayPoint / _speed;
+        } else if (_syncPath != null){
+            var script = _syncPath.GetComponent<SyncPlatforms>();
+            _timeToWayPoint = script.TimeToWayPoint;
+            _speed = distance/_timeToWayPoint;
+        }
     }
 
     // private void OnTriggerEnter(Collider other)
