@@ -215,7 +215,7 @@ public class PlayerStateMachine : MonoBehaviour
     void Update()
     {
         // Debug.Log(_isGrounded);
-        if (!_isBackflipping) {
+        if (!_isBackflipping && !Victory) {
             HandleRotation();
         }
 
