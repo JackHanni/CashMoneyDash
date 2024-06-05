@@ -12,7 +12,6 @@ public class Gem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("tag" + gameObject.tag);
         gem = (GemStates)Enum.Parse(typeof(GemStates), gameObject.tag);
 
         levelClearedEventChannel.Broadcast();
@@ -29,18 +28,18 @@ public class Gem : MonoBehaviour
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
+            // change state and count in gem control
+            GemControl.control.gemStates[gem] = true;
+            GemControl.control.PickupCount += 1;
+
+            // destroy gem object forever
+            SceneController.MarkObjectAsDestroyed(gameObject.name);
+
             // increase count in UI
             playerInventory.GemCollected();
             gameObject.SetActive(false);
         }
-
-        // change state and count in gem control
-        GemControl.control.gemStates[gem] = true;
-        Debug.Log("ok, gem state" + GemControl.control.gemStates[gem]);
-        GemControl.control.PickupCount += 1;
-
-        // destroy gem object forever
-        SceneController.MarkObjectAsDestroyed(gameObject.name);
+        
         Destroy(gameObject);
     }
 

@@ -20,7 +20,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void GemCollected()
     {
-        NumberOfGems++;
+        Debug.Log("count" + GemControl.control.PickupCount);
+        NumberOfGems = GemControl.control.PickupCount;
         OnGemCollected.Invoke(this);
     }
 

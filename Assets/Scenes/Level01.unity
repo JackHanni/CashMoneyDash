@@ -18001,12 +18001,12 @@ PrefabInstance:
     - target: {fileID: 4958543836712238553, guid: 9cdb195532600422ba44df37abfa1648,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00033224508
+      value: -0.000332228
       objectReference: {fileID: 0}
     - target: {fileID: 4958543836712238553, guid: 9cdb195532600422ba44df37abfa1648,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000036000685
+      value: 0.000035998826
       objectReference: {fileID: 0}
     - target: {fileID: 5034059461734604212, guid: 9cdb195532600422ba44df37abfa1648,
         type: 3}
@@ -19089,6 +19089,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479441310282601131, guid: 4c7240b3ae712484eb3239170079f109,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593046837963997674, guid: 4c7240b3ae712484eb3239170079f109,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
