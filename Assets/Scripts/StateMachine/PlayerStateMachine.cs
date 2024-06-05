@@ -380,6 +380,12 @@ public class PlayerStateMachine : MonoBehaviour
             var platformMovementScript = _hit.transform.gameObject.GetComponent<MovingPlatform>();
             var currentPlatformMovement = platformMovementScript.CurrentMovement;
             return currentPlatformMovement;
+        } else if (_hit.transform.CompareTag("RotatingPlatform")){
+            var platformMoveScript = _hit.transform.gameObject.GetComponent<RotatingIsland>();
+            var platformPos = platformMoveScript.Center;
+            var sepVec = transform.position - platformPos;
+            var angVel = platformMoveScript.AngularVelocity;
+            return Vector3.Cross(angVel,sepVec)*_timeStep;
         } else {
             return Vector3.zero;
         }
