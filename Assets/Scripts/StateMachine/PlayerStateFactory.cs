@@ -12,7 +12,8 @@ enum PlayerStates {
     longjump,
     jumpsub,
     victory,
-    defeated
+    defeated,
+    //floated
 }
 
 public class PlayerStateFactory
@@ -33,8 +34,8 @@ public class PlayerStateFactory
         _states[PlayerStates.longjump]  = new PlayerLongjumpState(_context,this);
         _states[PlayerStates.jumpsub]   = new PlayerJumpSubstate(_context,this);
         _states[PlayerStates.victory]   = new PlayerVictory(_context, this);
-        _states[PlayerStates.defeated] = new PlayerDefeated(_context, this);
-
+        _states[PlayerStates.defeated]  = new PlayerDefeated(_context, this);
+        //_states[PlayerStates.floated]     = new PlayerFloatState(_context, this);
     }
 
     public PlayerBaseState Idle() {
@@ -75,5 +76,10 @@ public class PlayerStateFactory
     {
         return _states[PlayerStates.defeated];
     }
+
+    //public PlayerBaseState Float()
+    //{
+    //    return _states[PlayerStates.floated];
+    //}
 }
 

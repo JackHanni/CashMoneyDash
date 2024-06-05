@@ -6,6 +6,7 @@ using System;
 
 public class PlayerDefeated : PlayerBaseState, IRootState
 {
+    Animator animator;
 
     public PlayerDefeated(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory): base(currentContext, playerStateFactory)
     {
@@ -14,53 +15,31 @@ public class PlayerDefeated : PlayerBaseState, IRootState
 
     public override void CheckSwitchState()
     {
-        //SwitchState(Factory.Float());
     }
 
     public override void EnterState(){
-        //PlaySound();
+        Ctx.playerDefeatedEventChannel.Broadcast();
 
-
-        // rotate character to face camera
-        //FaceCamera();
+        PlaySound();
 
         // slows down timer
         SlowDownTimer();
 
-        Ctx.Animator.Play("Defeated");
-
-        Ctx.playerDefeatedEventChannel.Broadcast();
-
+        animator = Ctx.Animator;
+        animator.Play("Defeated");
     }
 
+    private void PlaySound()
+    {
+        AudioClip lose = Ctx.SFX_VFX_Player.lose_sounds[UnityEngine.Random.Range(0, Ctx.SFX_VFX_Player.lose_sounds.Length)];
+        AudioSource.PlayClipAtPoint(lose, Ctx.transform.position);
+    }
 
     private void SlowDownTimer()
     {
         Time.timeScale = 0.5f;
     }
 
-    private void FaceCamera()
-    {
-        Camera mainCamera = Camera.main;
-
-        // Calculate the direction from the character to the camera
-        Vector3 directionToCamera = mainCamera.transform.position - Ctx.transform.position;
-
-        // Remove the y component to keep the character upright
-        directionToCamera.y = 0;
-
-        // Calculate the new rotation
-        Quaternion newRotation = Quaternion.LookRotation(directionToCamera);
-
-        // Apply the new rotation
-        Ctx.transform.rotation = newRotation;
-    }
-
-    private void PlaySound()
-    {
-        AudioClip death = Ctx.SFX_VFX_Player.lose_sounds[UnityEngine.Random.Range(0, Ctx.SFX_VFX_Player.lose_sounds.Length)];
-        AudioSource.PlayClipAtPoint(death, Ctx.transform.position);
-    }
 
     public override void ExitState()
     {
@@ -89,6 +68,16 @@ public class PlayerDefeated : PlayerBaseState, IRootState
         Ctx.AppliedMovementZ = 0;
         Ctx.AdditionalJumpMovementX = 0;
         Ctx.AdditionalJumpMovementZ = 0;
+
+        //AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        //bool IsAnimationFinished = stateInfo.IsName("Defeated") && stateInfo.normalizedTime >= 1.0f;
+
+        //if (IsAnimationFinished)
+        //{
+        //    Debug.Log("switch state");
+        //    SwitchState(Factory.Float());
+            
+        //}
     }
 
 
