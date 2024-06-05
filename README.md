@@ -6,29 +6,21 @@
 
 ## Description 
 – A description of each team member’s contribution to the build.
-* Jack: Movements of main character (via Finite State Machine) and enemy Slime, combat mechanics and damage, Camera Settings, Coins and Gems, Islands Level design, Moving Platforms, UI, Pause Menu, Tutorial sign
-* Ruimin: MainScreen, Audio, Particle Effects, Character Stats(ScriptableObject and Monobehavior), Singleton for all Managers, Portals, Snow Level design, Occlusion, UI, Gem Collected celebration, Die State behavior
+* Jack: Movements of main character (via Finite State Machine) and enemy Slime, combat mechanics and damage, Camera Settings, Coins and Gems, Islands Level design, Rotating and Moving Platforms, UI, Pause Menu, Tutorial sign
+* Ruimin: MainScreen, Sound/Visual Effects, Particle Effects, Character Stats, Singleton for all Managers, Portals, Snow Level design, Occlusion, UI, Gem Collected celebration, Win/Die/Ready Screen and State behavior, Save Gem Data
 
 ## Details 
 – Details regarding any changes made to your core gameplay mechanics based on playtest feedback for this build.
 
-* Pause Menu.
+* Character Movement - Fixed movement midair, Momentum-based movement and acceleration on movement.
 
-* Momentum-based movement and acceleration on movement.
+* Character SFX and VFX effects - jump, walk, run, die, win, trail, 
 
-* Fixed movement midair.
+* Level Design - Tutorial, More challenging slimes, Synchronized moving platforms, Rotating platforms, More gems and larger levels, Zoom In Cam, 
 
-* Tutorial.
+* UI - Pause Menu, Ready/Win/Defeat Screen.
 
-* More gems and larger levels.
-
-* Rotating platforms.
-
-* Jump sound effects.
-
-* More challenging slimes.
-
-* Synchronized moving platforms.
+* Gem Controller (to save data) and Scene Controller
 
 
 ## References
