@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SyncPlatforms : MonoBehaviour
 {
-    private float timer = 0.0f;
     [SerializeField]
     private float transitTime;
     public float TimeToWayPoint {get {return transitTime;}}
@@ -12,8 +11,6 @@ public class SyncPlatforms : MonoBehaviour
     void Awake()
     {
         Sync();
-        // timer = 0.0f;
-        // SetSpeeds();
     }
 
     void Sync()
@@ -23,25 +20,5 @@ public class SyncPlatforms : MonoBehaviour
             var script = child.GetComponent<MovingPlatform>();
             script._synced = true;
         }
-    }
-
-    void SetSpeeds()
-    {
-        foreach (Transform child in transform)
-        {
-            var script = child.GetComponent<MovingPlatform>();
-            var dist = script.Distance;
-            Debug.Log("Sync Plat" +dist);
-            script.Speed = dist/transitTime;
-        }
-    }
-
-    void Update()
-    {
-        // timer += Time.deltaTime;
-        // if (timer >= transitTime) {
-        //     SetSpeeds();
-        //     timer = 0.0f;
-        // }
     }
 }
