@@ -1,7 +1,7 @@
 # Game Programming Project: Final Build
 #### Trello Link: https://trello.com/b/6e9WcBwF/cashmoneydash 
 #### Github Link: https://github.com/JackHanni/CashMoneyDash 
-#### Final Build: [unity link](https://play.unity.com/mg/other/webgl-builds-416668)
+#### Final Build: https://play.unity.com/mg/other/finalbuild-50
 
 
 ## Description 
